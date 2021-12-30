@@ -5,6 +5,7 @@
     <url>/2021/12/29/use-hexo-github-build-blog-mac/</url>
     <content><![CDATA[<blockquote>
 <p>MacOS 10.14.5   Hexo 6.0.0   NexT 8.8.2</p>
+<p>Node.js 16.13.1  Git 2.15.0</p>
 </blockquote>
 <h2 id="一、准备Github账号及创建Repository"><a href="#一、准备Github账号及创建Repository" class="headerlink" title="一、准备Github账号及创建Repository"></a>一、准备Github账号及创建Repository</h2><p>参考教程：<a href="https://vic.kim/2019/05/25/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo-Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#Github%E8%B4%A6%E5%8F%B7%E6%B3%A8%E5%86%8C%E5%8F%8A%E4%BB%93%E5%BA%93%E5%88%9B%E5%BB%BA">Github账号注册及仓库创建</a></p>
 <h2 id="二、准备电脑环境"><a href="#二、准备电脑环境" class="headerlink" title="二、准备电脑环境"></a>二、准备电脑环境</h2><h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><p>在Terminal输入：</p>
