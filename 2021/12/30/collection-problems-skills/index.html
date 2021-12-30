@@ -20,25 +20,31 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="the dots will somehow connect in your future">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ray Wei&#39;s Blog">
-<meta property="og:url" content="http://example.com/index.html">
+<meta name="description" content="MacTerminal创建多级文件夹 1sudo mkdir -p a&#x2F;b&#x2F;c  其他command +·（niz的M键）同一软件内切换不同窗口 Java查看JDK安装路径 1&#x2F;usr&#x2F;libexec&#x2F;java_home -V  查看安装了哪些版本的JDK 1ls &#x2F;Library&#x2F;Java&#x2F;JavaVirtualMachines&#x2F;  卸载对应版本的JDK 1sudo rm -rf &#x2F;Librar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Collections of problems and skills in learning Java">
+<meta property="og:url" content="http://example.com/2021/12/30/collection-problems-skills/index.html">
 <meta property="og:site_name" content="Ray Wei&#39;s Blog">
-<meta property="og:description" content="the dots will somehow connect in your future">
+<meta property="og:description" content="MacTerminal创建多级文件夹 1sudo mkdir -p a&#x2F;b&#x2F;c  其他command +·（niz的M键）同一软件内切换不同窗口 Java查看JDK安装路径 1&#x2F;usr&#x2F;libexec&#x2F;java_home -V  查看安装了哪些版本的JDK 1ls &#x2F;Library&#x2F;Java&#x2F;JavaVirtualMachines&#x2F;  卸载对应版本的JDK 1sudo rm -rf &#x2F;Librar">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190128195709897.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019012820022120.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMDQ0MDA2,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-12-30T15:26:25.000Z">
+<meta property="article:modified_time" content="2021-12-30T15:34:19.006Z">
 <meta property="article:author" content="Ray Wei">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190128195709897.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/12/30/collection-problems-skills/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2021/12/30/collection-problems-skills/","path":"2021/12/30/collection-problems-skills/","title":"Collections of problems and skills in learning Java"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Ray Wei's Blog</title>
+<title>Collections of problems and skills in learning Java | Ray Wei's Blog</title>
   
 
 
@@ -67,7 +73,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Ray Wei's Blog</h1>
+      <p class="site-title">Ray Wei's Blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -130,7 +136,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -143,6 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac"><span class="nav-text">Mac</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminal"><span class="nav-text">Terminal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java"><span class="nav-text">Java</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE"><span class="nav-text">环境变量配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat"><span class="nav-text">Tomcat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IDEA"><span class="nav-text">IDEA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Short-keys"><span class="nav-text">Short keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shortcuts"><span class="nav-text">Shortcuts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8toolbar%E4%B8%8A%E5%A2%9E%E5%8A%A0%E5%BF%AB%E6%8D%B7%E5%9B%BE%E6%A0%87"><span class="nav-text">在toolbar上增加快捷图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2021%E5%8F%B3%E9%94%AE%E6%B2%A1%E6%9C%89Servlet%E9%80%89%E9%A1%B9"><span class="nav-text">2021右键没有Servlet选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF"><span class="nav-text">自定义代码模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E7%B1%BB%E5%90%8D%E4%B8%80%E8%88%AC%E6%A0%BC%E5%BC%8F"><span class="nav-text">全类名一般格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql"><span class="nav-text">mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maven"><span class="nav-text">Maven</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93-%E4%BD%8D%E7%BD%AE-Mac"><span class="nav-text">本地仓库 位置 Mac</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4maven%E4%B8%AD%E7%9A%84lastUpdated%E6%96%87%E4%BB%B6"><span class="nav-text">批量删除maven中的lastUpdated文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cannot-find-class-com-jdbc-cj-jdbc-Driver"><span class="nav-text">cannot find class com.jdbc.cj.jdbc.Driver</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VS-Code"><span class="nav-text">VS Code</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">快捷键</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#log4j"><span class="nav-text">log4j</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#uri-is-not-registered"><span class="nav-text">uri is not registered</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis"><span class="nav-text">Mybatis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#database-identifier-name-xxx-is-too-long"><span class="nav-text">database identifier name xxx is too long</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -196,16 +203,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/30/collection-problems-skills/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -218,9 +226,9 @@
       <meta itemprop="name" content="Ray Wei's Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/30/collection-problems-skills/" class="post-title-link" itemprop="url">Collections of problems and skills in learning Java</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Collections of problems and skills in learning Java
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -253,7 +261,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h1><h2 id="Terminal"><a href="#Terminal" class="headerlink" title="Terminal"></a>Terminal</h2><p>创建多级文件夹</p>
+        <h1 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h1><h2 id="Terminal"><a href="#Terminal" class="headerlink" title="Terminal"></a>Terminal</h2><p>创建多级文件夹</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p a/b/c</span><br></pre></td></tr></table></figure>
 
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>command +·（niz的M键）同一软件内切换不同窗口</p>
@@ -480,7 +488,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:mysql://localhost:3306/mybatis-example</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
@@ -488,185 +495,21 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/30/spring-aop-signature/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ray Wei">
-      <meta itemprop="description" content="the dots will somehow connect in your future">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ray Wei's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/30/spring-aop-signature/" class="post-title-link" itemprop="url">Signature of org.aspectj.lang</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-12-30 10:57:25 / Modified: 11:26:47" itemprop="dateCreated datePublished" datetime="2021-12-30T10:57:25+08:00">2021-12-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/javaLearning/" itemprop="url" rel="index"><span itemprop="name">javaLearning</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在学习Spring——AOP环绕通知的时候，org.aspectj.lang下有一个Signature接口，签名对象。没懂什么意思，Google了一下，解释如下：</p>
-<blockquote>
-<p>In <a target="_blank" rel="noopener" href="https://www.thoughtco.com/what-is-java-2034117">Java</a>, a method signature is part of the method declaration. It’s the combination of the method name and the <a target="_blank" rel="noopener" href="https://www.thoughtco.com/parameter-2034268">parameter</a> list.</p>
-<p>The reason for the emphasis on just the method name and parameter list is because of <a target="_blank" rel="noopener" href="https://www.thoughtco.com/overloading-2034261">overloading</a>. It’s the ability to write methods that have the same name but accept different parameters. The Java compiler is able to discern the difference between the methods through their method signatures.</p>
-</blockquote>
-<p>即此处的Signature就是方法名和参数列表的集合。</p>
-<p>参考链接：<a target="_blank" rel="noopener" href="https://www.thoughtco.com/method-signature-2034235">Definition of a Java Method Signature</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/29/use-hexo-github-build-blog-mac/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="Ray Wei">
-      <meta itemprop="description" content="the dots will somehow connect in your future">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ray Wei's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/29/use-hexo-github-build-blog-mac/" class="post-title-link" itemprop="url">【2021】MacOS环境下使用Hexo和Github搭建博客</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-12-29 16:16:49" itemprop="dateCreated datePublished" datetime="2021-12-29T16:16:49+08:00">2021-12-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2021-12-30 11:27:58" itemprop="dateModified" datetime="2021-12-30T11:27:58+08:00">2021-12-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/blog/" itemprop="url" rel="index"><span itemprop="name">blog</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>MacOS 10.14.5   Hexo 6.0.0   NexT 8.8.2</p>
-<p>Node.js 16.13.1  Git 2.15.0</p>
-</blockquote>
-<h2 id="一、准备Github账号及创建Repository"><a href="#一、准备Github账号及创建Repository" class="headerlink" title="一、准备Github账号及创建Repository"></a>一、准备Github账号及创建Repository</h2><p>参考教程：<a target="_blank" rel="noopener" href="https://vic.kim/2019/05/25/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo-Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#Github%E8%B4%A6%E5%8F%B7%E6%B3%A8%E5%86%8C%E5%8F%8A%E4%BB%93%E5%BA%93%E5%88%9B%E5%BB%BA">Github账号注册及仓库创建</a></p>
-<h2 id="二、准备电脑环境"><a href="#二、准备电脑环境" class="headerlink" title="二、准备电脑环境"></a>二、准备电脑环境</h2><h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><p>在Terminal输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/zsh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/29/use-hexo-github-build-blog-mac/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/12/30/spring-aop-signature/" rel="prev" title="Signature of org.aspectj.lang">
+                  <i class="fa fa-chevron-left"></i> Signature of org.aspectj.lang
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -675,6 +518,8 @@
 
 
 
+
+    <div class="comments utterances-container"></div>
 </div>
   </main>
 
