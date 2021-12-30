@@ -198,6 +198,11 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># Replace the default image and set the url here.</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">/images/avatar.gif</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be displayed in circle.</span></span><br><span class="line">  <span class="attr">rounded:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  <span class="attr">rotated:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 
 <p>参考教程：<a href="https://blog.csdn.net/weixin_39345384/article/details/80785373">4.美化</a></p>
+<h2 id="十三、设置快捷指令"><a href="#十三、设置快捷指令" class="headerlink" title="十三、设置快捷指令"></a>十三、设置快捷指令</h2><p>每次更新内容都需要在Terminal输三遍命令，很麻烦，可以使用alias设定别名。之后只要在Terminal输入指定的别名就可以了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># hs 本地部署</span></span><br><span class="line"><span class="built_in">alias</span> hs=<span class="string">&#x27;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&#x27;</span></span><br><span class="line"><span class="comment"># hd 远程部署</span></span><br><span class="line"><span class="built_in">alias</span> hd=<span class="string">&#x27;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <p><br/><br/><br/></p>
 <script src="https://utteranc.es/client.js"
         repo="wechiwin/wechiwin.github.io"
