@@ -203,16 +203,6 @@
 
 
 
-<p><br/><br/><br/></p>
-<script src="https://utteranc.es/client.js"
-        repo="wechiwin/wechiwin.github.io"
-        issue-term="pathname"
-        label="Comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
-
 ]]></content>
       <categories>
         <category>blog</category>
