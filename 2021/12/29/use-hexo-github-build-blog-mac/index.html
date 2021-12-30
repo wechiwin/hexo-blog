@@ -28,7 +28,7 @@
 <meta property="og:description" content="MacOS 10.14.5   Hexo 6.0.0   NexT 8.8.2 Node.js 16.13.1  Git 2.15.0  一、准备Github账号及创建Repository参考教程：Github账号注册及仓库创建 二、准备电脑环境Homebrew在Terminal输入： 1&#x2F;bin&#x2F;zsh -c &quot;$(curl -fsSL https:&#x2F;&#x2F;gitee.com&#x2F;cunka">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-12-29T08:16:49.000Z">
-<meta property="article:modified_time" content="2021-12-30T02:13:42.863Z">
+<meta property="article:modified_time" content="2021-12-30T02:39:44.281Z">
 <meta property="article:author" content="Ray Wei">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="github">
@@ -148,7 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87Github%E8%B4%A6%E5%8F%B7%E5%8F%8A%E5%88%9B%E5%BB%BARepository"><span class="nav-text">一、准备Github账号及创建Repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%87%86%E5%A4%87%E7%94%B5%E8%84%91%E7%8E%AF%E5%A2%83"><span class="nav-text">二、准备电脑环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew"><span class="nav-text">Homebrew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js"><span class="nav-text">Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git"><span class="nav-text">Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-npm-%E5%AE%89%E8%A3%85Hexo"><span class="nav-text">使用 npm 安装Hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%87%86%E5%A4%87SSH-Key"><span class="nav-text">三、准备SSH Key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%87%86%E5%A4%87%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="nav-text">四、准备本地文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2"><span class="nav-text">五、第一篇博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EFront-matter%EF%BC%9A"><span class="nav-text">关于Front-matter：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-text">六、更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%A2%9E%E5%8A%A0%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6"><span class="nav-text">七、增加评论插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%A0%87%E7%AD%BE%E5%92%8C%E5%88%86%E7%B1%BB"><span class="nav-text">八、标签和分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E5%85%B7%E6%9C%89%E9%A1%BA%E5%BA%8F%E6%80%A7%E5%92%8C%E5%B1%82%E6%AC%A1%E6%80%A7"><span class="nav-text">分类具有顺序性和层次性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE%E6%B2%A1%E6%9C%89%E9%A1%BA%E5%BA%8F%E5%92%8C%E5%B1%82%E6%AC%A1"><span class="nav-text">标签没有顺序和层次</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA-tags-%E9%A1%B5%E9%9D%A2"><span class="nav-text">新建一个 tags 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA-categories-%E9%A1%B5%E9%9D%A2"><span class="nav-text">新建一个 categories 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%96%87%E7%AB%A0%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="nav-text">在文章中使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%98%BE%E7%A4%BA%E5%A4%A7%E7%BA%B2-TOC"><span class="nav-text">九、显示大纲 TOC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2"><span class="nav-text">十、添加本地搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%9B%BF%E6%8D%A2%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87"><span class="nav-text">十一、替换网站图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E8%AE%BE%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%A4%B4%E5%83%8F"><span class="nav-text">十二、设置个人头像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E8%AE%BE%E7%BD%AE%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4"><span class="nav-text">十三、设置快捷指令</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87Github%E8%B4%A6%E5%8F%B7%E5%8F%8A%E5%88%9B%E5%BB%BARepository"><span class="nav-text">一、准备Github账号及创建Repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%87%86%E5%A4%87%E7%94%B5%E8%84%91%E7%8E%AF%E5%A2%83"><span class="nav-text">二、准备电脑环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew"><span class="nav-text">Homebrew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js"><span class="nav-text">Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git"><span class="nav-text">Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-npm-%E5%AE%89%E8%A3%85Hexo"><span class="nav-text">使用 npm 安装Hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%87%86%E5%A4%87SSH-Key"><span class="nav-text">三、准备SSH Key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%87%86%E5%A4%87%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="nav-text">四、准备本地文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2"><span class="nav-text">五、第一篇博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EFront-matter%EF%BC%9A"><span class="nav-text">关于Front-matter：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-text">六、更换主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%A2%9E%E5%8A%A0%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6"><span class="nav-text">七、增加评论插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%A0%87%E7%AD%BE%E5%92%8C%E5%88%86%E7%B1%BB"><span class="nav-text">八、标签和分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E5%85%B7%E6%9C%89%E9%A1%BA%E5%BA%8F%E6%80%A7%E5%92%8C%E5%B1%82%E6%AC%A1%E6%80%A7"><span class="nav-text">分类具有顺序性和层次性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE%E6%B2%A1%E6%9C%89%E9%A1%BA%E5%BA%8F%E5%92%8C%E5%B1%82%E6%AC%A1"><span class="nav-text">标签没有顺序和层次</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA-tags-%E9%A1%B5%E9%9D%A2"><span class="nav-text">新建一个 tags 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA-categories-%E9%A1%B5%E9%9D%A2"><span class="nav-text">新建一个 categories 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%96%87%E7%AB%A0%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="nav-text">在文章中使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%98%BE%E7%A4%BA%E5%A4%A7%E7%BA%B2-TOC"><span class="nav-text">九、显示大纲 TOC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2"><span class="nav-text">十、添加本地搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%9B%BF%E6%8D%A2%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87"><span class="nav-text">十一、替换网站图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E8%AE%BE%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%A4%B4%E5%83%8F"><span class="nav-text">十二、设置个人头像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E8%AE%BE%E7%BD%AE%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4"><span class="nav-text">十三、设置快捷指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8Hexo%E6%96%B0%E5%BB%BAmd%E6%96%87%E6%A1%A3%E5%B9%B6%E8%87%AA%E5%8A%A8%E6%89%93%E5%BC%80Typora"><span class="nav-text">十四、使用Hexo新建md文档并自动打开Typora</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -163,18 +163,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -244,7 +244,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2021-12-30 10:13:42" itemprop="dateModified" datetime="2021-12-30T10:13:42+08:00">2021-12-30</time>
+      <time title="Modified: 2021-12-30 10:39:44" itemprop="dateModified" datetime="2021-12-30T10:39:44+08:00">2021-12-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -465,7 +465,8 @@
 <h2 id="十三、设置快捷指令"><a href="#十三、设置快捷指令" class="headerlink" title="十三、设置快捷指令"></a>十三、设置快捷指令</h2><p>每次更新内容都需要在Terminal输三遍命令，很麻烦，可以使用alias设定别名。之后只要在Terminal输入指定的别名就可以了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># hs 本地部署</span></span><br><span class="line"><span class="built_in">alias</span> hs=<span class="string">&#x27;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&#x27;</span></span><br><span class="line"><span class="comment"># hd 远程部署</span></span><br><span class="line"><span class="built_in">alias</span> hd=<span class="string">&#x27;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d&#x27;</span></span><br></pre></td></tr></table></figure>
 
-
+<h2 id="十四、使用Hexo新建md文档并自动打开Typora"><a href="#十四、使用Hexo新建md文档并自动打开Typora" class="headerlink" title="十四、使用Hexo新建md文档并自动打开Typora"></a>十四、使用Hexo新建md文档并自动打开Typora</h2><p>在MyBlog文件夹下新建scripts文件夹，并新建auto_open.js文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &gt;<span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>).exec;</span><br><span class="line"> &gt;hexo.on(<span class="string">&#x27;new&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line"><span class="comment">// 请将 Typora 替换为你用的Markdown 编辑器</span></span><br><span class="line">exec(<span class="string">&#x27;open -a &quot;Typora.app&quot; &#x27;</span> + data.path);</span><br><span class="line"> &gt;&#125;);</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -483,6 +484,15 @@
 
         
 
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/12/30/spring-aop-signature/" rel="next" title="Signature of org.aspectj.lang">
+                  Signature of org.aspectj.lang <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>

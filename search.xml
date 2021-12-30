@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Signature of org.aspectj.lang</title>
+    <url>/2021/12/30/spring-aop-signature/</url>
+    <content><![CDATA[<p>在学习Spring——AOP环绕通知的时候，org.aspectj.lang下有一个Signature接口，签名对象。没懂什么意思，Google了一下，解释如下：</p>
+<blockquote>
+<p>In <a href="https://www.thoughtco.com/what-is-java-2034117">Java</a>, a method signature is part of the method declaration. It’s the combination of the method name and the <a href="https://www.thoughtco.com/parameter-2034268">parameter</a> list.</p>
+<p>The reason for the emphasis on just the method name and parameter list is because of <a href="https://www.thoughtco.com/overloading-2034261">overloading</a>. It’s the ability to write methods that have the same name but accept different parameters. The Java compiler is able to discern the difference between the methods through their method signatures.</p>
+</blockquote>
+<p>即此处的Signature就是方法名和参数列表的集合。</p>
+<p>参考链接：<a href="https://www.thoughtco.com/method-signature-2034235">Definition of a Java Method Signature</a></p>
+]]></content>
+      <categories>
+        <category>java learning</category>
+        <category>spring</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【2021】MacOS环境下使用Hexo和Github搭建博客</title>
     <url>/2021/12/29/use-hexo-github-build-blog-mac/</url>
     <content><![CDATA[<blockquote>
@@ -202,7 +222,8 @@
 <h2 id="十三、设置快捷指令"><a href="#十三、设置快捷指令" class="headerlink" title="十三、设置快捷指令"></a>十三、设置快捷指令</h2><p>每次更新内容都需要在Terminal输三遍命令，很麻烦，可以使用alias设定别名。之后只要在Terminal输入指定的别名就可以了。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># hs 本地部署</span></span><br><span class="line"><span class="built_in">alias</span> hs=<span class="string">&#x27;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&#x27;</span></span><br><span class="line"><span class="comment"># hd 远程部署</span></span><br><span class="line"><span class="built_in">alias</span> hd=<span class="string">&#x27;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d&#x27;</span></span><br></pre></td></tr></table></figure>
 
-
+<h2 id="十四、使用Hexo新建md文档并自动打开Typora"><a href="#十四、使用Hexo新建md文档并自动打开Typora" class="headerlink" title="十四、使用Hexo新建md文档并自动打开Typora"></a>十四、使用Hexo新建md文档并自动打开Typora</h2><p>在MyBlog文件夹下新建scripts文件夹，并新建auto_open.js文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> &gt;<span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>).exec;</span><br><span class="line"> &gt;hexo.on(<span class="string">&#x27;new&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line"><span class="comment">// 请将 Typora 替换为你用的Markdown 编辑器</span></span><br><span class="line">exec(<span class="string">&#x27;open -a &quot;Typora.app&quot; &#x27;</span> + data.path);</span><br><span class="line"> &gt;&#125;);</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
