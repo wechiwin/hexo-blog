@@ -229,9 +229,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-12-30 23:26:25 / Modified: 23:34:19" itemprop="dateCreated datePublished" datetime="2021-12-30T23:26:25+08:00">2021-12-30</time>
+      <time title="Created: 2021-12-30 23:26:25" itemprop="dateCreated datePublished" datetime="2021-12-30T23:26:25+08:00">2021-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-01-04 11:36:14" itemprop="dateModified" datetime="2022-01-04T11:36:14+08:00">2022-01-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -253,233 +259,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h1><h2 id="Terminal"><a href="#Terminal" class="headerlink" title="Terminal"></a>Terminal</h2><p>创建多级文件夹</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p a/b/c</span><br></pre></td></tr></table></figure>
-
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>command +·（niz的M键）同一软件内切换不同窗口</p>
-<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><p>查看JDK安装路径</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/libexec/java_home -V</span><br></pre></td></tr></table></figure>
-
-<p>查看安装了哪些版本的JDK</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /Library/Java/JavaVirtualMachines/</span><br></pre></td></tr></table></figure>
-
-<p>卸载对应版本的JDK</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf /Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="环境变量配置"><a href="#环境变量配置" class="headerlink" title="环境变量配置"></a>环境变量配置</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903878694010893">https://juejin.cn/post/6844903878694010893</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home</span><br><span class="line">PATH=$JAVA_HOME/bin:$PATH:.</span><br><span class="line">CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:.</span><br><span class="line">export JAVA_HOME</span><br><span class="line">export PATH</span><br><span class="line">export CLASSPATH</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>查询占用1099端口进程：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo lsof -i tcp:1099;</span><br></pre></td></tr></table></figure>
-
-<p>杀掉占用端口进程（PID为查询到的进程PID）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kill -9 PID;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>命令行启动</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">startup.sh</span><br></pre></td></tr></table></figure>
-
-<p>命令行停止</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown.sh</span><br></pre></td></tr></table></figure>
-
-<p>注意：Mac在terminal启动tomcat后，会出现idea无法连接tomcat的问题，此时需要从terminal结束tomcat的进程。</p>
-<p>Tomcat配置SSL</p>
-<p>MacOS在访问Servlet时遇到的问题：</p>
-<blockquote>
-<p>This site can’t provide a secure connection</p>
-<p>localhost sent an invalid response.<br>ERR_SSL_PROTOCOL_ERROR</p>
-</blockquote>
-<p>keytool -genkey -alias zhuzhiqiang -keyalg RSA -keystore /Users/anyware/Documents/mine/key/tomcat/zhuzhiqiangkey  </p>
-<p>Tomcat 配置https mac版</p>
-<p>说明：<br>生成密码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -genkey -alias tomcatkey -keyalg RSA -keystore /Users/raywei/Library/tomcatkey/tomcatkey</span><br></pre></td></tr></table></figure>
-
-<p>删除密码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -delete -alias tomcatkey -keystore /Users/raywei/Library/tomcatkey/tomcatkey</span><br></pre></td></tr></table></figure>
-
-<p>keystore Password: tomcatkey</p>
-<p>tomcat key: tomcatkeyssl</p>
-<p>导出证书：</p>
-<p>keytool -export -alias tomcatkey -keystore  /Users/raywei/Library/tomcatkey/tomcatkey -file  /Users/raywei/Library/tomcatkey/tomcatkey.cer</p>
-<p>导入证书</p>
-<p>sudo keytool -import -trustcacerts -alias tomcatkey -keystore /Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home/jre/lib/security/cacerts -file /Users/raywei/Library/tomcatkey/tomcatkey.cer -storepass changeit</p>
-<p>keytool -import -trustcacerts -alias tomcatkey /Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home/jre/lib/security/cacerts” -file /Users/raywei/Documents/tomcatkey/mycerts.cer</p>
-<p>sudo keytool -delete -alias tomcatkey -keystore “/Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home/jre/lib/security/cacerts” -storepass changeit</p>
-<p>说明:<br>keytool -export -file “filename.crt文件地址” -alias “别名(第一步设置的)” -keystore “上一步生成的keystore地址”</p>
-<p>&lt;Connector port=”8443” protocol=”org.apache.coyote.http11.Http11Protocol”  </p>
-<p>SSLEnable=”true” maxThreads=”150” scheme=”https” secure=”true” clientAuth=”false” sslProtocol=”TLS” keystoreFile=”/Users/raywei/Library/tomcatkey/tomcatkey” keystorePass=”tomcatkey”/&gt;</p>
-<h1 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h1><p>不要在Module里创建Module，但是可以在project里创建多个module。</p>
-<h2 id="Short-keys"><a href="#Short-keys" class="headerlink" title="Short keys"></a>Short keys</h2><p>inn: if not null</p>
-<p>ifn: if null</p>
-<p>psvm: 快速生成main方法</p>
-<p>sout / soutv / soutc</p>
-<p>数组.for  数组.fori / itar 遍历数组</p>
-<h2 id="Shortcuts"><a href="#Shortcuts" class="headerlink" title="Shortcuts"></a>Shortcuts</h2><p>智能提示： alt + enter</p>
-<p>新建快捷键：鼠标放在package名上，command+n </p>
-<p>从编写文档框中返回左边的project框中：command+f1</p>
-<p>编译窗口switcher：control+tab</p>
-<p>自动补全函数括号、分号、当前行缩进： command+shift+enter</p>
-<p>自动补全变量：option+enter</p>
-<table>
-<thead>
-<tr>
-<th>mac</th>
-<th>win</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>command+option+L</td>
-<td>Ctrl+Alt+L</td>
-<td>格式化代码 自动对齐代码格式</td>
-</tr>
-<tr>
-<td>command +d</td>
-<td>Ctrl + d</td>
-<td>复制并在该行后粘贴代码</td>
-</tr>
-<tr>
-<td>command +x</td>
-<td>Ctrl +x</td>
-<td>剪切行</td>
-</tr>
-<tr>
-<td>command +v</td>
-<td>Ctrl + v</td>
-<td>粘贴行</td>
-</tr>
-<tr>
-<td>command + Backspace</td>
-<td>Ctrl + Backspace</td>
-<td>删除行</td>
-</tr>
-<tr>
-<td>command +/</td>
-<td>Ctrl + /</td>
-<td>添加或去除单行注释</td>
-</tr>
-<tr>
-<td>command + option + /</td>
-<td></td>
-<td>Comment with Block Comment</td>
-</tr>
-<tr>
-<td>shift+F6</td>
-<td>shift+F6</td>
-<td>重命名类或变量</td>
-</tr>
-<tr>
-<td>shift+Alt+↑</td>
-<td>shift+Alt+↑</td>
-<td>向上移动当前行代码</td>
-</tr>
-<tr>
-<td>shift+Alt+↓</td>
-<td>shift+Alt+↓</td>
-<td>向下移动当前行代码</td>
-</tr>
-<tr>
-<td>shift+enter</td>
-<td>shift+enter</td>
-<td>即使光标在行的中间，也能直接去下一行开始继续输入</td>
-</tr>
-<tr>
-<td></td>
-<td>Ctrl+n</td>
-<td>搜索类</td>
-</tr>
-<tr>
-<td>command+F12</td>
-<td>Ctrl+F12</td>
-<td>显示类的成员</td>
-</tr>
-<tr>
-<td></td>
-<td>Ctrl+shift+U</td>
-<td>切换大小写</td>
-</tr>
-<tr>
-<td>command + alt + B</td>
-<td>Ctrl+alt+B</td>
-<td>弹出所有的实现类</td>
-</tr>
-</tbody></table>
-<p>按住option / alt 可以同时操作多行</p>
-<h2 id="在toolbar上增加快捷图标"><a href="#在toolbar上增加快捷图标" class="headerlink" title="在toolbar上增加快捷图标"></a>在toolbar上增加快捷图标</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dagedeshu/article/details/101825800">https://blog.csdn.net/dagedeshu/article/details/101825800</a></p>
-<h2 id="2021右键没有Servlet选项"><a href="#2021右键没有Servlet选项" class="headerlink" title="2021右键没有Servlet选项"></a>2021右键没有Servlet选项</h2><p>第一步：</p>
-<p>点开project structure –&gt; modules –&gt; 选中项目 –&gt; Dependencies –&gt; add + –&gt; 1 Jars or Directories –&gt; 找到tomcat的安装路径 –&gt; libs –&gt; 选中servlet-api.jar –&gt; 添加</p>
-<p>第二步：</p>
-<p>project structure –&gt; Facets –&gt; 将右下角 Source Roots前的框勾选 –&gt; apply &amp; ok</p>
-<h2 id="自定义代码模板"><a href="#自定义代码模板" class="headerlink" title="自定义代码模板"></a>自定义代码模板</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/boy_Kenny/article/details/55223078">https://blog.csdn.net/boy_Kenny/article/details/55223078</a></p>
-</blockquote>
-<p>相当于自己定义快捷键。</p>
-<h2 id="全类名一般格式"><a href="#全类名一般格式" class="headerlink" title="全类名一般格式"></a>全类名一般格式</h2><p>公司或组织域名的倒序.项目名称.模块名称.具体包名.类名</p>
-<p>com.taobao.mall.product.service.ProductService</p>
-<h1 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h1><p>my.cnf</p>
-<p>打开finder，打开go to，输入/etc</p>
-<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>1.下载maven binary压缩文件</p>
-<p><img src="https://img-blog.csdnimg.cn/20190128195709897.png" alt="img"></p>
-<p>2.解压到一个目录。</p>
-<p>3.打开终端，输入一下命令：vim ~/.bash_profile</p>
-<p>4.按 i进入编辑模式输入如下内容；其中MAVEN_HOME为刚才解压后的文件路径</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Setting PATH for MAVEN</span></span><br><span class="line">MAVEN_HOME=/Users/liuyangang/apache-maven-3.5.4</span><br><span class="line">PATH=<span class="variable">$MAVEN_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> MAVEN_HOME</span><br><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure>
-
-<p>5.按返回键，输入 <code>:wq</code></p>
-<p>6.控制台输入：<code> source ~/.bash_profile</code> 使环境变量生效。</p>
-<p>7.验证是否成功：<code>mvn -v</code></p>
-<p><img src="https://img-blog.csdnimg.cn/2019012820022120.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyMDQ0MDA2,size_16,color_FFFFFF,t_70" alt="img"></p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.cxyzjd.com/article/qq_42044006/86682064">https://www.cxyzjd.com/article/qq_42044006/86682064</a> </p>
-</blockquote>
-<h2 id="本地仓库-位置-Mac"><a href="#本地仓库-位置-Mac" class="headerlink" title="本地仓库 位置 Mac"></a>本地仓库 位置 Mac</h2><p>下载的jar包都在里面，地址默认为 <code>~/.m2/repository</code></p>
-<h2 id="批量删除maven中的lastUpdated文件"><a href="#批量删除maven中的lastUpdated文件" class="headerlink" title="批量删除maven中的lastUpdated文件"></a>批量删除maven中的lastUpdated文件</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangjq520/article/details/88203273">https://blog.csdn.net/zhangjq520/article/details/88203273</a></p>
-<p>mac（linux）系统-创建.sh文件脚本执行（mac用.command终端也可以）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 这里写你的仓库路径</span><br><span class="line">REPOSITORY_PATH=~/Documents/tools/apache-maven-3.0.3/repository</span><br><span class="line">echo 正在搜索...</span><br><span class="line">find $REPOSITORY_PATH -name &quot;*lastUpdated*&quot; | xargs rm -fr</span><br><span class="line">echo 搜索完</span><br></pre></td></tr></table></figure>
-
-<h2 id="cannot-find-class-com-jdbc-cj-jdbc-Driver"><a href="#cannot-find-class-com-jdbc-cj-jdbc-Driver" class="headerlink" title="cannot find class com.jdbc.cj.jdbc.Driver"></a>cannot find class com.jdbc.cj.jdbc.Driver</h2><ol>
-<li>确定mysql版本和驱动没问题</li>
-<li>jar包没问题</li>
-<li>如果还是出现以上错误，那就换一个版本。比如我一开始使用8.0.27提示错误，然后改成了8.0.23就没问题了。</li>
-</ol>
-<h1 id="VS-Code"><a href="#VS-Code" class="headerlink" title="VS Code"></a>VS Code</h1><h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><table>
-<thead>
-<tr>
-<th>功能</th>
-<th>快捷键</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>格式化代码</td>
-<td>Shift + Option + F</td>
-</tr>
-</tbody></table>
-<h1 id="log4j"><a href="#log4j" class="headerlink" title="log4j"></a>log4j</h1><p>version 1.2.17</p>
-<h2 id="uri-is-not-registered"><a href="#uri-is-not-registered" class="headerlink" title="uri is not registered"></a>uri is not registered</h2><p>配置log4j.xml出现“http //jakarta.apache.org/log4j/ uri is not registered”的错误信息。</p>
-<p>解决办法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE log4j:configuration SYSTEM &quot;http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd&quot;&gt;</span><br><span class="line">&lt;log4j:configuration&gt;</span><br></pre></td></tr></table></figure>
-
-<p>参考：</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=amabile29&amp;logNo=221197639451">https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=amabile29&amp;logNo=221197639451</a></p>
-<p><a target="_blank" rel="noopener" href="https://dimitrisli.wordpress.com/category/intellij/">https://dimitrisli.wordpress.com/category/intellij/</a></p>
-</blockquote>
-<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><h2 id="database-identifier-name-xxx-is-too-long"><a href="#database-identifier-name-xxx-is-too-long" class="headerlink" title="database identifier name xxx is too long"></a>database identifier name xxx is too long</h2><p>使用jdbc.properties配置mybatis-config.xml建立数据库连接时，因为使用了mysql8，所以一开始的url为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(在配置druid.properties时，mysql8的url必须加上 useSSL=false&amp;serverTimezone=UTC 才能连接成功)</span><br><span class="line">jdbc:mysql://localhost:3306/mybatis-example?&amp;useSSL=false&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true</span><br></pre></td></tr></table></figure>
-
-<p>但是此时会报错 identifier name xxxxx is too long</p>
-<p>解决方法：</p>
-<p>去掉配置信息，直接使用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:mysql://localhost:3306/mybatis-example</span><br></pre></td></tr></table></figure>
-
-
+          <p> </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/30/collection-problems-skills/">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -528,9 +316,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-12-30 10:57:25 / Modified: 11:26:47" itemprop="dateCreated datePublished" datetime="2021-12-30T10:57:25+08:00">2021-12-30</time>
+      <time title="Created: 2021-12-30 10:57:25" itemprop="dateCreated datePublished" datetime="2021-12-30T10:57:25+08:00">2021-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-01-04 11:36:26" itemprop="dateModified" datetime="2022-01-04T11:36:26+08:00">2022-01-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -556,14 +350,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在学习Spring——AOP环绕通知的时候，org.aspectj.lang下有一个Signature接口，签名对象。没懂什么意思，Google了一下，解释如下：</p>
-<blockquote>
-<p>In <a target="_blank" rel="noopener" href="https://www.thoughtco.com/what-is-java-2034117">Java</a>, a method signature is part of the method declaration. It’s the combination of the method name and the <a target="_blank" rel="noopener" href="https://www.thoughtco.com/parameter-2034268">parameter</a> list.</p>
-<p>The reason for the emphasis on just the method name and parameter list is because of <a target="_blank" rel="noopener" href="https://www.thoughtco.com/overloading-2034261">overloading</a>. It’s the ability to write methods that have the same name but accept different parameters. The Java compiler is able to discern the difference between the methods through their method signatures.</p>
-</blockquote>
-<p>即此处的Signature就是方法名和参数列表的集合。</p>
-<p>参考链接：<a target="_blank" rel="noopener" href="https://www.thoughtco.com/method-signature-2034235">Definition of a Java Method Signature</a></p>
-
+          <p> </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/30/spring-aop-signature/">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -620,7 +415,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2021-12-30 11:27:58" itemprop="dateModified" datetime="2021-12-30T11:27:58+08:00">2021-12-30</time>
+      <time title="Modified: 2022-01-04 11:36:35" itemprop="dateModified" datetime="2022-01-04T11:36:35+08:00">2022-01-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -642,16 +437,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>MacOS 10.14.5   Hexo 6.0.0   NexT 8.8.2</p>
-<p>Node.js 16.13.1  Git 2.15.0</p>
-</blockquote>
-<h2 id="一、准备Github账号及创建Repository"><a href="#一、准备Github账号及创建Repository" class="headerlink" title="一、准备Github账号及创建Repository"></a>一、准备Github账号及创建Repository</h2><p>参考教程：<a target="_blank" rel="noopener" href="https://vic.kim/2019/05/25/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo-Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#Github%E8%B4%A6%E5%8F%B7%E6%B3%A8%E5%86%8C%E5%8F%8A%E4%BB%93%E5%BA%93%E5%88%9B%E5%BB%BA">Github账号注册及仓库创建</a></p>
-<h2 id="二、准备电脑环境"><a href="#二、准备电脑环境" class="headerlink" title="二、准备电脑环境"></a>二、准备电脑环境</h2><h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><p>在Terminal输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/zsh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+          <p> </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/12/29/use-hexo-github-build-blog-mac/#more" rel="contents">
+              <a class="btn" href="/2021/12/29/use-hexo-github-build-blog-mac/">
                 Read more &raquo;
               </a>
             </div>
@@ -684,7 +473,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
