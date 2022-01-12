@@ -22,7 +22,7 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
 <meta property="og:title" content="在MacOS上使用VMware虚拟机安装Linux系统CentOS7">
-<meta property="og:url" content="http://example.com/2022/01/11/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7/index.html">
+<meta property="og:url" content="http://example.com/2022/01/11/javaLearning/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7/index.html">
 <meta property="og:site_name" content="Ray Wei&#39;s Blog">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-001.png">
@@ -50,8 +50,8 @@
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-023.png">
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-024.png">
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-025.png">
-<meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-026.png">
-<meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-027.png">
+<meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/ifconfig.png">
+<meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-026-2.png">
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-028.png">
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-029.png">
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-030.png">
@@ -63,18 +63,18 @@
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-036.png">
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-038.png">
 <meta property="article:published_time" content="2022-01-11T14:44:31.000Z">
-<meta property="article:modified_time" content="2022-01-11T23:58:51.932Z">
+<meta property="article:modified_time" content="2022-01-12T02:21:53.225Z">
 <meta property="article:author" content="Ray Wei">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-001.png">
 
 
-<link rel="canonical" href="http://example.com/2022/01/11/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7/">
+<link rel="canonical" href="http://example.com/2022/01/11/javaLearning/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/01/11/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7/","path":"2022/01/11/在MacOS上使用VMware虚拟机安装Linux系统CentOS7/","title":"在MacOS上使用VMware虚拟机安装Linux系统CentOS7"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/01/11/javaLearning/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7/","path":"2022/01/11/javaLearning/在MacOS上使用VMware虚拟机安装Linux系统CentOS7/","title":"在MacOS上使用VMware虚拟机安装Linux系统CentOS7"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>在MacOS上使用VMware虚拟机安装Linux系统CentOS7 | Ray Wei's Blog</title>
@@ -169,7 +169,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -182,6 +182,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-text">一、安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">二、初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80"><span class="nav-text">语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F"><span class="nav-text">安装方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%8C%BA"><span class="nav-text">分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kdump"><span class="nav-text">kdump</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE"><span class="nav-text">网络设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#root%E8%B4%A6%E6%88%B7"><span class="nav-text">root账户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%88%90%E5%AE%89%E8%A3%85"><span class="nav-text">完成安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%8F%E5%A5%BD%E8%AE%BE%E7%BD%AE"><span class="nav-text">偏好设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E6%8D%A2-root-%E7%94%A8%E6%88%B7"><span class="nav-text">切换 root 用户</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -246,7 +247,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/11/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/11/javaLearning/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -277,7 +278,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-01-12 07:58:51" itemprop="dateModified" datetime="2022-01-12T07:58:51+08:00">2022-01-12</time>
+      <time title="Modified: 2022-01-12 10:21:53" itemprop="dateModified" datetime="2022-01-12T10:21:53+08:00">2022-01-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -303,7 +304,7 @@
         <blockquote>
 <p>MacOS 10.14      VMware Pro 11.5.6     CentOS-7-x86_64-DVD-1804.iso</p>
 </blockquote>
-<p>下载完 CentOS，装好 VMware 后就可以开始安装了。</p>
+<h1 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h1><p>下载完 CentOS，装好 VMware 后就可以开始安装了。</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-001.png"></p>
 <p>点击蓝色框</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-002.png"></p>
@@ -320,11 +321,11 @@
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-009.png"></p>
 <p>安装中</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-010.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-011.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-012.png"></p>
+<h1 id="二、初始化"><a href="#二、初始化" class="headerlink" title="二、初始化"></a>二、初始化</h1><h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-011.png"></p>
+<h2 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-012.png"></p>
 <p>初学者，所以选择了 GNOME Desktop。</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-013.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-014.png"></p>
+<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-014.png"></p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-015.png"></p>
 <p>将 LVM 改成 Standard Partition，然后点击加号</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-016.png"></p>
@@ -332,40 +333,47 @@
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-017.png"></p>
 <p>将File System 修改为 ext4</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-018.png"></p>
-<p>继续点加号</p>
+<p>继续点加号，不需要修改</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-019.png"></p>
 <p>继续点加号</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-020.png"></p>
 <p>将File System 修改为 ext4</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-021.png"></p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-022.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-023.png"></p>
+<h2 id="kdump"><a href="#kdump" class="headerlink" title="kdump"></a>kdump</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-023.png"></p>
 <p>取消 Enable kdump，暂时用不到</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-024.png"></p>
+<h2 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h2><p>点击上面的扳手，选择 NAT 连接方式。</p>
 <p>接着点击 NETWORK &amp; HOST NAME</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-025.png"></p>
-<p>Address 的前三部分和电脑的 IP 地址一致，最后的只要不用1，2，3或者255即可。比如电脑的 IP 是 192.168.63.58，那么这里的 IP 可以是 192.168.63.100。本机 IP 地址可以在系统设置里查看，如下下图。</p>
-<p>Netmask 如图。</p>
-<p>Gateway 可以打开系统设置查看。</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-026.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-027.png"></p>
+<p>打开 Mac 的 Terminal，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig vmnet8</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/ifconfig.png"></p>
+<p>Address: x.x.x.100</p>
+<p>Netmask: 255.255.255.0</p>
+<p>Gateway&amp; DNS: x.x.x.2</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-026-2.png"></p>
 <p>注意这里右上角要切成 ON</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-028.png"></p>
-<p>完成之后，点击安装，然后设置 root 密码</p>
+<h2 id="root账户"><a href="#root账户" class="headerlink" title="root账户"></a>root账户</h2><p>完成之后，点击安装，然后设置 root 密码</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-029.png"></p>
-<p>完成安装后，点击重启</p>
+<h2 id="完成安装"><a href="#完成安装" class="headerlink" title="完成安装"></a>完成安装</h2><p>点击重启</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-030.png"></p>
 <p>点进去接受协议，然后点右下角 </p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-031.png"></p>
-<p>系统会重启，然后开始初始化设置，需要设置一个普通用户，地区选择上海即可。完成后进入桌面，关闭演示。</p>
+<h2 id="偏好设置"><a href="#偏好设置" class="headerlink" title="偏好设置"></a>偏好设置</h2><p>需要搞一个普通用户，地区选择上海即可。完成后进入桌面，关闭演示。</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-032.png"></p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-033.png"></p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-034.png"></p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-035.png"></p>
-<p>点击右上角的关机键，退出普通用户。</p>
+<h2 id="切换-root-用户"><a href="#切换-root-用户" class="headerlink" title="切换 root 用户"></a>切换 root 用户</h2><p>点击右上角的关机键，退出普通用户。</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-036.png"></p>
 <p>点击 Not listed，然后输入用户名 root 和之前设置的 root 密码。</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-038.png"></p>
+<p>参考教程：</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903985652957198">Mac OS Fusion Linux虚拟机网络设置</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/AthlenaA/article/details/99699502">Mac安装VMware fusion 11安装Linux CentOS 7</a></p>
 
     </div>
 
@@ -382,7 +390,7 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/04/%E3%80%8A%E8%89%BA%E6%9C%AF%E5%AE%B6%E4%BB%AC%E3%80%8B%E4%B9%A6%E6%91%98/" rel="prev" title="《艺术家们》书摘">
+                <a href="/2022/01/04/%E4%B9%A6%E6%91%98/%E3%80%8A%E8%89%BA%E6%9C%AF%E5%AE%B6%E4%BB%AC%E3%80%8B%E4%B9%A6%E6%91%98/" rel="prev" title="《艺术家们》书摘">
                   <i class="fa fa-chevron-left"></i> 《艺术家们》书摘
                 </a>
             </div>
