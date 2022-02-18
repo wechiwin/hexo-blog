@@ -26,9 +26,10 @@
 <meta property="og:site_name" content="Ray Wei&#39;s Blog">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-14T15:50:35.000Z">
-<meta property="article:modified_time" content="2022-01-15T03:38:36.206Z">
+<meta property="article:modified_time" content="2022-02-18T15:54:14.257Z">
 <meta property="article:author" content="Ray Wei">
 <meta property="article:tag" content="macOS">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
 
 
@@ -144,7 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BDrpm%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-text">1. 下载rpm安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B0%86%E5%AE%89%E8%A3%85%E5%8C%85%E4%B8%8A%E4%BC%A0%E5%88%B0Linux%E7%9A%84-opt"><span class="nav-text">2. 将安装包上传到Linux的&#x2F;opt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8D%B8%E8%BD%BD%E7%B3%BB%E7%BB%9F%E9%A2%84%E8%A3%85-mariadb"><span class="nav-text">3. 卸载系统预装 mariadb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%8C%89%E7%85%A7%E4%BB%A5%E4%B8%8B%E9%A1%BA%E5%BA%8F%E5%AE%89%E8%A3%85"><span class="nav-text">3.按照以下顺序安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%9F%A5%E7%9C%8Bmysql%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-text">4. 查看mysql是否安装成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%88%9D%E5%A7%8B%E5%8C%96-mysql"><span class="nav-text">5. 初始化 mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90%E6%8E%88%E6%9D%83"><span class="nav-text">6. 目录权限授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%90%AF%E5%8A%A8-mysql-%E6%9C%8D%E5%8A%A1"><span class="nav-text">7. 启动 mysql 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%9F%A5%E7%9C%8B%E5%88%9D%E5%A7%8B%E5%8C%96%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E7%9A%84-root-%E5%AF%86%E7%A0%81"><span class="nav-text">8. 查看初始化随机生成的 root 密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%99%BB%E5%BD%95%E5%B9%B6%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="nav-text">9. 登录并修改密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E6%8E%88%E6%9D%83"><span class="nav-text">10. 远程访问授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%9C%A8Mac%E4%B8%8A%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%B8%8A%E7%99%BB%E5%BD%95mysql"><span class="nav-text">11. 在Mac上的软件上登录mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E8%AE%BE%E7%BD%AE-%E5%81%9C%E6%AD%A2%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF"><span class="nav-text">12. 设置&#x2F;停止开机自启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text"></span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BDrpm%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-text">1. 下载rpm安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B0%86%E5%AE%89%E8%A3%85%E5%8C%85%E4%B8%8A%E4%BC%A0%E5%88%B0Linux%E7%9A%84-x2F-opt"><span class="nav-text">2. 将安装包上传到Linux的&#x2F;opt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8D%B8%E8%BD%BD%E7%B3%BB%E7%BB%9F%E9%A2%84%E8%A3%85-mariadb"><span class="nav-text">3. 卸载系统预装 mariadb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%8C%89%E7%85%A7%E4%BB%A5%E4%B8%8B%E9%A1%BA%E5%BA%8F%E5%AE%89%E8%A3%85"><span class="nav-text">3.按照以下顺序安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%9F%A5%E7%9C%8Bmysql%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-text">4. 查看mysql是否安装成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%88%9D%E5%A7%8B%E5%8C%96-mysql"><span class="nav-text">5. 初始化 mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90%E6%8E%88%E6%9D%83"><span class="nav-text">6. 目录权限授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%90%AF%E5%8A%A8-mysql-%E6%9C%8D%E5%8A%A1"><span class="nav-text">7. 启动 mysql 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%9F%A5%E7%9C%8B%E5%88%9D%E5%A7%8B%E5%8C%96%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90%E7%9A%84-root-%E5%AF%86%E7%A0%81"><span class="nav-text">8. 查看初始化随机生成的 root 密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%99%BB%E5%BD%95%E5%B9%B6%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="nav-text">9. 登录并修改密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E6%8E%88%E6%9D%83"><span class="nav-text">10. 远程访问授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%9C%A8Mac%E4%B8%8A%E7%9A%84%E8%BD%AF%E4%BB%B6%E4%B8%8A%E7%99%BB%E5%BD%95mysql"><span class="nav-text">11. 在Mac上的软件上登录mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E8%AE%BE%E7%BD%AE-x2F-%E5%81%9C%E6%AD%A2%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF"><span class="nav-text">12. 设置&#x2F;停止开机自启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text"></span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -159,7 +160,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -170,7 +171,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -240,7 +241,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-01-15 11:38:36" itemprop="dateModified" datetime="2022-01-15T11:38:36+08:00">2022-01-15</time>
+      <time title="Modified: 2022-02-18 23:54:14" itemprop="dateModified" datetime="2022-02-18T23:54:14+08:00">2022-02-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -248,15 +249,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaLearning/" itemprop="url" rel="index"><span itemprop="name">JavaLearning</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
         </span>
     </span>
 
@@ -273,7 +266,7 @@
     <div class="post-body" itemprop="articleBody">
         <h2 id="1-下载rpm安装包"><a href="#1-下载rpm安装包" class="headerlink" title="1. 下载rpm安装包"></a>1. 下载rpm安装包</h2><p>去<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">官网</a>下载rpm安装包，共四个。</p>
 <p>mysql-community-libs-8.0.18-1.el7.x86_64.rpm</p>
-<h2 id="2-将安装包上传到Linux的-opt"><a href="#2-将安装包上传到Linux的-opt" class="headerlink" title="2. 将安装包上传到Linux的/opt"></a>2. 将安装包上传到Linux的/opt</h2><p>详情请参考[Mac与Linux文件传输]</p>
+<h2 id="2-将安装包上传到Linux的-x2F-opt"><a href="#2-将安装包上传到Linux的-x2F-opt" class="headerlink" title="2. 将安装包上传到Linux的&#x2F;opt"></a>2. 将安装包上传到Linux的&#x2F;opt</h2><p>详情请参考[Mac与Linux文件传输]</p>
 <h2 id="3-卸载系统预装-mariadb"><a href="#3-卸载系统预装-mariadb" class="headerlink" title="3. 卸载系统预装 mariadb"></a>3. 卸载系统预装 mariadb</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -e --nodeps mariadb-libs-1:5.5.56-2.el7.x86_64</span><br></pre></td></tr></table></figure>
 
 <h2 id="3-按照以下顺序安装"><a href="#3-按照以下顺序安装" class="headerlink" title="3.按照以下顺序安装"></a>3.按照以下顺序安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh /opt/mysql-community-common-8.0.18-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh /opt/mysql-community-libs-8.0.18-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh /opt/mysql-community-client-8.0.18-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh /opt/mysql-community-server-8.0.18-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
@@ -296,7 +289,7 @@
 
 <h2 id="10-远程访问授权"><a href="#10-远程访问授权" class="headerlink" title="10. 远程访问授权"></a>10. 远程访问授权</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create user <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified with mysql_native_password by <span class="string">&#x27;mysql登录密码&#x27;</span>;</span><br><span class="line"><span class="comment"># 例如</span></span><br><span class="line"><span class="comment"># create user &#x27;root&#x27;@&#x27;%&#x27; identified with mysql_native_password by &#x27;123456&#x27;;</span></span><br><span class="line"></span><br><span class="line">grant all privileges on *.* to <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> with grant option;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
 
-<h2 id="11-在Mac上的软件上登录mysql"><a href="#11-在Mac上的软件上登录mysql" class="headerlink" title="11. 在Mac上的软件上登录mysql"></a>11. 在Mac上的软件上登录mysql</h2><h2 id="12-设置-停止开机自启"><a href="#12-设置-停止开机自启" class="headerlink" title="12. 设置/停止开机自启"></a>12. 设置/停止开机自启</h2><p>需退出mysql设置</p>
+<h2 id="11-在Mac上的软件上登录mysql"><a href="#11-在Mac上的软件上登录mysql" class="headerlink" title="11. 在Mac上的软件上登录mysql"></a>11. 在Mac上的软件上登录mysql</h2><h2 id="12-设置-x2F-停止开机自启"><a href="#12-设置-x2F-停止开机自启" class="headerlink" title="12. 设置&#x2F;停止开机自启"></a>12. 设置&#x2F;停止开机自启</h2><p>需退出mysql设置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启</span></span><br><span class="line">systemctl <span class="built_in">enable</span> mysqld.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">systemctl <span class="built_in">disable</span> mysqld.service</span><br></pre></td></tr></table></figure>
 
 <h2 id=""><a href="#" class="headerlink" title=""></a></h2>
@@ -309,19 +302,20 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/macOS/" rel="tag"># macOS</a>
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/14/Mac/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%9B%B8%E5%85%B3%E7%BB%8F%E9%AA%8C/" rel="prev" title="在MacOS上使用Linux虚拟机的相关经验">
-                  <i class="fa fa-chevron-left"></i> 在MacOS上使用Linux虚拟机的相关经验
+                <a href="/2022/01/11/Linux/macOS%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7-64/" rel="prev" title="macOS使用VMware虚拟机安装Linux系统CentOS7-64">
+                  <i class="fa fa-chevron-left"></i> macOS使用VMware虚拟机安装Linux系统CentOS7-64
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/15/Linux/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85redis8%5Byum%20install%5D/" rel="next" title="MacOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]">
-                  MacOS在虚拟机Linux-CentOS7-64上安装redis8[yum install] <i class="fa fa-chevron-right"></i>
+                <a href="/2022/01/15/Linux/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85redis8%5Byum%20install%5D/" rel="next" title="macOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]">
+                  macOS在虚拟机Linux-CentOS7-64上安装redis8[yum install] <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

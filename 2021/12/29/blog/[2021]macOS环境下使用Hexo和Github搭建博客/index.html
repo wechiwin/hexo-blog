@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cat-180x180-apple.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cat-32x32-medium.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cat-16x16-small.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Hexo和Github搭建博客,持续更新[macOS]">
+<meta property="og:url" content="http://example.com/2021/12/29/blog/[2021]macOS%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo%E5%92%8CGithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="Ray Wei&#39;s Blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-29T08:16:49.000Z">
+<meta property="article:modified_time" content="2022-02-18T15:00:41.725Z">
+<meta property="article:author" content="Ray Wei">
+<meta property="article:tag" content="macOS">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Github">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/12/29/blog/[2021]macOS%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo%E5%92%8CGithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2021/12/29/blog/[2021]macOS%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo%E5%92%8CGithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/","path":"2021/12/29/blog/[2021]macOS环境下使用Hexo和Github搭建博客/","title":"使用Hexo和Github搭建博客,持续更新[macOS]"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用Hexo和Github搭建博客,持续更新[macOS] | Ray Wei's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ray Wei's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87Github%E8%B4%A6%E5%8F%B7%E5%8F%8A%E5%88%9B%E5%BB%BARepository"><span class="nav-text">一、准备Github账号及创建Repository</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%87%86%E5%A4%87%E7%94%B5%E8%84%91%E7%8E%AF%E5%A2%83"><span class="nav-text">二、准备电脑环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Homebrew"><span class="nav-text">Homebrew</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js"><span class="nav-text">Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-text">Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-npm-%E5%AE%89%E8%A3%85Hexo"><span class="nav-text">使用 npm 安装Hexo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%87%86%E5%A4%87SSH-Key"><span class="nav-text">三、准备SSH Key</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%87%86%E5%A4%87%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="nav-text">四、准备本地文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2"><span class="nav-text">五、第一篇博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EFront-matter%EF%BC%9A"><span class="nav-text">关于Front-matter：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-text">六、更换主题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%A2%9E%E5%8A%A0%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6"><span class="nav-text">七、增加评论插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%A0%87%E7%AD%BE%E5%92%8C%E5%88%86%E7%B1%BB"><span class="nav-text">八、标签和分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA-categories-%E9%A1%B5%E9%9D%A2"><span class="nav-text">新建 categories 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E5%85%B7%E6%9C%89%E9%A1%BA%E5%BA%8F%E6%80%A7%E5%92%8C%E5%B1%82%E6%AC%A1%E6%80%A7"><span class="nav-text">分类具有顺序性和层次性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE"><span class="nav-text">标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA-tags-%E9%A1%B5%E9%9D%A2"><span class="nav-text">新建 tags 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B2%A1%E6%9C%89%E9%A1%BA%E5%BA%8F%E5%92%8C%E5%B1%82%E6%AC%A1"><span class="nav-text">没有顺序和层次</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%96%87%E7%AB%A0%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="nav-text">在文章中使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%98%BE%E7%A4%BA%E5%A4%A7%E7%BA%B2-TOC"><span class="nav-text">九、显示大纲 TOC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2"><span class="nav-text">十、添加本地搜索</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%9B%BF%E6%8D%A2%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%87"><span class="nav-text">十一、替换网站图标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E8%AE%BE%E7%BD%AE%E4%B8%AA%E4%BA%BA%E5%A4%B4%E5%83%8F"><span class="nav-text">十二、设置个人头像</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E8%AE%BE%E7%BD%AE%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4"><span class="nav-text">十三、设置快捷指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8Hexo%E6%96%B0%E5%BB%BAmd%E6%96%87%E6%A1%A3%E5%B9%B6%E8%87%AA%E5%8A%A8%E6%89%93%E5%BC%80Typora"><span class="nav-text">十四、使用Hexo新建md文档并自动打开Typora</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ray Wei"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ray Wei</p>
+  <div class="site-description" itemprop="description">the dots will somehow connect in your future</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/29/blog/[2021]macOS%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo%E5%92%8CGithub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ray Wei">
+      <meta itemprop="description" content="the dots will somehow connect in your future">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ray Wei's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Hexo和Github搭建博客,持续更新[macOS]
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-12-29 16:16:49" itemprop="dateCreated datePublished" datetime="2021-12-29T16:16:49+08:00">2021-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-02-18 23:00:41" itemprop="dateModified" datetime="2022-02-18T23:00:41+08:00">2022-02-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>MacOS 10.14.5   Hexo 6.0.0   NexT 8.8.2</p>
+<p>Node.js 16.13.1  Git 2.15.0</p>
+</blockquote>
+<h1 id="一、准备Github账号及创建Repository"><a href="#一、准备Github账号及创建Repository" class="headerlink" title="一、准备Github账号及创建Repository"></a>一、准备Github账号及创建Repository</h1><p>参考教程：<a target="_blank" rel="noopener" href="https://vic.kim/2019/05/25/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8Hexo-Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#Github%E8%B4%A6%E5%8F%B7%E6%B3%A8%E5%86%8C%E5%8F%8A%E4%BB%93%E5%BA%93%E5%88%9B%E5%BB%BA">Github账号注册及仓库创建</a></p>
+<h1 id="二、准备电脑环境"><a href="#二、准备电脑环境" class="headerlink" title="二、准备电脑环境"></a>二、准备电脑环境</h1><p>可以用homebrew安装，也可以去官网下载binary直接安装。</p>
+<h2 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h2><p>在Terminal输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/zsh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：10.14.5这种低版本系统，建议手动安装 Command Line Tools 避免后续使用Homebrew遇到问题。10.14.5 Mojave系统推荐下载 11.3.1 版本。</p>
+<p>Command Line Tools 下载地址：<a target="_blank" rel="noopener" href="https://developer.apple.com/download/all/?q=xcode">苹果官网</a>（需要Apple id）</p>
+<p>参考教程：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/111014448">Homebrew国内如何自动安装（国内地址）</a></p>
+<h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><p>安装node.js管理工具，nvm。</p>
+<p>详细见文章。</p>
+<p>在Terminal输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+
+<p>安装后检查是否安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+
+<p>检查npm是否安装成功，npm是node.js的包管理工具，用它来安装hexo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p>在Terminal输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br></pre></td></tr></table></figure>
+
+<p>检查git是否安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-npm-安装Hexo"><a href="#使用-npm-安装Hexo" class="headerlink" title="使用 npm 安装Hexo"></a>使用 npm 安装Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、准备SSH-Key"><a href="#三、准备SSH-Key" class="headerlink" title="三、准备SSH Key"></a>三、准备SSH Key</h1><p>有一些教程用了Https，建议别用，因为可能会影响梯子。SSH Key不会受影响，而且也不难。</p>
+<blockquote>
+<p>报错信息：SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443</p>
+<p>解决方案：关掉VPN或使用SSH Key</p>
+<p>参考教程：<a target="_blank" rel="noopener" href="https://blog.hyperzsb.tech/git-ssl-error/">https://blog.hyperzsb.tech/git-ssl-error/</a></p>
+</blockquote>
+<p>在Terminal输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;username&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;email@gmail.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其中 <code>username</code> 是你的用户名，<code>email@gmail.com</code>是你github的登录邮箱，请自行替换。</p>
+</blockquote>
+<p>生成SSH Key</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;email@gmail.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>email@gmail.com</code>是你github的登录邮箱，请自行替换。</p>
+</blockquote>
+<p>一路回车下去就行，使用命令行输出SSH Key</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>生成的SSH Key会放在<code>~/.ssh/id_rsa.pub</code>目录下</p>
+</blockquote>
+<p>在github账号找到 <code>setting</code>，先点击 <code>SSH and GPG keys</code> 然后再点击 <code>New SSH key </code>进入到配置 SSH Key 的页面。</p>
+<ul>
+<li>在Title中记录好SSH的用处，避免遗忘，比如：SSH for Blog on MBP。</li>
+<li>在Key中粘贴SSH Key。</li>
+<li>点击 <code>Add SSH Key </code></li>
+</ul>
+<h1 id="四、准备本地文件"><a href="#四、准备本地文件" class="headerlink" title="四、准备本地文件"></a>四、准备本地文件</h1><p>创建一个文件夹用于存放与博客相关的文件，例如MyBolg，在Terminal中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/MyBlog</span><br></pre></td></tr></table></figure>
+
+<p>在该文件件目录下执行博客初始化操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 会下载一些node.js的依赖文件</span></span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>初始化成功后，启动服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>当看到如下输出就可以预览我们创建的博客了</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INFO</span>  Validating config</span><br><span class="line"><span class="keyword">INFO</span>  <span class="keyword">Start</span> processing</span><br><span class="line"><span class="keyword">INFO</span>  Hexo <span class="keyword">is</span> running at http://localhost:<span class="number">4000</span> . Press Ctrl+C <span class="keyword">to</span> stop. </span><br></pre></td></tr></table></figure>
+
+<p>在浏览器输入<code>http://localhost:4000</code>，打开如果出现Hexo默认的主题，则说明这一步成功了。</p>
+<p>在Terminal按下Ctrl+C，与服务器断开。</p>
+<p>为了能够使本地的Hexo部署到GitHub上，需要安装插件，在Terminal输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>在Finder中找到创建的MyBolg文件夹，找到<code>_config.yml</code>文件。将最下面的depoly部分改成：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:wechiwin/wechiwin.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>报错信息：You should configure deployment settings in _config.yml first! Available deployer plugins: git </p>
+<p>注意：下面三行【有空格】，即<code>type</code> <code>repo</code> <code>branch</code> 必须处于同一缩进。粘贴上面的代码后仅修改用户名即可。</p>
+<p>参考教程：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/imtudou/p/11205832.html">https://www.cnblogs.com/imtudou/p/11205832.html</a></p>
+<p>报错信息：</p>
+</blockquote>
+<p>清除缓存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo c</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<p>生成博客文件</p>
+<blockquote>
+<p>关于Hexo的一些命令，可以参考Hexo官网：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands">https://hexo.io/zh-cn/docs/commands</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>将本地的博客文件push到github</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Warning:</p>
+<p>The authenticity of host ‘github.com (20.205.243.166)’ can’t be established.</p>
+<p>ECDSA key fingerprint is SHA256:……</p>
+<p>Are you sure you want to continue connecting (yes&#x2F;no)? </p>
+<p>这里直接输入yes即可。</p>
+<p>参考教程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Wbiokr/article/details/73431199">https://blog.csdn.net/Wbiokr/article/details/73431199</a></p>
+</blockquote>
+<p>现在，在浏览器输入<code>username.github.io</code>就可以访问博客了(例如：<code>wechiwin.github.io</code>)，现在的界面依旧是默认的Hexo主题和hello-world.md。</p>
+<p>参考教程：</p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000038373795">Mac下使用GitHub+Hexo搭建个人博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.fengyuan.blog/2021-01-03-%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%98%AF%E6%80%8E%E4%B9%88%E6%9D%A5%E7%9A%84-%E4%B8%8B.html">MacOS下使用Hexo在Github搭建个人博客</a></p>
+<h1 id="五、第一篇博客"><a href="#五、第一篇博客" class="headerlink" title="五、第一篇博客"></a>五、第一篇博客</h1><p>在搭建博客的过程中一定会遇到各种报错和各种尝试，记下来之后不妨直接把它作为第一篇博客。</p>
+<p>我使用的是Typora+Idea，使用Idea将MyBlog作为Project打开，进行管理。Typora就用来专心码字。在还没学图床及CDN加速的基础上，所以这篇教程只有文字，如果有不懂的地方可以多用Google搜索一下其他的教程。</p>
+<p>找到~&#x2F;MyBlog&#x2F;source&#x2F;_posts&#x2F;hello-world.md，里面放的就是你在自己的博客网站上看的内容。删除hello-world.md，将自己的笔记放进去。</p>
+<h3 id="关于Front-matter："><a href="#关于Front-matter：" class="headerlink" title="关于Front-matter："></a>关于Front-matter：</h3><p>在Typora中写博客的时候，需要手动将YAML信息放在文章顶部，键入<code>---</code>，Typora会自动显示，请输入YAML信息。</p>
+<p>其中最基础的应该就是title和date，注意冒号后面必须要有空格。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2013</span><span class="string">/7/13</span> <span class="number">20</span><span class="string">:46:25</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="六、更换主题"><a href="#六、更换主题" class="headerlink" title="六、更换主题"></a>六、更换主题</h1><p>我们可以先在本地预览一下效果，在Terminal中输入<code>hexo s</code>，然后打开localhost4000。很明显，这个主题的效果不太让人满意。</p>
+<p>Hexo官网主题：<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a><br><a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">https://github.com/litten/hexo-theme-yilia</a><br><a target="_blank" rel="noopener" href="https://github.com/viosey/hexo-theme-material">https://github.com/viosey/hexo-theme-material</a><br><a target="_blank" rel="noopener" href="https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak">https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak</a><br><a target="_blank" rel="noopener" href="https://github.com/pinggod/hexo-theme-apollo">https://github.com/pinggod/hexo-theme-apollo</a><br><a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-icarus">https://github.com/ppoffice/hexo-theme-icarus</a></p>
+<p>这里以NexT主题为例，版本为8.8.2，非原NexT团队制作。</p>
+<blockquote>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000022923887">https://segmentfault.com/a/1190000022923887</a></p>
+</blockquote>
+<p>确认Terminal在MyBlog文件夹下，输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>此时可以在MyBlog&#x2F;themes文件夹里看到下载的next。</p>
+<p>打开MyBolg&#x2F;_config.yml文件，将theme后面的landscape修改为next</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+
+<p>在Terminal中输入<code>hexo c</code>清除缓存，然后输入<code>hexo s</code>启动服务器，刷新localhost:4000，就能预览新的主题了。</p>
+<h1 id="七、增加评论插件"><a href="#七、增加评论插件" class="headerlink" title="七、增加评论插件"></a>七、增加评论插件</h1><p>折腾了几个，最后找到了如下教程，简单好用。</p>
+<p>参考教程：<a target="_blank" rel="noopener" href="https://roife.github.io/2021/02/12/use-utterances-for-comment/">使用 Utterances 作为静态博客的评论插件</a></p>
+<p>注：将HTML代码直接粘贴到文章末尾即可，想要评论的人需要先用github的账号登陆。</p>
+<p>更新：</p>
+<p>一开始使用的是原next主体，更新之后发现8.8.2版本的next是已经集成了 Utterances 评论插件，在config中打开即可。</p>
+<h1 id="八、标签和分类"><a href="#八、标签和分类" class="headerlink" title="八、标签和分类"></a>八、标签和分类</h1><p>只有文章支持分类和标签，在 Front-matter 中设置。</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="新建-categories-页面"><a href="#新建-categories-页面" class="headerlink" title="新建 categories 页面"></a>新建 categories 页面</h3><p>如果没有categories页面，我们可以新建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+
+<h3 id="分类具有顺序性和层次性"><a href="#分类具有顺序性和层次性" class="headerlink" title="分类具有顺序性和层次性"></a>分类具有顺序性和层次性</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这样的写法，会使分类 Life 成为 Diary 的子分类，而不是并列分类。</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Life</span></span><br></pre></td></tr></table></figure>
+
+<p>并列分类写法</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Linux</span>]</span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Tools</span>]</span><br></pre></td></tr></table></figure>
+
+<p>并列+子分类</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Linux</span>, <span class="string">Hexo</span>]</span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Tools</span>, <span class="string">PHP</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><h3 id="新建-tags-页面"><a href="#新建-tags-页面" class="headerlink" title="新建 tags 页面"></a>新建 tags 页面</h3><p>如果没有tags页面，我们可以新建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<h3 id="没有顺序和层次"><a href="#没有顺序和层次" class="headerlink" title="没有顺序和层次"></a>没有顺序和层次</h3><p>写法一：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tags:</span> [<span class="string">Java</span>,<span class="string">MySQL</span>]</span><br></pre></td></tr></table></figure>
+
+<p>写法二：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">PS3</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">Games</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter">官方文档</a></p>
+</blockquote>
+<h2 id="在文章中使用"><a href="#在文章中使用" class="headerlink" title="在文章中使用"></a>在文章中使用</h2><p>打开 scaffolds&#x2F;post.md 模板文件，在加入<code>categories:</code>或者<code>tages:</code>,保存后，之后执行<code>hexo new 文章标题</code>命令生成的文件，页面里就有该项了。</p>
+<blockquote>
+<p>scaffolds目录下，是新建页面的模板，执行新建命令时，是根据这里的模板页来完成的，所以可以在这里根据你自己的需求添加一些默认值。</p>
+</blockquote>
+<p>参考教程：</p>
+<p><a target="_blank" rel="noopener" href="https://tding.top/archives/42c38b10.html">Hexo-NexT (v7.0+) 主题配置</a></p>
+<p><a target="_blank" rel="noopener" href="https://linlif.github.io/2017/05/27/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/">Hexo使用攻略-添加分类及标签</a></p>
+<h1 id="九、显示大纲-TOC"><a href="#九、显示大纲-TOC" class="headerlink" title="九、显示大纲 TOC"></a>九、显示大纲 TOC</h1><p>修改MyBlog&#x2F;themes&#x2F;next&#x2F;_config.yml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Table of Contents in the Sidebar</span></span><br><span class="line"><span class="comment"># Front-matter variable (nonsupport wrap expand_all).</span></span><br><span class="line"><span class="attr">toc:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Automatically add list number to toc.</span></span><br><span class="line">  <span class="attr">number:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># If true, all words will placed on next lines if header width longer then sidebar width.</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If true, all level of TOC in a post will be displayed, rather than the activated part of it.</span></span><br><span class="line">  <span class="attr">expand_all:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Maximum heading depth of generated toc.</span></span><br><span class="line">  <span class="attr">max_depth:</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<p>注：如果出现了大纲无法显示的情况，可以先设置enable: false，clean&amp;deploy后再设置enable: true。</p>
+<h1 id="十、添加本地搜索"><a href="#十、添加本地搜索" class="headerlink" title="十、添加本地搜索"></a>十、添加本地搜索</h1><p>在MyBlog文件夹下安装插件:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+
+<p>修改MyBlog&#x2F;_config.yml 文件，添加如下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<p>修改MyBlog&#x2F;themes&#x2F;next&#x2F;_config.yml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>参考教程：<a target="_blank" rel="noopener" href="https://tding.top/archives/42c38b10.html">Hexo-NexT (v7.0+) 主题配置</a></p>
+<h1 id="十一、替换网站图标"><a href="#十一、替换网站图标" class="headerlink" title="十一、替换网站图标"></a>十一、替换网站图标</h1><p>自己制作或者下载16 x 16px以及32 x 32px的PNG格式图标。将图片放在MyBlog&#x2F;themes&#x2F;next&#x2F;source&#x2F;images&#x2F;下。</p>
+<p>打开MyBlog&#x2F;themes&#x2F;next&#x2F;_config.yml，查找favicon，将small和medium后的<code>favicon-16x16-next</code>替换为对应像素的图片的名称。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">favicon:</span></span><br><span class="line">  <span class="attr">small:</span> <span class="string">/images/favicon-16x16-next.png</span></span><br><span class="line">  <span class="attr">medium:</span> <span class="string">/images/favicon-32x32-next.png</span></span><br><span class="line">  <span class="attr">apple_touch_icon:</span> <span class="string">/images/apple-touch-icon-next.png</span></span><br><span class="line">  <span class="attr">safari_pinned_tab:</span> <span class="string">/images/logo.svg</span></span><br><span class="line">  <span class="comment">#android_manifest: /manifest.json</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="十二、设置个人头像"><a href="#十二、设置个人头像" class="headerlink" title="十二、设置个人头像"></a>十二、设置个人头像</h1><p>打开MyBlog&#x2F;themes&#x2F;next&#x2F;_config.yml，查找avatar，将url后的<code>avatar.gif</code>替换为自己图片的全名。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># Replace the default image and set the url here.</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">/images/avatar.gif</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be displayed in circle.</span></span><br><span class="line">  <span class="attr">rounded:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  <span class="attr">rotated:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>参考教程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39345384/article/details/80785373">4.美化</a></p>
+<h1 id="十三、设置快捷指令"><a href="#十三、设置快捷指令" class="headerlink" title="十三、设置快捷指令"></a>十三、设置快捷指令</h1><p>每次更新内容都需要在Terminal输三遍命令，很麻烦，可以使用alias设定别名。之后只要在Terminal输入指定的别名就可以了，但是仅对当前会话生效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># hs 本地部署</span></span><br><span class="line"><span class="built_in">alias</span> hs=<span class="string">&#x27;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&#x27;</span></span><br><span class="line"><span class="comment"># hd 远程部署</span></span><br><span class="line"><span class="built_in">alias</span> hd=<span class="string">&#x27;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="十四、使用Hexo新建md文档并自动打开Typora"><a href="#十四、使用Hexo新建md文档并自动打开Typora" class="headerlink" title="十四、使用Hexo新建md文档并自动打开Typora"></a>十四、使用Hexo新建md文档并自动打开Typora</h1><p>在MyBlog文件夹下新建scripts文件夹，并新建auto_open.js文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>).exec;</span><br><span class="line">hexo.on(<span class="string">&#x27;new&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line"><span class="comment">// 请将 Typora 替换为你用的Markdown 编辑器</span></span><br><span class="line">exec(<span class="string">&#x27;open -a &quot;Typora.app&quot; &#x27;</span> + data.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：如果出现使用hexo new 没有反应，请检查Terminal是否在MyBlog文件夹下</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/macOS/" rel="tag"># macOS</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/Github/" rel="tag"># Github</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/01/04/%E4%B9%A6%E6%91%98/%E3%80%8A%E4%B8%81%E9%A6%99%E5%8C%BB%E7%94%9F%E4%BA%BA%E4%BD%93%E8%B0%83%E6%9F%A5%E7%BB%84%E3%80%8B%E4%B9%A6%E6%91%98/" rel="next" title="《丁香医生人体调查组》书摘">
+                  《丁香医生人体调查组》书摘 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray Wei</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"wechiwin/wechiwin.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

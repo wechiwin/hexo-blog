@@ -21,29 +21,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis命令行操作[Linux]">
-<meta property="og:url" content="http://example.com/2022/01/15/Linux/Redis%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C[Linux]/index.html">
+<meta property="og:title" content="Redis的使用[Linux]">
+<meta property="og:url" content="http://example.com/2022/01/15/Linux/Redis%E7%9A%84%E4%BD%BF%E7%94%A8[Linux]/index.html">
 <meta property="og:site_name" content="Ray Wei&#39;s Blog">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/redis-list.png">
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/hash.png">
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/zset.png">
 <meta property="article:published_time" content="2022-01-15T09:27:52.000Z">
-<meta property="article:modified_time" content="2022-02-03T05:25:45.293Z">
+<meta property="article:modified_time" content="2022-02-18T15:55:51.518Z">
 <meta property="article:author" content="Ray Wei">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gitee.com/rayywei/blog-image/raw/master/redis-list.png">
 
 
-<link rel="canonical" href="http://example.com/2022/01/15/Linux/Redis%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C[Linux]/">
+<link rel="canonical" href="http://example.com/2022/01/15/Linux/Redis%E7%9A%84%E4%BD%BF%E7%94%A8[Linux]/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/01/15/Linux/Redis%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C[Linux]/","path":"2022/01/15/Linux/Redis命令行操作[Linux]/","title":"Redis命令行操作[Linux]"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/01/15/Linux/Redis%E7%9A%84%E4%BD%BF%E7%94%A8[Linux]/","path":"2022/01/15/Linux/Redis的使用[Linux]/","title":"Redis的使用[Linux]"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Redis命令行操作[Linux] | Ray Wei's Blog</title>
+<title>Redis的使用[Linux] | Ray Wei's Blog</title>
   
 
 
@@ -163,7 +163,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -174,7 +174,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -213,7 +213,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/Linux/Redis%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C[Linux]/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/Linux/Redis%E7%9A%84%E4%BD%BF%E7%94%A8[Linux]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -226,7 +226,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Redis命令行操作[Linux]
+          Redis的使用[Linux]
         </h1>
 
         <div class="post-meta-container">
@@ -244,17 +244,13 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-02-03 13:25:45" itemprop="dateModified" datetime="2022-02-03T13:25:45+08:00">2022-02-03</time>
+      <time title="Modified: 2022-02-18 23:55:51" itemprop="dateModified" datetime="2022-02-18T23:55:51+08:00">2022-02-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaLearning/" itemprop="url" rel="index"><span itemprop="name">JavaLearning</span></a>
-        </span>
-          , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
         </span>
@@ -402,7 +398,7 @@
 <h3 id="LLEN-key"><a href="#LLEN-key" class="headerlink" title="LLEN key"></a>LLEN key</h3><p>​    返回list集合的长度</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; llen fruit-list</span><br><span class="line">(<span class="built_in">integer</span>) 5</span><br></pre></td></tr></table></figure>
 
-<h3 id="LPOP-key"><a href="#LPOP-key" class="headerlink" title="LPOP key"></a>LPOP key</h3><p>​    从左边弹出一个元素。<br>​    弹出=返回+删除。</p>
+<h3 id="LPOP-key"><a href="#LPOP-key" class="headerlink" title="LPOP key"></a>LPOP key</h3><p>​    从左边弹出一个元素。<br>​    弹出&#x3D;返回+删除。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; lpop fruit-list</span><br><span class="line"><span class="string">&quot;cherry&quot;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="RPOP-key"><a href="#RPOP-key" class="headerlink" title="RPOP key"></a>RPOP key</h3><p>​    从右边弹出一个元素。</p>
@@ -510,7 +506,7 @@
 <h3 id="HDEL-key-field-field-…"><a href="#HDEL-key-field-field-…" class="headerlink" title="HDEL key field [field …]"></a>HDEL key field [field …]</h3><p>删除某个key，返回1表示删除成功，返回0表示删除失败</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HDEL teacher:<span class="built_in">hash</span> subject</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; HDEL teacher:<span class="built_in">hash</span> birthday</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
 
-<h3 id="HINCRBY-key-field-increment"><a href="#HINCRBY-key-field-increment" class="headerlink" title="HINCRBY key field increment"></a>HINCRBY key field increment</h3><p>给filed的值增加指定的数量 hash&lt;key, value=(filed&lt;key, value&gt;)&gt;</p>
+<h3 id="HINCRBY-key-field-increment"><a href="#HINCRBY-key-field-increment" class="headerlink" title="HINCRBY key field increment"></a>HINCRBY key field increment</h3><p>给filed的值增加指定的数量 hash&lt;key, value&#x3D;(filed&lt;key, value&gt;)&gt;</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HINCRBY teacher:<span class="built_in">hash</span> salary 1000</span><br><span class="line">(<span class="built_in">integer</span>) 8000</span><br></pre></td></tr></table></figure>
 
 <h3 id="HSETNX-key-field-value"><a href="#HSETNX-key-field-value" class="headerlink" title="HSETNX key field value"></a>HSETNX key field value</h3><p>要求field是新建的</p>
@@ -669,13 +665,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/15/Linux/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85redis8%5Byum%20install%5D/" rel="prev" title="MacOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]">
-                  <i class="fa fa-chevron-left"></i> MacOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]
+                <a href="/2022/01/15/Linux/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85redis8%5Byum%20install%5D/" rel="prev" title="macOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]">
+                  <i class="fa fa-chevron-left"></i> macOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/17/Mac/macOS%20Homebrew%20%E5%AE%98%E6%96%B9%E5%AE%89%E8%A3%85%20%E8%A7%A3%E5%86%B3Failed%20to%20connect%20443/" rel="next" title="">
-                   <i class="fa fa-chevron-right"></i>
+                <a href="/2022/01/17/Mac/Homebrew%E5%AE%98%E6%96%B9%E5%AE%89%E8%A3%85%20%E8%A7%A3%E5%86%B3Failed%20to%20connect%20443/" rel="next" title="Homebrew官方安装 解决Failed to connect 443">
+                  Homebrew官方安装 解决Failed to connect 443 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
