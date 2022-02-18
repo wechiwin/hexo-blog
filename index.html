@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -168,7 +168,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -206,7 +206,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/javaLearning/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85redis8[yum%20install]/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/17/Mac/macOS%20Homebrew%20%E5%AE%98%E6%96%B9%E5%AE%89%E8%A3%85%20%E8%A7%A3%E5%86%B3Failed%20to%20connect%20443/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -219,7 +219,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/01/15/javaLearning/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85redis8%5Byum%20install%5D/" class="post-title-link" itemprop="url">MacOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]</a>
+          <a href="/2022/01/17/Mac/macOS%20Homebrew%20%E5%AE%98%E6%96%B9%E5%AE%89%E8%A3%85%20%E8%A7%A3%E5%86%B3Failed%20to%20connect%20443/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta-container">
@@ -229,9 +229,200 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-01-15 10:04:40 / Modified: 11:38:20" itemprop="dateCreated datePublished" datetime="2022-01-15T10:04:40+08:00">2022-01-15</time>
+      <time title="Created: 2022-01-17 15:22:52" itemprop="dateCreated datePublished" datetime="2022-01-17T15:22:52+08:00">2022-01-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="macOS-Homebrew-官方安装-解决Failed-to-connect-443"><a href="#macOS-Homebrew-官方安装-解决Failed-to-connect-443" class="headerlink" title="macOS Homebrew 官方安装 解决Failed to connect 443"></a>macOS Homebrew 官方安装 解决Failed to connect 443</h1><blockquote>
+<p>macOS Mojave </p>
+</blockquote>
+<h2 id="1-检查网络"><a href="#1-检查网络" class="headerlink" title="1. 检查网络"></a>1. 检查网络</h2><p>尝试在浏览器中打开下面的网页。</p>
+<p>https//raw.githubusercontent.com/Homebrew/install/master/install</p>
+<p>如果能打开，说明网络没有问题。如果不能打开，说明网络有问题，需要使用VPN或者修改hosts文件。</p>
+<blockquote>
+<p>修改hosts文件可以参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137025155">MAC OS-X homebrew安装报错：Failed to connect 443</a></p>
+</blockquote>
+<h2 id="2-检查环境"><a href="#2-检查环境" class="headerlink" title="2. 检查环境"></a>2. 检查环境</h2><p>卸载 command line tools</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf /Library/Developer/CommandLineTools</span><br></pre></td></tr></table></figure>
+
+<p>安装 command line tools</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
+
+<p>在跳出来的选项框中直接选择<code>install</code>即可。</p>
+<p>重试安装homebrew</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>网上有很多安装成功的案例，但是我这里依旧报错443。</p>
+<p>于是在网上搜索，解决办法如下：</p>
+<p>打开<a target="_blank" rel="noopener" href="https://brew.sh/">homebrew主页</a>安装命令里的网址：<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh</a></p>
+<p>右键另存为<code>install.sh</code>脚本文件，然后在终端输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash path-to/install.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 例如</span></span><br><span class="line">/bin/bash ~/Desktop/install.sh</span><br></pre></td></tr></table></figure>
+
+<p>然后输入开机密码，就开始安装了，但是因为是直接访问国外的资源，哪怕挂了VPN也很慢。</p>
+<p>参考教程：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137025155">MAC OS-X homebrew安装报错：Failed to connect 443</a></p>
+<p><a target="_blank" rel="noopener" href="https://apple.stackexchange.com/questions/419621/latest-command-line-tools-available-for-macos-mojave">latest command line tools available for macos mojave?</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.codenong.com/cs106599190/">Mac平台 Brew 安装的坎坷之路 – 解决 port 443 错误</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/61284722/17952492">Homebrew installation on Mac OS X Failed to connect to raw.githubusercontent.com port 443</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/Linux/Redis%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C[Linux]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ray Wei">
+      <meta itemprop="description" content="the dots will somehow connect in your future">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ray Wei's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/15/Linux/Redis%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C%5BLinux%5D/" class="post-title-link" itemprop="url">Redis命令行操作[Linux]</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-01-15 17:27:52" itemprop="dateCreated datePublished" datetime="2022-01-15T17:27:52+08:00">2022-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-02-03 13:25:45" itemprop="dateModified" datetime="2022-02-03T13:25:45+08:00">2022-02-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaLearning/" itemprop="url" rel="index"><span itemprop="name">JavaLearning</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p> </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/15/Linux/Redis%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C%5BLinux%5D/">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/Linux/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85redis8[yum%20install]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ray Wei">
+      <meta itemprop="description" content="the dots will somehow connect in your future">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ray Wei's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/15/Linux/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85redis8%5Byum%20install%5D/" class="post-title-link" itemprop="url">MacOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-01-15 10:04:40" itemprop="dateCreated datePublished" datetime="2022-01-15T10:04:40+08:00">2022-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-02-06 12:50:07" itemprop="dateModified" datetime="2022-02-06T12:50:07+08:00">2022-02-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -264,7 +455,7 @@
           <p> </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/01/15/javaLearning/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85redis8%5Byum%20install%5D/">
+              <a class="btn" href="/2022/01/15/Linux/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85redis8%5Byum%20install%5D/">
                 Read more &raquo;
               </a>
             </div>
@@ -295,7 +486,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/14/javaLearning/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85Mysql8[rpm]/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/14/Linux/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85Mysql8[rpm]/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -308,7 +499,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/01/14/javaLearning/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85Mysql8%5Brpm%5D/" class="post-title-link" itemprop="url">macOS在虚拟机Linux-CentOS7-64上安装Mysql8[rpm]</a>
+          <a href="/2022/01/14/Linux/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85Mysql8%5Brpm%5D/" class="post-title-link" itemprop="url">macOS在虚拟机Linux-CentOS7-64上安装Mysql8[rpm]</a>
         </h2>
 
         <div class="post-meta-container">
@@ -359,7 +550,7 @@
           <p> </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/01/14/javaLearning/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85Mysql8%5Brpm%5D/">
+              <a class="btn" href="/2022/01/14/Linux/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85Mysql8%5Brpm%5D/">
                 Read more &raquo;
               </a>
             </div>
@@ -390,7 +581,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/11/javaLearning/macOS%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7-64/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/14/Mac/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%9B%B8%E5%85%B3%E7%BB%8F%E9%AA%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -403,7 +594,85 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/01/11/javaLearning/macOS%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7-64/" class="post-title-link" itemprop="url">MacOS使用VMware虚拟机安装Linux系统CentOS7-64</a>
+          <a href="/2022/01/14/Mac/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%9B%B8%E5%85%B3%E7%BB%8F%E9%AA%8C/" class="post-title-link" itemprop="url">在MacOS上使用Linux虚拟机的相关经验</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-01-14 15:48:16" itemprop="dateCreated datePublished" datetime="2022-01-14T15:48:16+08:00">2022-01-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-01-15 10:20:35" itemprop="dateModified" datetime="2022-01-15T10:20:35+08:00">2022-01-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p> </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/14/Mac/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%9B%B8%E5%85%B3%E7%BB%8F%E9%AA%8C/">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/11/Linux/macOS%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7-64/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ray Wei">
+      <meta itemprop="description" content="the dots will somehow connect in your future">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ray Wei's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/11/Linux/macOS%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7-64/" class="post-title-link" itemprop="url">MacOS使用VMware虚拟机安装Linux系统CentOS7-64</a>
         </h2>
 
         <div class="post-meta-container">
@@ -450,7 +719,7 @@
           <p> </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/01/11/javaLearning/macOS%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7-64/">
+              <a class="btn" href="/2022/01/11/Linux/macOS%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7-64/">
                 Read more &raquo;
               </a>
             </div>

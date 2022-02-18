@@ -21,25 +21,24 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="《艺术家们》书摘">
-<meta property="og:url" content="http://example.com/2022/01/04/%E4%B9%A6%E6%91%98/%E3%80%8A%E8%89%BA%E6%9C%AF%E5%AE%B6%E4%BB%AC%E3%80%8B%E4%B9%A6%E6%91%98/index.html">
+<meta property="og:title" content="在MacOS上使用Linux虚拟机的相关经验">
+<meta property="og:url" content="http://example.com/2022/01/14/Mac/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%9B%B8%E5%85%B3%E7%BB%8F%E9%AA%8C/index.html">
 <meta property="og:site_name" content="Ray Wei&#39;s Blog">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-01-04T14:19:41.000Z">
-<meta property="article:modified_time" content="2022-01-08T13:44:53.948Z">
+<meta property="article:published_time" content="2022-01-14T07:48:16.000Z">
+<meta property="article:modified_time" content="2022-01-15T02:20:35.026Z">
 <meta property="article:author" content="Ray Wei">
-<meta property="article:tag" content="冯骥才">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2022/01/04/%E4%B9%A6%E6%91%98/%E3%80%8A%E8%89%BA%E6%9C%AF%E5%AE%B6%E4%BB%AC%E3%80%8B%E4%B9%A6%E6%91%98/">
+<link rel="canonical" href="http://example.com/2022/01/14/Mac/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%9B%B8%E5%85%B3%E7%BB%8F%E9%AA%8C/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/01/04/%E4%B9%A6%E6%91%98/%E3%80%8A%E8%89%BA%E6%9C%AF%E5%AE%B6%E4%BB%AC%E3%80%8B%E4%B9%A6%E6%91%98/","path":"2022/01/04/书摘/《艺术家们》书摘/","title":"《艺术家们》书摘"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/01/14/Mac/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%9B%B8%E5%85%B3%E7%BB%8F%E9%AA%8C/","path":"2022/01/14/Mac/在MacOS上使用Linux虚拟机的相关经验/","title":"在MacOS上使用Linux虚拟机的相关经验"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>《艺术家们》书摘 | Ray Wei's Blog</title>
+<title>在MacOS上使用Linux虚拟机的相关经验 | Ray Wei's Blog</title>
   
 
 
@@ -131,7 +130,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -144,6 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8Mac%E4%B8%8A%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95Linux"><span class="nav-text">在Mac上远程登录Linux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac%E4%B8%8ELinux%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93-Terminal"><span class="nav-text">Mac与Linux文件传输[Terminal]</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Mac-%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0-Linux-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">1. Mac 上传文件到 Linux 服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Mac-%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0-Linux-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">2. Mac 上传文件夹到 Linux 服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%88%B0-Mac"><span class="nav-text">3. Linux 服务器下载文件到 Mac</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0-Mac"><span class="nav-text">4. Linux 服务器下载文件夹到 Mac</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEJDK%E7%9B%B8%E5%85%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-text">配置JDK相关环境变量</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -208,7 +208,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/04/%E4%B9%A6%E6%91%98/%E3%80%8A%E8%89%BA%E6%9C%AF%E5%AE%B6%E4%BB%AC%E3%80%8B%E4%B9%A6%E6%91%98/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/14/Mac/%E5%9C%A8MacOS%E4%B8%8A%E4%BD%BF%E7%94%A8Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%9B%B8%E5%85%B3%E7%BB%8F%E9%AA%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -221,7 +221,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          《艺术家们》书摘
+          在MacOS上使用Linux虚拟机的相关经验
         </h1>
 
         <div class="post-meta-container">
@@ -232,23 +232,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-01-04 22:19:41" itemprop="dateCreated datePublished" datetime="2022-01-04T22:19:41+08:00">2022-01-04</time>
+      <time title="Created: 2022-01-14 15:48:16" itemprop="dateCreated datePublished" datetime="2022-01-14T15:48:16+08:00">2022-01-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-01-08 21:44:53" itemprop="dateModified" datetime="2022-01-08T21:44:53+08:00">2022-01-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%B9%A6%E6%91%98/" itemprop="url" rel="index"><span itemprop="name">书摘</span></a>
-        </span>
+      <time title="Modified: 2022-01-15 10:20:35" itemprop="dateModified" datetime="2022-01-15T10:20:35+08:00">2022-01-15</time>
     </span>
 
   
@@ -262,87 +253,34 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>“迟到是他与人约会的内容之一。”</p>
-<br/>
+        <h1 id="在Mac上远程登录Linux"><a href="#在Mac上远程登录Linux" class="headerlink" title="在Mac上远程登录Linux"></a>在Mac上远程登录Linux</h1><p>因为Mac有ssh，所以直接打开Terminal，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># x.x.x.x 为Linux的IP地址</span></span><br><span class="line">ssh root@x.x.x.x</span><br></pre></td></tr></table></figure>
 
-<br/>
 
-<p>“艺术家工作的本质，是在任何地方都让美成为胜利者。”</p>
-<br/>
 
-<br/>
+<h1 id="Mac与Linux文件传输-Terminal"><a href="#Mac与Linux文件传输-Terminal" class="headerlink" title="Mac与Linux文件传输[Terminal]"></a>Mac与Linux文件传输[Terminal]</h1><p>网上有客户端可以使用，这里介绍一下使用命令行传输</p>
+<h2 id="1-Mac-上传文件到-Linux-服务器"><a href="#1-Mac-上传文件到-Linux-服务器" class="headerlink" title="1. Mac 上传文件到 Linux 服务器"></a>1. Mac 上传文件到 Linux 服务器</h2><p>语法：</p>
+<p>scp 文件的绝对路径 <code>Linux用户名</code>@<code>Linux服务器ip</code>:<code>Linux目标绝对路径</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp /Users/***/Downloads/mysql-community-server-8.0.18-1.el7.x86_64.rpm root@172.16.139.100:/opt</span><br></pre></td></tr></table></figure>
 
-<p>他们只是这数百万城市里三个心怀艺术梦想的年轻人，他们的身上没有任何社会资本，没人认识他们，面对着一切都未知的未来，他们要做什么，孰轻孰重？</p>
-<br/>
 
-<br/>
 
-<p>名人的历史清晰地记在文字中，凡人的历史只是可有可无地保存在彼此的记忆里。</p>
-<br/>
+<h3 id="2-Mac-上传文件夹到-Linux-服务器"><a href="#2-Mac-上传文件夹到-Linux-服务器" class="headerlink" title="2. Mac 上传文件夹到 Linux 服务器"></a>2. Mac 上传文件夹到 Linux 服务器</h3><blockquote>
+<p>语法：</p>
+<p>scp -r 文件夹目录 用户名@服务器ip:目标路径</p>
+</blockquote>
+<h3 id="3-Linux-服务器下载文件到-Mac"><a href="#3-Linux-服务器下载文件到-Mac" class="headerlink" title="3. Linux 服务器下载文件到 Mac"></a>3. Linux 服务器下载文件到 Mac</h3><blockquote>
+<p>语法：</p>
+<p>scp 用户名@服务器ip:文件路径 目标路径</p>
+</blockquote>
+<h3 id="4-Linux-服务器下载文件夹到-Mac"><a href="#4-Linux-服务器下载文件夹到-Mac" class="headerlink" title="4. Linux 服务器下载文件夹到 Mac"></a>4. Linux 服务器下载文件夹到 Mac</h3><blockquote>
+<p>语法：</p>
+<p>scp -r 用户名@服务器ip:文件路径 目标路径</p>
+</blockquote>
+<h1 id="配置JDK相关环境变量"><a href="#配置JDK相关环境变量" class="headerlink" title="配置JDK相关环境变量"></a>配置JDK相关环境变量</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 声明 JAVA_HOME 环境变量</span></span><br><span class="line">JAVA_HOME=/opt/jdk1.8.0_121</span><br><span class="line"><span class="comment"># 给 PATH 环境变量 附加 $JAVA_HOME/bin 部分</span></span><br><span class="line"><span class="comment"># $PATH 表示引用 PATH 环境变量以前的旧值</span></span><br><span class="line"><span class="comment"># 使用英文冒号连接</span></span><br><span class="line"><span class="comment"># $JAVA_HOME 表示对 JAVA_HOME 变量的引用</span></span><br><span class="line"><span class="comment"># $JAVA_HOME/bin 表示指向可执行文件</span></span><br><span class="line">PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 发布</span></span><br><span class="line"><span class="comment"># 发布是发布变量名，不是引用变r量的值，所以前面不写 $ 符号</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME PATH</span><br></pre></td></tr></table></figure>
 
-<br/>
 
-<p>作家要写作，是因为他们心里总有一些活生生的人物，难以遏制的情感，苦苦的思考，给他们压力，叫他们不写不行，不写寝食难安，他们才写。</p>
-<br/>
 
-<br/>
-
-<p>通过交谈，去深究一个问题，或为了使自己心里某些暧昧的东西一点点明晰起来。</p>
-<br/>
-
-<br/>
-
-<p>真正的朋友不是为你弹歌相庆，而是在人生的岔道上帮你看清去处。</p>
-<br/>
-
-<br/>
-
-<p>这次，云天与雨霏的告别，才是人生道路上的真正的告别。他没有嫌恶她。因为他看过太多的人被生活毁灭，他要坚守的是自己的艺术观不在生活的重锤下变形。</p>
-<br/>
-
-<br/>
-
-<p>当一个人的生活很美好、心满意足时，便隐隐会有一点忧虑，担心生出岔头，担心失去现在。这并不一定是遭人妒忌，被人算计。因为究竟生活不完全听任自己，还会陡生意外，防不胜防，有时根本无法预知和防备。</p>
-<br/>
-
-<br/>
-
-<p>不管你的来路如何清晰，去路依然一片茫茫。没有途径，也无路标，大多数人都是从众而行。但艺术是纯粹个人心灵的事业，个人的路只是自己探索。在这野草丛生和乱石峥嵘中，你形影相吊，时而迟疑，时而焦灼，时而苦闷。如果你是一个真正的艺术家，你就永远不会满足自己，也不会放过和饶过自己。任何现世的称许与嘉奖都不算数，因为这中间夹杂着种种世俗的功利与谋划，真正认清你的意义的最终还是历史。</p>
-<br/>
-
-<br/>
-
-<p>先锋文学更是如此。似乎谁不先锋谁就过时，谁不先锋谁就不能进入世界。不管这些想法多么幼稚，但这毕竟是对此前长期艺术禁锢的一种反叛。一条大河决堤时，谁能知道这凶猛的洪流孰益孰损，最终冲决和淹没了什么？</p>
-<br/>
-
-<br/>
-
-<p>艺术只为了被别人注意吗？”隋意笑道，“从病理学上讲，自我戕害是神经病患者的临床表现。”</p>
-<br/>
-
-<br/>
-
-<p>当一片狂潮铺天盖地席卷而来时，关键看你是否站得住，你是否像一块石头那样有足够的重量使自己稳如泰山，有够粗够长的根脉深深扎在自己的土地里，抓住古往今来文明的根基，否则你一准会被这洪流卷去，灭顶于其中，成为一个时代不幸的牺牲品。</p>
-<br/>
-
-<br/>
-
-<p>人的力量只有从自己身上去寻找。</p>
-<br/>
-
-<br/>
-
-<p>我们都不能免俗，但我们只要不把美神从自己内心的中心位置挪开就好。</p>
-<br/>
-
-<br/>
-
-<p>人生的朋友，不一定他离开了你，你就失去了他，彼此各在天涯海角，情谊依然地久天长。可是如果他改变了，改变了信仰、追求、品质，改变了你们曾经赖以相依的共同的东西，你自然就失去了他。</p>
-<p><br/><br/></p>
-<p>他们没有迷失在荒原大漠里，却被金钱收买了艺术的良知。金钱太不可抗拒了，现实太残酷了，我很怕自己也沉沦下去。</p>
-<br/>
-
-<br/>
 
     </div>
 
@@ -351,21 +289,18 @@
     
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%86%AF%E9%AA%A5%E6%89%8D/" rel="tag"># 冯骥才</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/04/%E4%B9%A6%E6%91%98/%E3%80%8A%E4%B8%81%E9%A6%99%E5%8C%BB%E7%94%9F%E4%BA%BA%E4%BD%93%E8%B0%83%E6%9F%A5%E7%BB%84%E3%80%8B%E4%B9%A6%E6%91%98/" rel="prev" title="《丁香医生人体调查组》书摘">
-                  <i class="fa fa-chevron-left"></i> 《丁香医生人体调查组》书摘
+                <a href="/2022/01/11/Linux/macOS%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7-64/" rel="prev" title="MacOS使用VMware虚拟机安装Linux系统CentOS7-64">
+                  <i class="fa fa-chevron-left"></i> MacOS使用VMware虚拟机安装Linux系统CentOS7-64
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/11/Linux/macOS%E4%BD%BF%E7%94%A8VMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9FCentOS7-64/" rel="next" title="MacOS使用VMware虚拟机安装Linux系统CentOS7-64">
-                  MacOS使用VMware虚拟机安装Linux系统CentOS7-64 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/01/14/Linux/macOS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BALinux-CentOS7-64%E4%B8%8A%E5%AE%89%E8%A3%85Mysql8%5Brpm%5D/" rel="next" title="macOS在虚拟机Linux-CentOS7-64上安装Mysql8[rpm]">
+                  macOS在虚拟机Linux-CentOS7-64上安装Mysql8[rpm] <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
