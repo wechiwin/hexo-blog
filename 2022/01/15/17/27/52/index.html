@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cat-180x180-apple.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cat-32x32-medium.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cat-16x16-small.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wechiwin.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis的使用[Linux]">
+<meta property="og:url" content="https://wechiwin.github.io/2022/01/15/17/27/52/index.html">
+<meta property="og:site_name" content="Ray Wei&#39;s Blog">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/redis-list.png">
+<meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/hash.png">
+<meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/zset.png">
+<meta property="article:published_time" content="2022-01-15T09:27:52.000Z">
+<meta property="article:modified_time" content="2022-02-18T15:55:51.518Z">
+<meta property="article:author" content="Ray Wei">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/rayywei/blog-image/raw/master/redis-list.png">
+
+
+<link rel="canonical" href="https://wechiwin.github.io/2022/01/15/17/27/52/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wechiwin.github.io/2022/01/15/17/27/52/","path":"2022/01/15/17/27/52/","title":"Redis的使用[Linux]"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Redis的使用[Linux] | Ray Wei's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ray Wei's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Redis%E5%91%BD%E4%BB%A4%E7%9A%84%E5%B0%8F%E5%A5%97%E8%B7%AF"><span class="nav-text">1. Redis命令的小套路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">2.基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A0%E5%88%87%E6%8D%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">①切换数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A1%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E9%95%BF%E5%BA%A6"><span class="nav-text">②查看数据库长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A2%E6%B8%85%E7%A9%BA%E5%85%A8%E5%BA%93"><span class="nav-text">③清空全库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-KEY%E6%93%8D%E4%BD%9C"><span class="nav-text">3. KEY操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#KEYS-PATTERN"><span class="nav-text">KEYS PATTERN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TYPE-KEY"><span class="nav-text">TYPE KEY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MOVE-KEY-DB"><span class="nav-text">MOVE KEY DB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DEL-KEY-KEY-%E2%80%A6"><span class="nav-text">DEL KEY [KEY …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXISTS-KEY-KEY-%E2%80%A6"><span class="nav-text">EXISTS KEY [KEY …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RENAME-KEY-NEWKEY"><span class="nav-text">RENAME KEY NEWKEY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RENAMENX-KEY-NEWKEY"><span class="nav-text">RENAMENX KEY NEWKEY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPIRE-KEY-SECONDS"><span class="nav-text">EXPIRE KEY SECONDS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TTL-KEY"><span class="nav-text">TTL KEY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PERSIST-KEY"><span class="nav-text">PERSIST KEY</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-string%E6%93%8D%E4%BD%9C"><span class="nav-text">4. string操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET-KEY"><span class="nav-text">GET KEY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SET-KEY-VALUE-EX-SECONDS-PX-MILLISECONDS-NX-XX"><span class="nav-text">SET KEY VALUE [EX SECONDS | PX MILLISECONDS] [NX|XX]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APPEND-KEY-VALUE"><span class="nav-text">APPEND KEY VALUE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STRLEN-KEY"><span class="nav-text">STRLEN KEY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#INCR-KEY"><span class="nav-text">INCR KEY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DECR-KEY"><span class="nav-text">DECR KEY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#INCRBY-KEY-INCREMENT"><span class="nav-text">INCRBY KEY INCREMENT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DECRBY-KEY-DECREMENT"><span class="nav-text">DECRBY KEY DECREMENT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GETRANGE-KEY-START-END"><span class="nav-text">GETRANGE KEY START END</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SETRANGE-KEY-OFFSET-VALUE"><span class="nav-text">SETRANGE KEY OFFSET VALUE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SETEX-KEY-SECONDS-VALUE"><span class="nav-text">SETEX KEY SECONDS VALUE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SETNX-KEY-VALUE"><span class="nav-text">SETNX KEY VALUE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MSET-KEY-VALUE-KEY-VALUE-%E2%80%A6"><span class="nav-text">MSET KEY VALUE [KEY VALUE …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MGET-KEY-KEY-%E2%80%A6"><span class="nav-text">MGET KEY [KEY …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MSETNX-KEY-VALUE-KEY-VALUE-%E2%80%A6"><span class="nav-text">MSETNX KEY VALUE [KEY VALUE …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GETSET-KEY-VALUE"><span class="nav-text">GETSET KEY VALUE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-list%E6%93%8D%E4%BD%9C"><span class="nav-text">5.list操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LPUSH-key-value-value-%E2%80%A6"><span class="nav-text">LPUSH key value [value …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RPUSH-key-value-value-%E2%80%A6"><span class="nav-text">RPUSH key value [value …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LRANGE-key-start-stop"><span class="nav-text">LRANGE key start stop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LLEN-key"><span class="nav-text">LLEN key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LPOP-key"><span class="nav-text">LPOP key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RPOP-key"><span class="nav-text">RPOP key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RPOPLPUSH-source-destination"><span class="nav-text">RPOPLPUSH source destination</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LINDEX-key-index"><span class="nav-text">LINDEX key index</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LINSERT-key-BEFORE-AFTER-pivot-value"><span class="nav-text">LINSERT key BEFORE|AFTER pivot value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LPUSHX-key-value"><span class="nav-text">LPUSHX key value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LREM-key-count-value"><span class="nav-text">LREM key count value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LSET-key-index-value"><span class="nav-text">LSET key index value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LTRIM-key-start-stop"><span class="nav-text">LTRIM key start stop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-set%E6%93%8D%E4%BD%9C"><span class="nav-text">6. set操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SADD-key-member-member-%E2%80%A6"><span class="nav-text">SADD key member [member …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SMEMBERS-key"><span class="nav-text">SMEMBERS key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SCARD-key"><span class="nav-text">SCARD key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SISMEMBER-key-member"><span class="nav-text">SISMEMBER key member</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SREM-key-member-member-%E2%80%A6"><span class="nav-text">SREM key member [member …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SINTER-key-key-%E2%80%A6"><span class="nav-text">SINTER key [key …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SINTERSTORE-destination-key-key-%E2%80%A6"><span class="nav-text">SINTERSTORE destination key [key …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SDIFF-key-key-%E2%80%A6"><span class="nav-text">SDIFF key [key …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SDIFFSTORE-destination-key-key-%E2%80%A6"><span class="nav-text">SDIFFSTORE destination key [key …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SUNION-key-key-%E2%80%A6"><span class="nav-text">SUNION key [key …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SUNIONSTORE-destination-key-key-%E2%80%A6"><span class="nav-text">SUNIONSTORE destination key [key …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SMOVE-source-destination-member"><span class="nav-text">SMOVE source destination member</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSCAN-key-cursor-MATCH-pattern-COUNT-count"><span class="nav-text">SSCAN key cursor [MATCH pattern] [COUNT count]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SRANDMEMBER-key-count"><span class="nav-text">SRANDMEMBER key [count]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPOP-key-count"><span class="nav-text">SPOP key [count]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-hash%E6%93%8D%E4%BD%9C"><span class="nav-text">7.hash操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HSET-key-field-value"><span class="nav-text">HSET key field value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HGETALL-key"><span class="nav-text">HGETALL key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HGET-key-field"><span class="nav-text">HGET key field</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HMSET-key-field-value-field-value-%E2%80%A6"><span class="nav-text">HMSET key field value [field value …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HMGET-key-field-field-%E2%80%A6"><span class="nav-text">HMGET key field [field …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HLEN-key"><span class="nav-text">HLEN key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HKEYS-key"><span class="nav-text">HKEYS key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HVALS-key"><span class="nav-text">HVALS key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HEXISTS-key-field"><span class="nav-text">HEXISTS key field</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDEL-key-field-field-%E2%80%A6"><span class="nav-text">HDEL key field [field …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HINCRBY-key-field-increment"><span class="nav-text">HINCRBY key field increment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HSETNX-key-field-value"><span class="nav-text">HSETNX key field value</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-zset%E6%93%8D%E4%BD%9C"><span class="nav-text">8.zset操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ZADD-key-NX-XX-CH-INCR-score-member-score-member-%E2%80%A6"><span class="nav-text">ZADD key [NX|XX] [CH] [INCR] score member [score member …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZRANGE-key-start-stop-WITHSCORES"><span class="nav-text">ZRANGE key start stop [WITHSCORES]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZCARD-key"><span class="nav-text">ZCARD key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZSCORE-key-member"><span class="nav-text">ZSCORE key member</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZINCRBY-key-increment-member"><span class="nav-text">ZINCRBY key increment member</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZRANGEBYSCORE-key-min-max-WITHSCORES-LIMIT-offset-count"><span class="nav-text">ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZRANK-key-member"><span class="nav-text">ZRANK key member</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZREM-key-member-member-%E2%80%A6"><span class="nav-text">ZREM key member [member …]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZRANGE-key-start-stop-WITHSCORES-1"><span class="nav-text">ZRANGE key start stop [WITHSCORES]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZREVRANK-key-member"><span class="nav-text">ZREVRANK key member</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Geospatial"><span class="nav-text">9. Geospatial</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A0%E6%B7%BB%E5%8A%A0%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE"><span class="nav-text">①添加地理位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A1%E6%9F%A5%E8%AF%A2%E5%B7%B2%E6%B7%BB%E5%8A%A0%E7%9A%84%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE"><span class="nav-text">②查询已添加的地理位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A2%E5%88%A0%E9%99%A4%E5%B7%B2%E6%B7%BB%E5%8A%A0%E7%9A%84%E5%9C%B0%E7%90%86%E4%BD%8D%E7%BD%AE"><span class="nav-text">③删除已添加的地理位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A3%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E5%9C%B0%E5%8C%BA%E7%9A%84%E5%9D%90%E6%A0%87%E5%80%BC"><span class="nav-text">④获取指定地区的坐标值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A4%E8%AE%A1%E7%AE%97%E4%B8%A4%E5%9C%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%B4%E7%BA%BF%E8%B7%9D%E7%A6%BB"><span class="nav-text">⑤计算两地之间的直线距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A5%E4%BB%A5%E7%BB%99%E5%AE%9A%E5%9D%90%E6%A0%87%E4%B8%BA%E4%B8%AD%E5%BF%83%EF%BC%8C%E5%9C%A8%E6%8C%87%E5%AE%9A%E5%8D%8A%E5%BE%84%E5%86%85%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0"><span class="nav-text">⑥以给定坐标为中心，在指定半径内查找元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A6%E5%9C%A8%E6%8C%87%E5%AE%9A%E5%85%83%E7%B4%A0%E5%91%A8%E5%9B%B4%E6%9F%A5%E6%89%BE%E5%85%B6%E4%BB%96%E5%85%83%E7%B4%A0"><span class="nav-text">⑦在指定元素周围查找其他元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-hyperloglogs"><span class="nav-text">10. hyperloglogs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A0%E5%9F%BA%E6%95%B0%E6%A6%82%E5%BF%B5"><span class="nav-text">①基数概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A1hyperloglogs%E5%91%BD%E4%BB%A4"><span class="nav-text">②hyperloglogs命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%B7%BB%E5%8A%A0"><span class="nav-text">[1]添加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BB%9F%E8%AE%A1"><span class="nav-text">[2]统计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%90%88%E5%B9%B6"><span class="nav-text">[3]合并</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-bitmap%E4%BD%8D%E5%9B%BE"><span class="nav-text">11.bitmap位图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">常用数据类型应用场景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-text"></span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ray Wei"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ray Wei</p>
+  <div class="site-description" itemprop="description">the dots will somehow connect in your future</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wechiwin.github.io/2022/01/15/17/27/52/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ray Wei">
+      <meta itemprop="description" content="the dots will somehow connect in your future">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ray Wei's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redis的使用[Linux]
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-01-15 17:27:52" itemprop="dateCreated datePublished" datetime="2022-01-15T17:27:52+08:00">2022-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-02-18 23:55:51" itemprop="dateModified" datetime="2022-02-18T23:55:51+08:00">2022-02-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>中文官网<a target="_blank" rel="noopener" href="http://www.redis.cn/">http://www.redis.cn</a></p>
+<p>英文官网<a target="_blank" rel="noopener" href="http://redis.io/">http://redis.io</a></p>
+<p>Redis命令参考文档网址：<a target="_blank" rel="noopener" href="http://redisdoc.com/">http://redisdoc.com</a></p>
+<h2 id="1-Redis命令的小套路"><a href="#1-Redis命令的小套路" class="headerlink" title="1. Redis命令的小套路"></a>1. Redis命令的小套路</h2><ul>
+<li>NX：not exist</li>
+<li>EX：expire</li>
+<li>M：multi</li>
+</ul>
+<h2 id="2-基本操作"><a href="#2-基本操作" class="headerlink" title="2.基本操作"></a>2.基本操作</h2><h3 id="①切换数据库"><a href="#①切换数据库" class="headerlink" title="①切换数据库"></a>①切换数据库</h3><p>Redis默认有16个数据库。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用select切换数据库</span></span><br><span class="line"><span class="comment"># 数据库索引从0开始</span></span><br><span class="line">127.0.0.1:6379&gt; select 2</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[2]&gt; select 0</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<h3 id="②查看数据库长度"><a href="#②查看数据库长度" class="headerlink" title="②查看数据库长度"></a>②查看数据库长度</h3><p>数据库长度就是这个数据库中存储了多少条数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> hello hello</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> happy happy-value</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> good good-value</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; dbsize</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br></pre></td></tr></table></figure>
+
+<h3 id="③清空全库"><a href="#③清空全库" class="headerlink" title="③清空全库"></a>③清空全库</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; flushall</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-KEY操作"><a href="#3-KEY操作" class="headerlink" title="3. KEY操作"></a>3. KEY操作</h2><p>在实际操作中对于Key的定义大家注意下面几点：</p>
+<ul>
+<li>Key不要太长，超过1024字节将消耗过多内存，降低查询效率。尽管Redis支持的Key最大长度为512MB。</li>
+<li>Key仍然要做到见名知意。</li>
+<li>在同一个项目中遵循同一个命名规范，习惯上多个单词用“:”分开。例如：“user:token:session:id”</li>
+<li>Redis命令不区分大小写，Key区分大小写</li>
+</ul>
+<h3 id="KEYS-PATTERN"><a href="#KEYS-PATTERN" class="headerlink" title="KEYS PATTERN"></a>KEYS PATTERN</h3><p>把匹配PATTERN的key返回</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># PATTERN中可以使用“*”匹配多个字符，使用“?”匹配单个字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回数据库中所有的key</span></span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">&quot;hello&quot;</span></span><br><span class="line">2) <span class="string">&quot;happy&quot;</span></span><br><span class="line">3) <span class="string">&quot;good&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回数据库中以h开头的key</span></span><br><span class="line">127.0.0.1:6379&gt; keys h*</span><br><span class="line">1) <span class="string">&quot;hello&quot;</span></span><br><span class="line">2) <span class="string">&quot;happy&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回数据库中有字母o的key</span></span><br><span class="line">127.0.0.1:6379&gt; keys *o*</span><br><span class="line">1) <span class="string">&quot;hello&quot;</span></span><br><span class="line">2) <span class="string">&quot;good&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="TYPE-KEY"><a href="#TYPE-KEY" class="headerlink" title="TYPE KEY"></a>TYPE KEY</h3><p>返回KEY对应的值的类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">type</span> hello</span><br><span class="line">string</span><br></pre></td></tr></table></figure>
+
+<h3 id="MOVE-KEY-DB"><a href="#MOVE-KEY-DB" class="headerlink" title="MOVE KEY DB"></a>MOVE KEY DB</h3><p>把一组键值对数据移动到另一个数据库中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; move good 2</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="DEL-KEY-KEY-…"><a href="#DEL-KEY-KEY-…" class="headerlink" title="DEL KEY [KEY …]"></a>DEL KEY [KEY …]</h3><p>根据KEY进行删除，至少要指定一个KEY</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; del happy</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="EXISTS-KEY-KEY-…"><a href="#EXISTS-KEY-KEY-…" class="headerlink" title="EXISTS KEY [KEY …]"></a>EXISTS KEY [KEY …]</h3><p>检查指定的KEY是否存在。指定一个KEY时，存在返回1，不存在返回0。可以指定多个，返回存在的KEY的数量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; exists good</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; exists fruit-list</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="RENAME-KEY-NEWKEY"><a href="#RENAME-KEY-NEWKEY" class="headerlink" title="RENAME KEY NEWKEY"></a>RENAME KEY NEWKEY</h3><p>重命名一个KEY，NEWKEY不管是否是已经存在的都会执行，如果NEWKEY已经存在则会被覆盖。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">&quot;fruit-list&quot;</span></span><br><span class="line">2) <span class="string">&quot;bbb&quot;</span></span><br><span class="line">3) <span class="string">&quot;aaa&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; rename aaa 333</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">&quot;fruit-list&quot;</span></span><br><span class="line">2) <span class="string">&quot;bbb&quot;</span></span><br><span class="line">3) <span class="string">&quot;333&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="RENAMENX-KEY-NEWKEY"><a href="#RENAMENX-KEY-NEWKEY" class="headerlink" title="RENAMENX KEY NEWKEY"></a>RENAMENX KEY NEWKEY</h3><p>只有在NEWKEY不存在时能够执行成功，否则失败</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">&quot;fruit-list&quot;</span></span><br><span class="line">2) <span class="string">&quot;bbb&quot;</span></span><br><span class="line">3) <span class="string">&quot;aaa:444&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; renamenx bbb aaa:444</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="EXPIRE-KEY-SECONDS"><a href="#EXPIRE-KEY-SECONDS" class="headerlink" title="EXPIRE KEY SECONDS"></a>EXPIRE KEY SECONDS</h3><p>给一个KEY设置在SECONDS秒后过期，过期会被Redis移除。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; expire bbb 100</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="TTL-KEY"><a href="#TTL-KEY" class="headerlink" title="TTL KEY"></a>TTL KEY</h3><p>以秒为单位查看KEY还能存在多长时间<br>正数：剩余的存活时间（单位：秒）<br>-1：永不过期<br>-2：不存在的Key</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; ttl bbb</span><br><span class="line">(<span class="built_in">integer</span>) 96</span><br></pre></td></tr></table></figure>
+
+<h3 id="PERSIST-KEY"><a href="#PERSIST-KEY" class="headerlink" title="PERSIST KEY"></a>PERSIST KEY</h3><p>移除过期时间，变成永久key</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; persist bbb</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; ttl bbb</span><br><span class="line">(<span class="built_in">integer</span>) -1</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-string操作"><a href="#4-string操作" class="headerlink" title="4. string操作"></a>4. string操作</h2><h3 id="GET-KEY"><a href="#GET-KEY" class="headerlink" title="GET KEY"></a>GET KEY</h3><p>根据key得到值，只能用于string类型。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; get ccc</span><br><span class="line"><span class="string">&quot;111&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SET-KEY-VALUE-EX-SECONDS-PX-MILLISECONDS-NX-XX"><a href="#SET-KEY-VALUE-EX-SECONDS-PX-MILLISECONDS-NX-XX" class="headerlink" title="SET KEY VALUE [EX SECONDS | PX MILLISECONDS] [NX|XX]"></a>SET KEY VALUE [EX SECONDS | PX MILLISECONDS] [NX|XX]</h3><p>给KEY设置一个string类型的值。</p>
+<ul>
+<li>EX参数用于设置存活的秒数。</li>
+<li>PX参数用于设置存活的毫秒数。</li>
+<li>NX参数表示当前命令中指定的KEY不存在才行。</li>
+<li>XX参数表示当前命令中指定的KEY存在才行。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> ccc 222 xx</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> abc 222 xx</span><br><span class="line">(nil)</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; get ccc</span><br><span class="line"><span class="string">&quot;222&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="APPEND-KEY-VALUE"><a href="#APPEND-KEY-VALUE" class="headerlink" title="APPEND KEY VALUE"></a>APPEND KEY VALUE</h3><p>把指定的value追加到KEY对应的原来的值后面，返回值是<code>追加后的字符串长度</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; get bbb</span><br><span class="line"><span class="string">&quot;333&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; append bbb 123456</span><br><span class="line">(<span class="built_in">integer</span>) 9</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; get bbb</span><br><span class="line"><span class="string">&quot;333123456&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="STRLEN-KEY"><a href="#STRLEN-KEY" class="headerlink" title="STRLEN KEY"></a>STRLEN KEY</h3><p>直接返回字符串长度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; strlen bbb</span><br><span class="line">(<span class="built_in">integer</span>) 9</span><br></pre></td></tr></table></figure>
+
+<h3 id="INCR-KEY"><a href="#INCR-KEY" class="headerlink" title="INCR KEY"></a>INCR KEY</h3><p>自增1（要求：参与运算的数据必须是整数且不能超过整数Integer范围）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; incr bbb</span><br><span class="line">(<span class="built_in">integer</span>) 333123457</span><br></pre></td></tr></table></figure>
+
+<h3 id="DECR-KEY"><a href="#DECR-KEY" class="headerlink" title="DECR KEY"></a>DECR KEY</h3><p>自减1（要求：参与运算的数据必须是整数且不能超过整数Integer范围）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; decr bbb</span><br><span class="line">(<span class="built_in">integer</span>) 333123456</span><br></pre></td></tr></table></figure>
+
+<h3 id="INCRBY-KEY-INCREMENT"><a href="#INCRBY-KEY-INCREMENT" class="headerlink" title="INCRBY KEY INCREMENT"></a>INCRBY KEY INCREMENT</h3><p>原值+INCREMENT（要求：参与运算的数据必须是整数且不能超过整数Integer范围）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; INCRBY bbb 333654321</span><br><span class="line">(<span class="built_in">integer</span>) 666777777</span><br></pre></td></tr></table></figure>
+
+<h3 id="DECRBY-KEY-DECREMENT"><a href="#DECRBY-KEY-DECREMENT" class="headerlink" title="DECRBY KEY DECREMENT"></a>DECRBY KEY DECREMENT</h3><p>原值-DECREMENT（要求：参与运算的数据必须是整数且不能超过整数Integer范围）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; DECRBY bbb 666777776</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="GETRANGE-KEY-START-END"><a href="#GETRANGE-KEY-START-END" class="headerlink" title="GETRANGE KEY START END"></a>GETRANGE KEY START END</h3><p>从字符串中取指定的一段，索引从0开始。START是开始取值的索引<br>，END是结束取值的索引。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> bbb 123456789</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; get bbb</span><br><span class="line"><span class="string">&quot;123456789&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; GETRANGE bbb 3 6</span><br><span class="line"><span class="string">&quot;4567&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SETRANGE-KEY-OFFSET-VALUE"><a href="#SETRANGE-KEY-OFFSET-VALUE" class="headerlink" title="SETRANGE KEY OFFSET VALUE"></a>SETRANGE KEY OFFSET VALUE</h3><p>从offset（从0开始的索引）开始使用VALUE进行替换，包含offset位置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SETRANGE bbb 0 9876 </span><br><span class="line">(<span class="built_in">integer</span>) 9</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; get bbb</span><br><span class="line"><span class="string">&quot;987656789&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SETEX-KEY-SECONDS-VALUE"><a href="#SETEX-KEY-SECONDS-VALUE" class="headerlink" title="SETEX KEY SECONDS VALUE"></a>SETEX KEY SECONDS VALUE</h3><p>设置KEY,VALUE时指定存在秒数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; setex eee 100 eee-value</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; ttl eee</span><br><span class="line">(<span class="built_in">integer</span>) 96</span><br></pre></td></tr></table></figure>
+
+<h3 id="SETNX-KEY-VALUE"><a href="#SETNX-KEY-VALUE" class="headerlink" title="SETNX KEY VALUE"></a>SETNX KEY VALUE</h3><p>新建字符串类型的键值对，且要求key必须是新建的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; setnx ggg ggg-value</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; setnx ggg ggg-value2</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; get ggg</span><br><span class="line"><span class="string">&quot;ggg-value&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="MSET-KEY-VALUE-KEY-VALUE-…"><a href="#MSET-KEY-VALUE-KEY-VALUE-…" class="headerlink" title="MSET KEY VALUE [KEY VALUE …]"></a>MSET KEY VALUE [KEY VALUE …]</h3><p>一次性设置一组多个键值对</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; mset k1 v1 k2 v2 k3 v3</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<h3 id="MGET-KEY-KEY-…"><a href="#MGET-KEY-KEY-…" class="headerlink" title="MGET KEY [KEY …]"></a>MGET KEY [KEY …]</h3><p>一次性指定多个KEY，返回它们对应的值，没有值的KEY返回值是(nil)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; mget k1 k2 k3 k4</span><br><span class="line">1) <span class="string">&quot;v1&quot;</span></span><br><span class="line">2) <span class="string">&quot;v2&quot;</span></span><br><span class="line">3) <span class="string">&quot;v3&quot;</span></span><br><span class="line">4) (nil)</span><br></pre></td></tr></table></figure>
+
+<h3 id="MSETNX-KEY-VALUE-KEY-VALUE-…"><a href="#MSETNX-KEY-VALUE-KEY-VALUE-…" class="headerlink" title="MSETNX KEY VALUE [KEY VALUE …]"></a>MSETNX KEY VALUE [KEY VALUE …]</h3><p>一次性新建多个值，key必须是新建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; MSETNX k3 v33 k4 v44</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; mget k3 k4</span><br><span class="line">1) <span class="string">&quot;v3&quot;</span></span><br><span class="line">2) (nil</span><br></pre></td></tr></table></figure>
+
+<h3 id="GETSET-KEY-VALUE"><a href="#GETSET-KEY-VALUE" class="headerlink" title="GETSET KEY VALUE"></a>GETSET KEY VALUE</h3><p>设置新值，同时能够将旧值返回</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; getset k3 v33</span><br><span class="line"><span class="string">&quot;v3&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; get k3</span><br><span class="line"><span class="string">&quot;v33&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-list操作"><a href="#5-list操作" class="headerlink" title="5.list操作"></a>5.list操作</h2><p>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。它的底层是双向链表，所以它操作时头尾效率高，中间效率低（额外花费查找插入位置的时间）。</p>
+<p>在Redis中list类型是按照插入顺序排序的字符串链表。和数据结构中的普通链表一样，我们可以在其头部(left)和尾部(right)添加新的元素。在插入时，如果该键并不存在，Redis将为该键创建一个新的链表。与此相反，如果链表中所有的元素均被移除，那么该键也将会被从数据库中删除。List中可以包含的最大元素数量是2^32-1个。</p>
+<p>list是一个有序可以重复的数据类型。</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/redis-list.png"></p>
+<h3 id="LPUSH-key-value-value-…"><a href="#LPUSH-key-value-value-…" class="headerlink" title="LPUSH key value [value …]"></a>LPUSH key value [value …]</h3><p>针对key指定的list，从左边放入元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; lpush fruit-list apple banana cherry</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br></pre></td></tr></table></figure>
+
+<h3 id="RPUSH-key-value-value-…"><a href="#RPUSH-key-value-value-…" class="headerlink" title="RPUSH key value [value …]"></a>RPUSH key value [value …]</h3><p>针对key指定的list，从右边放入元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; rpush fruit-list orange peach</span><br><span class="line">(<span class="built_in">integer</span>) 5</span><br></pre></td></tr></table></figure>
+
+<h3 id="LRANGE-key-start-stop"><a href="#LRANGE-key-start-stop" class="headerlink" title="LRANGE key start stop"></a>LRANGE key start stop</h3><p>根据list集合的索引打印元素数据</p>
+<ul>
+<li>正着数：0,1,2,3,…</li>
+<li>倒着数：-1,-2,-3,…</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; lrange fruit-list 0 -1</span><br><span class="line">1) <span class="string">&quot;cherry&quot;</span></span><br><span class="line">2) <span class="string">&quot;banana&quot;</span></span><br><span class="line">3) <span class="string">&quot;apple&quot;</span></span><br><span class="line">4) <span class="string">&quot;orange&quot;</span></span><br><span class="line">5) <span class="string">&quot;peach&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="LLEN-key"><a href="#LLEN-key" class="headerlink" title="LLEN key"></a>LLEN key</h3><p>​    返回list集合的长度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; llen fruit-list</span><br><span class="line">(<span class="built_in">integer</span>) 5</span><br></pre></td></tr></table></figure>
+
+<h3 id="LPOP-key"><a href="#LPOP-key" class="headerlink" title="LPOP key"></a>LPOP key</h3><p>​    从左边弹出一个元素。<br>​    弹出&#x3D;返回+删除。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; lpop fruit-list</span><br><span class="line"><span class="string">&quot;cherry&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="RPOP-key"><a href="#RPOP-key" class="headerlink" title="RPOP key"></a>RPOP key</h3><p>​    从右边弹出一个元素。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; rpop fruit-list</span><br><span class="line"><span class="string">&quot;peach&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="RPOPLPUSH-source-destination"><a href="#RPOPLPUSH-source-destination" class="headerlink" title="RPOPLPUSH source destination"></a>RPOPLPUSH source destination</h3><p>从source中RPOP一个元素，LPUSH到destination中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; lrange fruit-list 0 -1</span><br><span class="line">1) <span class="string">&quot;banana&quot;</span></span><br><span class="line">2) <span class="string">&quot;apple&quot;</span></span><br><span class="line">3) <span class="string">&quot;orange&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; rpoplpush fruit-list target-list</span><br><span class="line"><span class="string">&quot;orange&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lrange target-list 0 -1</span><br><span class="line">1) <span class="string">&quot;orange&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lrange fruit-list 0 -1</span><br><span class="line">1) <span class="string">&quot;banana&quot;</span></span><br><span class="line">2) <span class="string">&quot;apple&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="LINDEX-key-index"><a href="#LINDEX-key-index" class="headerlink" title="LINDEX key index"></a>LINDEX key index</h3><p>根据索引从集合中取值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; lindex fruit-list 0</span><br><span class="line"><span class="string">&quot;banana&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lindex fruit-list 1</span><br><span class="line"><span class="string">&quot;apple&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lindex fruit-list 2</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+
+<h3 id="LINSERT-key-BEFORE-AFTER-pivot-value"><a href="#LINSERT-key-BEFORE-AFTER-pivot-value" class="headerlink" title="LINSERT key BEFORE|AFTER pivot value"></a>LINSERT key BEFORE|AFTER pivot value</h3><p>在pivot指定的值前面或后面插入value，如果pivot值有重复的，那么就从左往右数，以第一个遇到的pivot为基准。BEFORE表示放在pivot前面，AFTER表示放在pivot后面。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; lrange fruit-list 0 -1</span><br><span class="line">1) <span class="string">&quot;apple&quot;</span></span><br><span class="line">2) <span class="string">&quot;cherry&quot;</span></span><br><span class="line">3) <span class="string">&quot;banana&quot;</span></span><br><span class="line">4) <span class="string">&quot;apple&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; linsert fruit-list before apple @@@</span><br><span class="line">(<span class="built_in">integer</span>) 5</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lrange fruit-list 0 -1</span><br><span class="line">1) <span class="string">&quot;@@@&quot;</span></span><br><span class="line">2) <span class="string">&quot;apple&quot;</span></span><br><span class="line">3) <span class="string">&quot;cherry&quot;</span></span><br><span class="line">4) <span class="string">&quot;banana&quot;</span></span><br><span class="line">5) <span class="string">&quot;apple&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; linsert fruit-list after apple <span class="comment">###</span></span><br><span class="line">(<span class="built_in">integer</span>) 6</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lrange fruit-list 0 -1</span><br><span class="line">1) <span class="string">&quot;@@@&quot;</span></span><br><span class="line">2) <span class="string">&quot;apple&quot;</span></span><br><span class="line">3) <span class="string">&quot;###&quot;</span></span><br><span class="line">4) <span class="string">&quot;cherry&quot;</span></span><br><span class="line">5) <span class="string">&quot;banana&quot;</span></span><br><span class="line">6) <span class="string">&quot;apple&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="LPUSHX-key-value"><a href="#LPUSHX-key-value" class="headerlink" title="LPUSHX key value"></a>LPUSHX key value</h3><p>只能针对存在的list执行LPUSH</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; lpushx uuu xxx</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lpushx fruit-list new-value</span><br><span class="line">(<span class="built_in">integer</span>) 7</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lrange fruit-list 0 -1</span><br><span class="line">1) <span class="string">&quot;new-value&quot;</span></span><br><span class="line">2) <span class="string">&quot;@@@&quot;</span></span><br><span class="line">3) <span class="string">&quot;apple&quot;</span></span><br><span class="line">4) <span class="string">&quot;###&quot;</span></span><br><span class="line">5) <span class="string">&quot;cherry&quot;</span></span><br><span class="line">6) <span class="string">&quot;banana&quot;</span></span><br><span class="line">7) <span class="string">&quot;apple&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="LREM-key-count-value"><a href="#LREM-key-count-value" class="headerlink" title="LREM key count value"></a>LREM key count value</h3><p>根据count指定的数量从key对应的list中删除value<br>具体执行时从左往右删除，遇到一个删一个，删完为止</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; lrem fruit-list 2 apple</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lrange fruit-list 0 -1</span><br><span class="line">1) <span class="string">&quot;new-value&quot;</span></span><br><span class="line">2) <span class="string">&quot;@@@&quot;</span></span><br><span class="line">3) <span class="string">&quot;###&quot;</span></span><br><span class="line">4) <span class="string">&quot;cherry&quot;</span></span><br><span class="line">5) <span class="string">&quot;banana&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="LSET-key-index-value"><a href="#LSET-key-index-value" class="headerlink" title="LSET key index value"></a>LSET key index value</h3><p>把指定索引位置的元素替换为另一个值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; lrange fruit-list 0 -1</span><br><span class="line">1) <span class="string">&quot;new-value&quot;</span></span><br><span class="line">2) <span class="string">&quot;@@@&quot;</span></span><br><span class="line">3) <span class="string">&quot;###&quot;</span></span><br><span class="line">4) <span class="string">&quot;cherry&quot;</span></span><br><span class="line">5) <span class="string">&quot;banana&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lset fruit-list 3 apple</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lrange fruit-list 0 -1</span><br><span class="line">1) <span class="string">&quot;new-value&quot;</span></span><br><span class="line">2) <span class="string">&quot;@@@&quot;</span></span><br><span class="line">3) <span class="string">&quot;###&quot;</span></span><br><span class="line">4) <span class="string">&quot;apple&quot;</span></span><br><span class="line">5) <span class="string">&quot;banana&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="LTRIM-key-start-stop"><a href="#LTRIM-key-start-stop" class="headerlink" title="LTRIM key start stop"></a>LTRIM key start stop</h3><p>仅保留指定区间的数据，两边的数据被删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[3]&gt; ltrim fruit-list 1 2</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[3]&gt; lrange fruit-list 0 -1</span><br><span class="line">1) <span class="string">&quot;@@@&quot;</span></span><br><span class="line">2) <span class="string">&quot;###&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-set操作"><a href="#6-set操作" class="headerlink" title="6. set操作"></a>6. set操作</h2><h3 id="SADD-key-member-member-…"><a href="#SADD-key-member-member-…" class="headerlink" title="SADD key member [member …]"></a>SADD key member [member …]</h3><p>给key指定的set集合中存入数据，set会自动去重</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; sadd animal:<span class="built_in">set</span> tiger cat pig cat tiger dog snake fish bear</span><br><span class="line">(<span class="built_in">integer</span>) 7</span><br></pre></td></tr></table></figure>
+
+<h3 id="SMEMBERS-key"><a href="#SMEMBERS-key" class="headerlink" title="SMEMBERS key"></a>SMEMBERS key</h3><p>返回可以指定的set集合中所有的元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; smembers animal:<span class="built_in">set</span></span><br><span class="line">1) <span class="string">&quot;pig&quot;</span></span><br><span class="line">2) <span class="string">&quot;cat&quot;</span></span><br><span class="line">3) <span class="string">&quot;tiger&quot;</span></span><br><span class="line">4) <span class="string">&quot;dog&quot;</span></span><br><span class="line">5) <span class="string">&quot;bear&quot;</span></span><br><span class="line">6) <span class="string">&quot;fish&quot;</span></span><br><span class="line">7) <span class="string">&quot;snake&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SCARD-key"><a href="#SCARD-key" class="headerlink" title="SCARD key"></a>SCARD key</h3><p>返回set集合中元素的数量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; scard animal:<span class="built_in">set</span></span><br><span class="line">(<span class="built_in">integer</span>) 7</span><br></pre></td></tr></table></figure>
+
+<h3 id="SISMEMBER-key-member"><a href="#SISMEMBER-key-member" class="headerlink" title="SISMEMBER key member"></a>SISMEMBER key member</h3><p>检查当前指定member是否是set集合中的元素</p>
+<ul>
+<li>返回1：是</li>
+<li>返回0：不是</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; sismember animal:<span class="built_in">set</span> cat</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379[4]&gt; sismember animal:<span class="built_in">set</span> cat888</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="SREM-key-member-member-…"><a href="#SREM-key-member-member-…" class="headerlink" title="SREM key member [member …]"></a>SREM key member [member …]</h3><p>从set集合中删除元素</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; srem animal:<span class="built_in">set</span> aa bb cc snake pig</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; smembers animal:<span class="built_in">set</span></span><br><span class="line">1) <span class="string">&quot;tiger&quot;</span></span><br><span class="line">2) <span class="string">&quot;dog&quot;</span></span><br><span class="line">3) <span class="string">&quot;bear&quot;</span></span><br><span class="line">4) <span class="string">&quot;fish&quot;</span></span><br><span class="line">5) <span class="string">&quot;cat&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SINTER-key-key-…"><a href="#SINTER-key-key-…" class="headerlink" title="SINTER key [key …]"></a>SINTER key [key …]</h3><p>将指定的set集合进行“交集”操作<br>集合A：a,b,c<br>集合B：b,c,d<br>交集：b,c</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; sadd a:<span class="built_in">set</span> 11 22 33 44 55</span><br><span class="line">(<span class="built_in">integer</span>) 5</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; sadd b:<span class="built_in">set</span> 11 33 55 77 99</span><br><span class="line">(<span class="built_in">integer</span>) 5</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; sinter a:<span class="built_in">set</span> b:<span class="built_in">set</span></span><br><span class="line">1) <span class="string">&quot;11&quot;</span></span><br><span class="line">2) <span class="string">&quot;33&quot;</span></span><br><span class="line">3) <span class="string">&quot;55&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SINTERSTORE-destination-key-key-…"><a href="#SINTERSTORE-destination-key-key-…" class="headerlink" title="SINTERSTORE destination key [key …]"></a>SINTERSTORE destination key [key …]</h3><p>取交集后存入destination</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; SINTERSTORE c:<span class="built_in">set</span> a:<span class="built_in">set</span> b:<span class="built_in">set</span></span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; SMEMBERS c:<span class="built_in">set</span></span><br><span class="line">1) <span class="string">&quot;11&quot;</span></span><br><span class="line">2) <span class="string">&quot;33&quot;</span></span><br><span class="line">3) <span class="string">&quot;55&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SDIFF-key-key-…"><a href="#SDIFF-key-key-…" class="headerlink" title="SDIFF key [key …]"></a>SDIFF key [key …]</h3><p>将指定的集合执行“差集”操作，结果和运算顺序有关。<br>    集合A：a,b,c<br>    集合B：b,c,d<br>    A对B执行diff：a<br>    相当于：A-交集部分</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># a-交集</span></span><br><span class="line">127.0.0.1:6379[4]&gt; SDIFF a:<span class="built_in">set</span> b:<span class="built_in">set</span></span><br><span class="line">1) <span class="string">&quot;22&quot;</span></span><br><span class="line">2) <span class="string">&quot;44&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># b-交集</span></span><br><span class="line">127.0.0.1:6379[4]&gt; SDIFF b:<span class="built_in">set</span> a:<span class="built_in">set</span></span><br><span class="line">1) <span class="string">&quot;77&quot;</span></span><br><span class="line">2) <span class="string">&quot;99&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SDIFFSTORE-destination-key-key-…"><a href="#SDIFFSTORE-destination-key-key-…" class="headerlink" title="SDIFFSTORE destination key [key …]"></a>SDIFFSTORE destination key [key …]</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; SDIFFSTORE d:<span class="built_in">set</span> a:<span class="built_in">set</span> b:<span class="built_in">set</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; SMEMBERS d:<span class="built_in">set</span></span><br><span class="line">1) <span class="string">&quot;22&quot;</span></span><br><span class="line">2) <span class="string">&quot;44&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SUNION-key-key-…"><a href="#SUNION-key-key-…" class="headerlink" title="SUNION key [key …]"></a>SUNION key [key …]</h3><p>将指定的集合执行“并集”操作<br>    集合A：a,b,c<br>    集合B：b,c,d<br>    并集：a,b,c,d</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; SUNION a:<span class="built_in">set</span> b:<span class="built_in">set</span></span><br><span class="line">1) <span class="string">&quot;11&quot;</span></span><br><span class="line">2) <span class="string">&quot;22&quot;</span></span><br><span class="line">3) <span class="string">&quot;33&quot;</span></span><br><span class="line">4) <span class="string">&quot;44&quot;</span></span><br><span class="line">5) <span class="string">&quot;55&quot;</span></span><br><span class="line">6) <span class="string">&quot;77&quot;</span></span><br><span class="line">7) <span class="string">&quot;99&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SUNIONSTORE-destination-key-key-…"><a href="#SUNIONSTORE-destination-key-key-…" class="headerlink" title="SUNIONSTORE destination key [key …]"></a>SUNIONSTORE destination key [key …]</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; SMEMBERS e:<span class="built_in">set</span></span><br><span class="line">1) <span class="string">&quot;11&quot;</span></span><br><span class="line">2) <span class="string">&quot;22&quot;</span></span><br><span class="line">3) <span class="string">&quot;33&quot;</span></span><br><span class="line">4) <span class="string">&quot;44&quot;</span></span><br><span class="line">5) <span class="string">&quot;55&quot;</span></span><br><span class="line">6) <span class="string">&quot;77&quot;</span></span><br><span class="line">7) <span class="string">&quot;99&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SMOVE-source-destination-member"><a href="#SMOVE-source-destination-member" class="headerlink" title="SMOVE source destination member"></a>SMOVE source destination member</h3><p>把member从source移动到destination</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; SMOVE animal:<span class="built_in">set</span> a:<span class="built_in">set</span> cat</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; SMEMBERS a:<span class="built_in">set</span></span><br><span class="line">1) <span class="string">&quot;22&quot;</span></span><br><span class="line">2) <span class="string">&quot;44&quot;</span></span><br><span class="line">3) <span class="string">&quot;55&quot;</span></span><br><span class="line">4) <span class="string">&quot;cat&quot;</span></span><br><span class="line">5) <span class="string">&quot;33&quot;</span></span><br><span class="line">6) <span class="string">&quot;11&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SSCAN-key-cursor-MATCH-pattern-COUNT-count"><a href="#SSCAN-key-cursor-MATCH-pattern-COUNT-count" class="headerlink" title="SSCAN key cursor [MATCH pattern] [COUNT count]"></a>SSCAN key cursor [MATCH pattern] [COUNT count]</h3><p>基于游标的遍历。cursor是游标值，第一次显示第一块内容时，游标取值为0；根据后续返回的新的游标值获取下一块数据。直到游标值变成0，说明数据遍历完成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; SADD testset a b c d e f g h i j k l m n o p q r s t u v w x y z aa bb cc dd ee ff gg hh ii jj kk ll mm nn oo pp qq rr ss tt uu vv ww xx yy zz</span><br><span class="line">(<span class="built_in">integer</span>) 52</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; sscan testset 0</span><br><span class="line">1) <span class="string">&quot;36&quot;</span></span><br><span class="line">2)  1) <span class="string">&quot;yy&quot;</span></span><br><span class="line">    2) <span class="string">&quot;s&quot;</span></span><br><span class="line">    3) <span class="string">&quot;i&quot;</span></span><br><span class="line">    4) <span class="string">&quot;aa&quot;</span></span><br><span class="line">    5) <span class="string">&quot;ff&quot;</span></span><br><span class="line">    6) <span class="string">&quot;b&quot;</span></span><br><span class="line">    7) <span class="string">&quot;bb&quot;</span></span><br><span class="line">    8) <span class="string">&quot;h&quot;</span></span><br><span class="line">    9) <span class="string">&quot;gg&quot;</span></span><br><span class="line">   10) <span class="string">&quot;f&quot;</span></span><br><span class="line">   </span><br><span class="line">127.0.0.1:6379[4]&gt; sscan testset 36</span><br><span class="line">1) <span class="string">&quot;2&quot;</span></span><br><span class="line">2)  1) <span class="string">&quot;r&quot;</span></span><br><span class="line">    2) <span class="string">&quot;j&quot;</span></span><br><span class="line">    3) <span class="string">&quot;v&quot;</span></span><br><span class="line">    4) <span class="string">&quot;kk&quot;</span></span><br><span class="line">    5) <span class="string">&quot;q&quot;</span></span><br><span class="line">    6) <span class="string">&quot;t&quot;</span></span><br><span class="line">    7) <span class="string">&quot;w&quot;</span></span><br><span class="line">    8) <span class="string">&quot;z&quot;</span></span><br><span class="line">    9) <span class="string">&quot;dd&quot;</span></span><br><span class="line">   10) <span class="string">&quot;u&quot;</span></span><br><span class="line">   11) <span class="string">&quot;ll&quot;</span></span><br><span class="line">   </span><br><span class="line">127.0.0.1:6379[4]&gt; sscan testset 2</span><br><span class="line">1) <span class="string">&quot;25&quot;</span></span><br><span class="line">2)  1) <span class="string">&quot;cc&quot;</span></span><br><span class="line">    2) <span class="string">&quot;pp&quot;</span></span><br><span class="line">    3) <span class="string">&quot;zz&quot;</span></span><br><span class="line">    4) <span class="string">&quot;c&quot;</span></span><br><span class="line">    5) <span class="string">&quot;x&quot;</span></span><br><span class="line">    6) <span class="string">&quot;tt&quot;</span></span><br><span class="line">    7) <span class="string">&quot;l&quot;</span></span><br><span class="line">    8) <span class="string">&quot;ii&quot;</span></span><br><span class="line">    9) <span class="string">&quot;oo&quot;</span></span><br><span class="line">   10) <span class="string">&quot;ww&quot;</span></span><br><span class="line">   </span><br><span class="line">127.0.0.1:6379[4]&gt; sscan testset 25</span><br><span class="line">1) <span class="string">&quot;29&quot;</span></span><br><span class="line">2)  1) <span class="string">&quot;qq&quot;</span></span><br><span class="line">    2) <span class="string">&quot;mm&quot;</span></span><br><span class="line">    3) <span class="string">&quot;a&quot;</span></span><br><span class="line">    4) <span class="string">&quot;ee&quot;</span></span><br><span class="line">    5) <span class="string">&quot;vv&quot;</span></span><br><span class="line">    6) <span class="string">&quot;n&quot;</span></span><br><span class="line">    7) <span class="string">&quot;p&quot;</span></span><br><span class="line">    8) <span class="string">&quot;nn&quot;</span></span><br><span class="line">    9) <span class="string">&quot;g&quot;</span></span><br><span class="line">   10) <span class="string">&quot;k&quot;</span></span><br><span class="line">   </span><br><span class="line">127.0.0.1:6379[4]&gt; sscan testset 29</span><br><span class="line">1) <span class="string">&quot;63&quot;</span></span><br><span class="line">2)  1) <span class="string">&quot;jj&quot;</span></span><br><span class="line">    2) <span class="string">&quot;y&quot;</span></span><br><span class="line">    3) <span class="string">&quot;ss&quot;</span></span><br><span class="line">    4) <span class="string">&quot;m&quot;</span></span><br><span class="line">    5) <span class="string">&quot;d&quot;</span></span><br><span class="line">    6) <span class="string">&quot;xx&quot;</span></span><br><span class="line">    7) <span class="string">&quot;uu&quot;</span></span><br><span class="line">    8) <span class="string">&quot;e&quot;</span></span><br><span class="line">    9) <span class="string">&quot;rr&quot;</span></span><br><span class="line">   10) <span class="string">&quot;o&quot;</span></span><br><span class="line">   </span><br><span class="line">127.0.0.1:6379[4]&gt; sscan testset 63</span><br><span class="line">1) <span class="string">&quot;0&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;hh&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SRANDMEMBER-key-count"><a href="#SRANDMEMBER-key-count" class="headerlink" title="SRANDMEMBER key [count]"></a>SRANDMEMBER key [count]</h3><p>从集合中随机返回count个数量的元素，count不指定就返回1个（数据有可能重复出现）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; SRANDMEMBER testset</span><br><span class="line"><span class="string">&quot;y&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; SRANDMEMBER testset 10</span><br><span class="line"> 1) <span class="string">&quot;pp&quot;</span></span><br><span class="line"> 2) <span class="string">&quot;cc&quot;</span></span><br><span class="line"> 3) <span class="string">&quot;d&quot;</span></span><br><span class="line"> 4) <span class="string">&quot;f&quot;</span></span><br><span class="line"> 5) <span class="string">&quot;r&quot;</span></span><br><span class="line"> 6) <span class="string">&quot;ee&quot;</span></span><br><span class="line"> 7) <span class="string">&quot;rr&quot;</span></span><br><span class="line"> 8) <span class="string">&quot;ll&quot;</span></span><br><span class="line"> 9) <span class="string">&quot;t&quot;</span></span><br><span class="line">10) <span class="string">&quot;g&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SPOP-key-count"><a href="#SPOP-key-count" class="headerlink" title="SPOP key [count]"></a>SPOP key [count]</h3><p>从set集合中随机弹出count个数量的元素，count不指定就弹出1个（保证不会有重复数据出现），因为弹出后就会从set集合中删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; spop testset</span><br><span class="line"><span class="string">&quot;aa&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; spop testset 10</span><br><span class="line"> 1) <span class="string">&quot;l&quot;</span></span><br><span class="line"> 2) <span class="string">&quot;r&quot;</span></span><br><span class="line"> 3) <span class="string">&quot;rr&quot;</span></span><br><span class="line"> 4) <span class="string">&quot;b&quot;</span></span><br><span class="line"> 5) <span class="string">&quot;zz&quot;</span></span><br><span class="line"> 6) <span class="string">&quot;pp&quot;</span></span><br><span class="line"> 7) <span class="string">&quot;z&quot;</span></span><br><span class="line"> 8) <span class="string">&quot;x&quot;</span></span><br><span class="line"> 9) <span class="string">&quot;v&quot;</span></span><br><span class="line">10) <span class="string">&quot;ll&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7-hash操作"><a href="#7-hash操作" class="headerlink" title="7.hash操作"></a>7.hash操作</h2><p>本身就是一个键值对集合。可以当做Java中的Map&lt;String,String&gt;对待。每一个hash可以存储2^32-1个键值对。</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/hash.png"></p>
+<h3 id="HSET-key-field-value"><a href="#HSET-key-field-value" class="headerlink" title="HSET key field value"></a>HSET key field value</h3><p>插入新数据返回1，修改旧数据返回0。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HSET teacher:<span class="built_in">hash</span> id 001</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; HSET teacher:<span class="built_in">hash</span> id 002</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="HGETALL-key"><a href="#HGETALL-key" class="headerlink" title="HGETALL key"></a>HGETALL key</h3><p>返回某个key的所有的key和value</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HSET teacher:<span class="built_in">hash</span> name kangkang</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; HGETALL teacher:<span class="built_in">hash</span></span><br><span class="line">1) <span class="string">&quot;id&quot;</span></span><br><span class="line">2) <span class="string">&quot;002&quot;</span></span><br><span class="line">3) <span class="string">&quot;name&quot;</span></span><br><span class="line">4) <span class="string">&quot;kangkang&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="HGET-key-field"><a href="#HGET-key-field" class="headerlink" title="HGET key field"></a>HGET key field</h3><p>返回指定的key的value中的某个key的value</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HGET teacher:<span class="built_in">hash</span> id</span><br><span class="line"><span class="string">&quot;002&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="HMSET-key-field-value-field-value-…"><a href="#HMSET-key-field-value-field-value-…" class="headerlink" title="HMSET key field value [field value …]"></a>HMSET key field value [field value …]</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HMSET teacher:<span class="built_in">hash</span> age 30 subject math salary 7000</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<h3 id="HMGET-key-field-field-…"><a href="#HMGET-key-field-field-…" class="headerlink" title="HMGET key field [field …]"></a>HMGET key field [field …]</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HMGET teacher:<span class="built_in">hash</span> id name age subject salary</span><br><span class="line">1) <span class="string">&quot;002&quot;</span></span><br><span class="line">2) <span class="string">&quot;kangkang&quot;</span></span><br><span class="line">3) <span class="string">&quot;30&quot;</span></span><br><span class="line">4) <span class="string">&quot;math&quot;</span></span><br><span class="line">5) <span class="string">&quot;7000&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="HLEN-key"><a href="#HLEN-key" class="headerlink" title="HLEN key"></a>HLEN key</h3><p>返回value的长度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HLEN teacher:<span class="built_in">hash</span></span><br><span class="line">(<span class="built_in">integer</span>) 5</span><br></pre></td></tr></table></figure>
+
+<h3 id="HKEYS-key"><a href="#HKEYS-key" class="headerlink" title="HKEYS key"></a>HKEYS key</h3><p>返回key的value中的所有的key</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HKEYS teacher:<span class="built_in">hash</span></span><br><span class="line">1) <span class="string">&quot;id&quot;</span></span><br><span class="line">2) <span class="string">&quot;name&quot;</span></span><br><span class="line">3) <span class="string">&quot;age&quot;</span></span><br><span class="line">4) <span class="string">&quot;subject&quot;</span></span><br><span class="line">5) <span class="string">&quot;salary&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="HVALS-key"><a href="#HVALS-key" class="headerlink" title="HVALS key"></a>HVALS key</h3><p>返回key的value中的所有的value</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HVALS teacher:<span class="built_in">hash</span></span><br><span class="line">1) <span class="string">&quot;002&quot;</span></span><br><span class="line">2) <span class="string">&quot;kangkang&quot;</span></span><br><span class="line">3) <span class="string">&quot;30&quot;</span></span><br><span class="line">4) <span class="string">&quot;math&quot;</span></span><br><span class="line">5) <span class="string">&quot;7000&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="HEXISTS-key-field"><a href="#HEXISTS-key-field" class="headerlink" title="HEXISTS key field"></a>HEXISTS key field</h3><p>是否存在某个key，返回1表示存在，返回0表示不存在。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HEXISTS teacher:<span class="built_in">hash</span> name</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; HEXISTS teacher:<span class="built_in">hash</span> birthday</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="HDEL-key-field-field-…"><a href="#HDEL-key-field-field-…" class="headerlink" title="HDEL key field [field …]"></a>HDEL key field [field …]</h3><p>删除某个key，返回1表示删除成功，返回0表示删除失败</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HDEL teacher:<span class="built_in">hash</span> subject</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; HDEL teacher:<span class="built_in">hash</span> birthday</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="HINCRBY-key-field-increment"><a href="#HINCRBY-key-field-increment" class="headerlink" title="HINCRBY key field increment"></a>HINCRBY key field increment</h3><p>给filed的值增加指定的数量 hash&lt;key, value&#x3D;(filed&lt;key, value&gt;)&gt;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HINCRBY teacher:<span class="built_in">hash</span> salary 1000</span><br><span class="line">(<span class="built_in">integer</span>) 8000</span><br></pre></td></tr></table></figure>
+
+<h3 id="HSETNX-key-field-value"><a href="#HSETNX-key-field-value" class="headerlink" title="HSETNX key field value"></a>HSETNX key field value</h3><p>要求field是新建的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[4]&gt; HSETNX teacher:<span class="built_in">hash</span> name amy</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[4]&gt; HGET teacher:<span class="built_in">hash</span> name</span><br><span class="line"><span class="string">&quot;kangkang&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="8-zset操作"><a href="#8-zset操作" class="headerlink" title="8.zset操作"></a>8.zset操作</h2><p>Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。zset的成员是唯一的,但分数(score)却可以重复。</p>
+<p>Sorted set. </p>
+<p>zset&lt;key, member&lt;name, score&gt;</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/zset.png"></p>
+<h3 id="ZADD-key-NX-XX-CH-INCR-score-member-score-member-…"><a href="#ZADD-key-NX-XX-CH-INCR-score-member-score-member-…" class="headerlink" title="ZADD key [NX|XX] [CH] [INCR] score member [score member …]"></a>ZADD key [NX|XX] [CH] [INCR] score member [score member …]</h3><p>添加数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[5]&gt; ZADD exam:score 93 amy 83 tom 73 anna 63 mary 53 tony 43 sam</span><br><span class="line">(<span class="built_in">integer</span>) 6</span><br></pre></td></tr></table></figure>
+
+<h3 id="ZRANGE-key-start-stop-WITHSCORES"><a href="#ZRANGE-key-start-stop-WITHSCORES" class="headerlink" title="ZRANGE key start stop [WITHSCORES]"></a>ZRANGE key start stop [WITHSCORES]</h3><p>升序，遍历数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[5]&gt; ZRANGE exam:score 0 -1</span><br><span class="line">1) <span class="string">&quot;sam&quot;</span></span><br><span class="line">2) <span class="string">&quot;tony&quot;</span></span><br><span class="line">3) <span class="string">&quot;mary&quot;</span></span><br><span class="line">4) <span class="string">&quot;anna&quot;</span></span><br><span class="line">5) <span class="string">&quot;tom&quot;</span></span><br><span class="line">6) <span class="string">&quot;amy&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[5]&gt; ZRANGE exam:score 0 -1 withscores</span><br><span class="line"> 1) <span class="string">&quot;sam&quot;</span></span><br><span class="line"> 2) <span class="string">&quot;43&quot;</span></span><br><span class="line"> 3) <span class="string">&quot;tony&quot;</span></span><br><span class="line"> 4) <span class="string">&quot;53&quot;</span></span><br><span class="line"> 5) <span class="string">&quot;mary&quot;</span></span><br><span class="line"> 6) <span class="string">&quot;63&quot;</span></span><br><span class="line"> 7) <span class="string">&quot;anna&quot;</span></span><br><span class="line"> 8) <span class="string">&quot;73&quot;</span></span><br><span class="line"> 9) <span class="string">&quot;tom&quot;</span></span><br><span class="line">10) <span class="string">&quot;83&quot;</span></span><br><span class="line">11) <span class="string">&quot;amy&quot;</span></span><br><span class="line">12) <span class="string">&quot;93&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ZCARD-key"><a href="#ZCARD-key" class="headerlink" title="ZCARD key"></a>ZCARD key</h3><p>返回长度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[5]&gt; ZCARD exam:score</span><br><span class="line">(<span class="built_in">integer</span>) 6</span><br></pre></td></tr></table></figure>
+
+<h3 id="ZSCORE-key-member"><a href="#ZSCORE-key-member" class="headerlink" title="ZSCORE key member"></a>ZSCORE key member</h3><p>返回某个member的score</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[5]&gt; ZSCORE exam:score sam</span><br><span class="line"><span class="string">&quot;43&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ZINCRBY-key-increment-member"><a href="#ZINCRBY-key-increment-member" class="headerlink" title="ZINCRBY key increment member"></a>ZINCRBY key increment member</h3><p>给某个member的score增加指定的分数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[5]&gt; ZINCRBY exam:score 5 sam</span><br><span class="line"><span class="string">&quot;48&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ZRANGEBYSCORE-key-min-max-WITHSCORES-LIMIT-offset-count"><a href="#ZRANGEBYSCORE-key-min-max-WITHSCORES-LIMIT-offset-count" class="headerlink" title="ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]"></a>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]</h3><p>​    在分数的指定区间内返回数据<br>​    min参数可以通过 -inf 表示负无穷<br>​    max参数可以通过 +inf 表示正无穷</p>
+<p>默认是闭区间<br>可以通过 (min (max 形式指定开区间，例如：(50 (80</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[5]&gt; ZRANGEBYSCORE exam:score -inf +inf WITHSCORES</span><br><span class="line"> 1) <span class="string">&quot;sam&quot;</span></span><br><span class="line"> 2) <span class="string">&quot;43&quot;</span></span><br><span class="line"> 3) <span class="string">&quot;tony&quot;</span></span><br><span class="line"> 4) <span class="string">&quot;53&quot;</span></span><br><span class="line"> 5) <span class="string">&quot;mary&quot;</span></span><br><span class="line"> 6) <span class="string">&quot;63&quot;</span></span><br><span class="line"> 7) <span class="string">&quot;anna&quot;</span></span><br><span class="line"> 8) <span class="string">&quot;73&quot;</span></span><br><span class="line"> 9) <span class="string">&quot;tom&quot;</span></span><br><span class="line">10) <span class="string">&quot;83&quot;</span></span><br><span class="line">11) <span class="string">&quot;amy&quot;</span></span><br><span class="line">12) <span class="string">&quot;93&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ZRANK-key-member"><a href="#ZRANK-key-member" class="headerlink" title="ZRANK key member"></a>ZRANK key member</h3><p>先对分数进行升序排序，返回member的排名。排名从0开始</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 升序</span></span><br><span class="line">127.0.0.1:6379[5]&gt; ZRANGE exam:score 0 -1 withscores</span><br><span class="line"> 1) <span class="string">&quot;sam&quot;</span></span><br><span class="line"> 2) <span class="string">&quot;48&quot;</span></span><br><span class="line"> 3) <span class="string">&quot;tony&quot;</span></span><br><span class="line"> 4) <span class="string">&quot;53&quot;</span></span><br><span class="line"> 5) <span class="string">&quot;mary&quot;</span></span><br><span class="line"> 6) <span class="string">&quot;63&quot;</span></span><br><span class="line"> 7) <span class="string">&quot;anna&quot;</span></span><br><span class="line"> 8) <span class="string">&quot;73&quot;</span></span><br><span class="line"> 9) <span class="string">&quot;tom&quot;</span></span><br><span class="line">10) <span class="string">&quot;83&quot;</span></span><br><span class="line">11) <span class="string">&quot;amy&quot;</span></span><br><span class="line">12) <span class="string">&quot;93&quot;</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[5]&gt; ZRANK exam:score sam</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="ZREM-key-member-member-…"><a href="#ZREM-key-member-member-…" class="headerlink" title="ZREM key member [member …]"></a>ZREM key member [member …]</h3><p>delete member(s)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[5]&gt; ZREM exam:score amy</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379[5]&gt; ZRANGE exam:score 0 -1 withscores</span><br><span class="line"> 1) <span class="string">&quot;sam&quot;</span></span><br><span class="line"> 2) <span class="string">&quot;48&quot;</span></span><br><span class="line"> 3) <span class="string">&quot;tony&quot;</span></span><br><span class="line"> 4) <span class="string">&quot;53&quot;</span></span><br><span class="line"> 5) <span class="string">&quot;mary&quot;</span></span><br><span class="line"> 6) <span class="string">&quot;63&quot;</span></span><br><span class="line"> 7) <span class="string">&quot;anna&quot;</span></span><br><span class="line"> 8) <span class="string">&quot;73&quot;</span></span><br><span class="line"> 9) <span class="string">&quot;tom&quot;</span></span><br><span class="line">10) <span class="string">&quot;83&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ZRANGE-key-start-stop-WITHSCORES-1"><a href="#ZRANGE-key-start-stop-WITHSCORES-1" class="headerlink" title="ZRANGE key start stop [WITHSCORES]"></a>ZRANGE key start stop [WITHSCORES]</h3><p>降序排序，返回所有的members</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[5]&gt; ZREVRANGE exam:score 0 -1 WITHSCORES</span><br><span class="line"> 1) <span class="string">&quot;tom&quot;</span></span><br><span class="line"> 2) <span class="string">&quot;83&quot;</span></span><br><span class="line"> 3) <span class="string">&quot;anna&quot;</span></span><br><span class="line"> 4) <span class="string">&quot;73&quot;</span></span><br><span class="line"> 5) <span class="string">&quot;mary&quot;</span></span><br><span class="line"> 6) <span class="string">&quot;63&quot;</span></span><br><span class="line"> 7) <span class="string">&quot;tony&quot;</span></span><br><span class="line"> 8) <span class="string">&quot;53&quot;</span></span><br><span class="line"> 9) <span class="string">&quot;sam&quot;</span></span><br><span class="line">10) <span class="string">&quot;48&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ZREVRANK-key-member"><a href="#ZREVRANK-key-member" class="headerlink" title="ZREVRANK key member"></a>ZREVRANK key member</h3><p>先对分数进行降序排序，返回member的排名。排名从0开始</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379[5]&gt; ZREVRANK exam:score sam</span><br><span class="line">(<span class="built_in">integer</span>) 4</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="9-Geospatial"><a href="#9-Geospatial" class="headerlink" title="9. Geospatial"></a>9. Geospatial</h2><p>查询经纬度数据：<a target="_blank" rel="noopener" href="http://www.jsons.cn/lngcode">http://www.jsons.cn/lngcode</a></p>
+<h3 id="①添加地理位置"><a href="#①添加地理位置" class="headerlink" title="①添加地理位置"></a>①添加地理位置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GEOADD key longitude latitude member [longitude latitude member ...]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>规则：</p>
+<p>1.两极无法直接添加，一般会下载城市数据，直接通过 Java 程序一次性导入。</p>
+<p>2.取值范围</p>
+<p>​    有效的经度从 -180 度到 180 度。</p>
+<p>​    有效的纬度从 -85.05112878 度到 85.05112878 度。</p>
+<p>​    当坐标位置超出指定范围时，该命令将会返回一个错误。</p>
+<p>3.已经添加的数据，是无法再次往里面添加的。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">192.168.109.100:6379&gt; GEOADD &quot;china:city&quot; 114.085947 22.547 shenzhen</span><br><span class="line">(integer) 1</span><br><span class="line">192.168.109.100:6379&gt; GEOADD &quot;china:city&quot; 113.280637 23.125178 guangzhou</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="②查询已添加的地理位置"><a href="#②查询已添加的地理位置" class="headerlink" title="②查询已添加的地理位置"></a>②查询已添加的地理位置</h3><p>Geo类型在Redis内部其实是使用zset类型存储的，所以可以使用zset的命令进行常规操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">192.168.109.100:6379&gt; ZRANGE china:city 0 -1 </span><br><span class="line">1) &quot;shenzhen&quot;</span><br><span class="line">2) &quot;guangzhou&quot;</span><br><span class="line">192.168.109.100:6379&gt; ZRANGE china:city 0 -1 WITHSCORES</span><br><span class="line">1) &quot;shenzhen&quot;</span><br><span class="line">2) &quot;4046433733682118&quot;</span><br><span class="line">3) &quot;guangzhou&quot;</span><br><span class="line">4) &quot;4046533764066819&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="③删除已添加的地理位置"><a href="#③删除已添加的地理位置" class="headerlink" title="③删除已添加的地理位置"></a>③删除已添加的地理位置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.109.100:6379&gt; ZREM china:city guangzhou</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="④获取指定地区的坐标值"><a href="#④获取指定地区的坐标值" class="headerlink" title="④获取指定地区的坐标值"></a>④获取指定地区的坐标值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.109.100:6379&gt; GEOPOS china:city shenzhen</span><br><span class="line">1) 1) &quot;114.08594459295272827&quot;</span><br><span class="line">   2) &quot;22.54699993773966327&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="⑤计算两地之间的直线距离"><a href="#⑤计算两地之间的直线距离" class="headerlink" title="⑤计算两地之间的直线距离"></a>⑤计算两地之间的直线距离</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.109.100:6379&gt; GEODIST china:city guangzhou shenzhen km</span><br><span class="line">&quot;104.6426&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>单位：</p>
+<p>m 表示单位为米[默认值]。</p>
+<p>km 表示单位为千米。</p>
+<p>mi 表示单位为英里。</p>
+<p>ft 表示单位为英尺。</p>
+<p>如果用户没有显式地指定单位参数， 那么 GEODIST 默认使用米作为单位。</p>
+</blockquote>
+<h3 id="⑥以给定坐标为中心，在指定半径内查找元素"><a href="#⑥以给定坐标为中心，在指定半径内查找元素" class="headerlink" title="⑥以给定坐标为中心，在指定半径内查找元素"></a>⑥以给定坐标为中心，在指定半径内查找元素</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">192.168.109.100:6379&gt; GEORADIUS china:city 110 20 1000 km WITHCOORD WITHDIST</span><br><span class="line">1) 1) &quot;shenzhen&quot;</span><br><span class="line">   2) &quot;509.4622&quot;</span><br><span class="line">   3) 1) &quot;114.08594459295272827&quot;</span><br><span class="line">      2) &quot;22.54699993773966327&quot;</span><br><span class="line">2) 1) &quot;guangzhou&quot;</span><br><span class="line">   2) &quot;485.7406&quot;</span><br><span class="line">   3) 1) &quot;113.28063815832138062&quot;</span><br><span class="line">      2) &quot;23.12517743834835215&quot;</span><br></pre></td></tr></table></figure>
+
+<p>WITHCOORD表示显示经纬度<br/></p>
+<p>WITHDIST表示显示到中心的距离</p>
+<h3 id="⑦在指定元素周围查找其他元素"><a href="#⑦在指定元素周围查找其他元素" class="headerlink" title="⑦在指定元素周围查找其他元素"></a>⑦在指定元素周围查找其他元素</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">192.168.109.100:6379&gt; GEORADIUSBYMEMBER china:city shenzhen 300 km WITHCOORD WITHDIST</span><br><span class="line">1) 1) &quot;shenzhen&quot;</span><br><span class="line">   2) &quot;0.0000&quot;</span><br><span class="line">   3) 1) &quot;114.08594459295272827&quot;</span><br><span class="line">      2) &quot;22.54699993773966327&quot;</span><br><span class="line">2) 1) &quot;guangzhou&quot;</span><br><span class="line">   2) &quot;104.6426&quot;</span><br><span class="line">   3) 1) &quot;113.28063815832138062&quot;</span><br><span class="line">      2) &quot;23.12517743834835215&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="10-hyperloglogs"><a href="#10-hyperloglogs" class="headerlink" title="10. hyperloglogs"></a>10. hyperloglogs</h2><h3 id="①基数概念"><a href="#①基数概念" class="headerlink" title="①基数概念"></a>①基数概念</h3><p>一个集合中不重复元素的个数。例如：集合{1,2,5,1,7,2,5}中元素个数是7，但是基数是4。而hyperloglogs的主要功能就是进行基数统计。</p>
+<h3 id="②hyperloglogs命令"><a href="#②hyperloglogs命令" class="headerlink" title="②hyperloglogs命令"></a>②hyperloglogs命令</h3><h4 id="1-添加"><a href="#1-添加" class="headerlink" title="[1]添加"></a>[1]添加</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">192.168.109.100:6379&gt; PFADD user:access:1 tom jerry andy jim andy jerry tom</span><br><span class="line">(integer) 1</span><br><span class="line">192.168.109.100:6379&gt; PFADD user:access:2 andy jerry tom bob kate</span><br><span class="line">(integer) 1</span><br><span class="line">192.168.109.100:6379&gt; PFADD user:access:3 mary harry tom jerry</span><br><span class="line">(integer) 1</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-统计"><a href="#2-统计" class="headerlink" title="[2]统计"></a>[2]统计</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.109.100:6379&gt; PFCOUNT user:access:1 user:access:2 user:access:3</span><br><span class="line">(integer) 8</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-合并"><a href="#3-合并" class="headerlink" title="[3]合并"></a>[3]合并</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">192.168.109.100:6379&gt; PFMERGE user:access:merge user:access:1 user:access:2 user:access:3</span><br><span class="line">OK</span><br><span class="line">192.168.109.100:6379&gt; PFCOUNT user:access:merge</span><br><span class="line">(integer) 8</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-bitmap位图"><a href="#11-bitmap位图" class="headerlink" title="11.bitmap位图"></a>11.bitmap位图</h2><p>直接对数据的二进制位进行操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">192.168.109.100:6379[5]&gt; set a hello</span><br><span class="line">OK</span><br><span class="line">192.168.109.100:6379[5]&gt; GETBIT a 0</span><br><span class="line">(integer) 0</span><br><span class="line">192.168.109.100:6379[5]&gt; GETBIT a 1</span><br><span class="line">(integer) 1</span><br><span class="line">192.168.109.100:6379[5]&gt; GETBIT a 2</span><br><span class="line">(integer) 1</span><br><span class="line">192.168.109.100:6379[5]&gt; GETBIT a 3</span><br><span class="line">(integer) 0</span><br><span class="line">192.168.109.100:6379[5]&gt; GETBIT a 4</span><br><span class="line">(integer) 1</span><br><span class="line">192.168.109.100:6379[5]&gt; GETBIT a 5</span><br><span class="line">(integer) 0</span><br><span class="line">192.168.109.100:6379[5]&gt; SETBIT a 5 1</span><br><span class="line">(integer) 0</span><br><span class="line">192.168.109.100:6379[5]&gt; get a</span><br><span class="line">&quot;lello&quot;</span><br><span class="line">192.168.109.100:6379[5]&gt; BITCOUNT a</span><br><span class="line">(integer) 22</span><br></pre></td></tr></table></figure>
+
+<p>setbit设置指定比特位<br/><br>getbit获取指定比特位<br/><br>bitcount统计所有比特位中1的数量</p>
+<h2 id="常用数据类型应用场景"><a href="#常用数据类型应用场景" class="headerlink" title="常用数据类型应用场景"></a>常用数据类型应用场景</h2><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>string</td>
+<td>分布式Session存储<br />分布式数据库ID<br />计数器：统计网站访问量</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>存储对象信息（购物车中的商品信息）<br />存储表的信息</td>
+</tr>
+<tr>
+<td>list</td>
+<td>实现队列、栈操作<br />汇总日志<br />粉丝列表<br />关注的人列表</td>
+</tr>
+<tr>
+<td>set</td>
+<td>签到<br />打卡<br />点赞</td>
+</tr>
+<tr>
+<td>zset</td>
+<td>排行榜<br />百度热点搜索</td>
+</tr>
+<tr>
+<td>geospatial</td>
+<td>获取地理位置信息<br />两地之间的距离</td>
+</tr>
+<tr>
+<td>hyperloglogs</td>
+<td>基数统计</td>
+</tr>
+<tr>
+<td>bitmaps</td>
+<td>统计用户访问次数</td>
+</tr>
+</tbody></table>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/15/10/04/40/" rel="prev" title="macOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]">
+                  <i class="fa fa-chevron-left"></i> macOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/01/17/23/33/40/" rel="next" title="Homebrew官方安装 解决Failed to connect 443">
+                  Homebrew官方安装 解决Failed to connect 443 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray Wei</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"wechiwin/wechiwin.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cat-180x180-apple.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cat-32x32-medium.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cat-16x16-small.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wechiwin.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux的须知与使用">
+<meta property="og:url" content="https://wechiwin.github.io/2022/02/18/17/22/10/index.html">
+<meta property="og:site_name" content="Ray Wei&#39;s Blog">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/use-linux-003.png">
+<meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/use-linux-001.png">
+<meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/use-linux-002.png">
+<meta property="article:published_time" content="2022-02-18T09:22:10.000Z">
+<meta property="article:modified_time" content="2022-02-18T15:50:05.453Z">
+<meta property="article:author" content="Ray Wei">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/rayywei/blog-image/raw/master/use-linux-003.png">
+
+
+<link rel="canonical" href="https://wechiwin.github.io/2022/02/18/17/22/10/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wechiwin.github.io/2022/02/18/17/22/10/","path":"2022/02/18/17/22/10/","title":"Linux的须知与使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux的须知与使用 | Ray Wei's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ray Wei's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%BB%E7%9F%A5"><span class="nav-text">须知</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-text">进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%BA%A7%E7%9B%AE%E5%BD%95%E7%AE%80%E4%BB%8B"><span class="nav-text">一级目录简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="nav-text">权限控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="nav-text">基础命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%BF%A1%E6%81%AF"><span class="nav-text">文件权限信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chxxx%E5%91%BD%E4%BB%A4"><span class="nav-text">chxxx命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service"><span class="nav-text">Service</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS6"><span class="nav-text">CentOS6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS7"><span class="nav-text">CentOS7</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-text">关闭防火墙</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vim"><span class="nav-text">vim</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">基本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminal"><span class="nav-text">Terminal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir"><span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd"><span class="nav-text">cd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ls"><span class="nav-text">ls</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pwd"><span class="nav-text">pwd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#touch"><span class="nav-text">touch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cp"><span class="nav-text">cp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mv"><span class="nav-text">mv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm"><span class="nav-text">rm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cat"><span class="nav-text">cat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#less"><span class="nav-text">less</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="nav-text">控制方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tail"><span class="nav-text">tail</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#locate"><span class="nav-text">locate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-text">grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tar"><span class="nav-text">tar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ps"><span class="nav-text">ps</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ps-ef"><span class="nav-text">ps -ef</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pstree"><span class="nav-text">pstree</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ps-ef-less"><span class="nav-text">ps -ef | less</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kill"><span class="nav-text">kill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#top"><span class="nav-text">top</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E5%91%BD%E4%BB%A4%E4%B8%8E%E5%8F%82%E6%95%B0"><span class="nav-text">①命令与参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1%E6%93%8D%E4%BD%9C%E6%8E%A7%E5%88%B6"><span class="nav-text">②操作控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E5%AD%97%E6%AE%B5%E8%A7%A3%E9%87%8A"><span class="nav-text">③查询结果字段解释</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BF%A1%E6%81%AF%E4%B8%BA%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97%E4%BF%A1%E6%81%AF"><span class="nav-text">[1]第一行信息为任务队列信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E7%AC%AC%E4%BA%8C%E8%A1%8C%E4%B8%BA%E8%BF%9B%E7%A8%8B%E4%BF%A1%E6%81%AF"><span class="nav-text">[2]第二行为进程信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E7%AC%AC%E4%B8%89%E8%A1%8C%E4%B8%BACPU%E4%BF%A1%E6%81%AF"><span class="nav-text">[3]第三行为CPU信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E7%AC%AC%E5%9B%9B%E8%A1%8C%E4%B8%BA%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E4%BF%A1%E6%81%AF"><span class="nav-text">[4]第四行为物理内存信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E7%AC%AC%E4%BA%94%E8%A1%8C%E4%B8%BA%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA%EF%BC%88swap%EF%BC%89%E4%BF%A1%E6%81%AF"><span class="nav-text">[5]第五行为交换分区（swap）信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat"><span class="nav-text">netstat</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="nav-text">使用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0%E5%88%86%E5%B1%8F%E6%9F%A5%E7%9C%8B"><span class="nav-text">①分屏查看</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1%E6%A0%B9%E6%8D%AE%E8%BF%9B%E7%A8%8B%E5%90%8D%E7%A7%B0%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81"><span class="nav-text">②根据进程名称查看网络状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A2%E6%A0%B9%E6%8D%AE%E7%AB%AF%E5%8F%A3%E5%8F%B7%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81"><span class="nav-text">③根据端口号查看网络状态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#history"><span class="nav-text">history</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#echo"><span class="nav-text">echo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#man"><span class="nav-text">man</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#info"><span class="nav-text">info</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wget"><span class="nav-text">wget</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ray Wei"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Ray Wei</p>
+  <div class="site-description" itemprop="description">the dots will somehow connect in your future</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wechiwin.github.io/2022/02/18/17/22/10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Ray Wei">
+      <meta itemprop="description" content="the dots will somehow connect in your future">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ray Wei's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux的须知与使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-02-18 17:22:10 / Modified: 23:50:05" itemprop="dateCreated datePublished" datetime="2022-02-18T17:22:10+08:00">2022-02-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="须知"><a href="#须知" class="headerlink" title="须知"></a>须知</h1><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><table>
+<thead>
+<tr>
+<th>列名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UID</td>
+<td>进程的用户信息</td>
+</tr>
+<tr>
+<td><span style="color:blue;font-weight:bold;">PID</span></td>
+<td>进程id。由系统分配，不会重复。</td>
+</tr>
+<tr>
+<td><span style="color:blue;font-weight:bold;">PPID</span></td>
+<td>父进程的id。父进程和子进程的关系是：父进程启动了子进程。</td>
+</tr>
+<tr>
+<td><span style="color:blue;font-weight:bold;">CMD</span></td>
+<td>当前进程所对应的程序。</td>
+</tr>
+<tr>
+<td>C</td>
+<td>用整数表示的CPU使用率</td>
+</tr>
+<tr>
+<td>STIME</td>
+<td>进程启动时间</td>
+</tr>
+<tr>
+<td>TTY</td>
+<td>进程所在终端。所谓终端就是用户输入命令的操作界面。</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>进程所占用的CPU时间</td>
+</tr>
+</tbody></table>
+<h2 id="一级目录简介"><a href="#一级目录简介" class="headerlink" title="一级目录简介"></a>一级目录简介</h2><table>
+<thead>
+<tr>
+<th>目录名</th>
+<th>是否重要</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;bin</td>
+<td></td>
+<td>bin是binary的缩写，这个目录存放着最经常使用的命令。</td>
+</tr>
+<tr>
+<td>&#x2F;boot</td>
+<td></td>
+<td>这里存放的是启动Linux时用到的引导程序文件。</td>
+</tr>
+<tr>
+<td>&#x2F;dev</td>
+<td></td>
+<td>device(设备)的缩写，该目录下存放的是Linux的外部设备。</td>
+</tr>
+<tr>
+<td>&#x2F;etc</td>
+<td>√</td>
+<td>存放系统和第三方应用程序的配置文件。</td>
+</tr>
+<tr>
+<td>&#x2F;home</td>
+<td>√</td>
+<td>存放普通用户家目录。</td>
+</tr>
+<tr>
+<td>&#x2F;lib和&#x2F;lib64</td>
+<td></td>
+<td>系统开机所需要最基本的动态连接共享库。</td>
+</tr>
+<tr>
+<td>&#x2F;media</td>
+<td></td>
+<td>挂载Linux系统会自动识别的设备，例如U盘、光驱等。</td>
+</tr>
+<tr>
+<td>&#x2F;mnt</td>
+<td></td>
+<td>专门用于挂载操作的目录。</td>
+</tr>
+<tr>
+<td>&#x2F;opt</td>
+<td>√</td>
+<td>存放安装第三方应用程序时使用的压缩包文件。</td>
+</tr>
+<tr>
+<td>&#x2F;proc</td>
+<td></td>
+<td>这个目录是一个虚拟的目录，它是系统内存的映射。</td>
+</tr>
+<tr>
+<td>&#x2F;root</td>
+<td>√</td>
+<td>超级管理员root用户的家目录。</td>
+</tr>
+<tr>
+<td>&#x2F;run</td>
+<td></td>
+<td>存放进程产生的临时文件，关机重启后会消失。</td>
+</tr>
+<tr>
+<td>&#x2F;sbin</td>
+<td></td>
+<td>s是Super User的意思，这里存放的是系统管理员使用的系统管理程序。</td>
+</tr>
+<tr>
+<td>&#x2F;srv</td>
+<td></td>
+<td>service缩写，该目录存放一些服务启动之后需要提取的数据。</td>
+</tr>
+<tr>
+<td>&#x2F;sys</td>
+<td></td>
+<td>该目录下安装了2.6内核中新出现的一个文件系统sysfs。</td>
+</tr>
+<tr>
+<td>&#x2F;tmp</td>
+<td></td>
+<td>存放临时文件。</td>
+</tr>
+<tr>
+<td>&#x2F;usr</td>
+<td>√</td>
+<td>应用程序的默认安装目录，类似于Windows下的program files目录。</td>
+</tr>
+<tr>
+<td>&#x2F;var</td>
+<td>√</td>
+<td>存放经常变化的内容，例如日志文件。</td>
+</tr>
+</tbody></table>
+<h2 id="权限控制"><a href="#权限控制" class="headerlink" title="权限控制"></a>权限控制</h2><h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>groupadd 组名</td>
+<td>创建用户组</td>
+</tr>
+<tr>
+<td>id 用户名</td>
+<td>返回用户信息，检查用户是否存在</td>
+</tr>
+<tr>
+<td>useradd -g 组名 用户名</td>
+<td>创建用户，同时指定所属用户组</td>
+</tr>
+<tr>
+<td>passwd 用户名</td>
+<td>给用户账号设置密码</td>
+</tr>
+</tbody></table>
+<h3 id="文件权限信息"><a href="#文件权限信息" class="headerlink" title="文件权限信息"></a>文件权限信息</h3><p><img src="https://gitee.com/rayywei/blog-image/raw/master/use-linux-003.png"></p>
+<p>下面介绍rwx-分别是什么意思：</p>
+<ul>
+<li><p>r：读</p>
+<ul>
+<li><p>读文件：查看文件内容</p>
+<p>例如：cat、less、tail等命令</p>
+</li>
+<li><p>读目录：查看目录内容</p>
+<p>例如：使用ll命令查看目录内容</p>
+</li>
+</ul>
+</li>
+<li><p>w：写</p>
+<ul>
+<li><p>写文件：向文件中写入新内容</p>
+</li>
+<li><p>写目录：在目录里面增删内容</p>
+<p>例如：在目录内新建文件、删除文件、新建目录、删除目录给目录重命名</p>
+</li>
+</ul>
+</li>
+<li><p>x：执行</p>
+<ul>
+<li>执行文件：把文件当作可执行文件来运行</li>
+<li>执行目录：使用cd命令进入目录</li>
+</ul>
+</li>
+<li><p>-：无权限</p>
+</li>
+</ul>
+<p>由于每一位要么有权限要么没有权限，所以天然可以使用二进制来表示权限信息：</p>
+<ul>
+<li>1：有</li>
+<li>0：无</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>权限的符号表示</th>
+<th>权限的二进制表示</th>
+<th>权限的十进制表示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rwx r-x r-x</td>
+<td>111 101 101</td>
+<td>7 5 5</td>
+</tr>
+<tr>
+<td>rw- r– r–</td>
+<td>110 100 100</td>
+<td>6 4 4</td>
+</tr>
+</tbody></table>
+<h3 id="chxxx命令"><a href="#chxxx命令" class="headerlink" title="chxxx命令"></a>chxxx命令</h3><table>
+<thead>
+<tr>
+<th>命令名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>chmod</td>
+<td>修改权限信息</td>
+</tr>
+<tr>
+<td>chown</td>
+<td>修改文件或目录的所属主</td>
+</tr>
+<tr>
+<td>chgrp</td>
+<td>修改文件或目录的所属组</td>
+</tr>
+</tbody></table>
+<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><h3 id="CentOS6"><a href="#CentOS6" class="headerlink" title="CentOS6"></a>CentOS6</h3><p>启动服务：service  服务名 start</p>
+<p>停止服务：service  服务名 stop</p>
+<p>重启服务：service  服务名 restart</p>
+<p>重新加载服务：service  服务名 reload</p>
+<p>查看服务状态：service  服务名 status</p>
+<p>查看服务列表：chkconfig [–list]</p>
+<p>设置具体服务开机自动启动状态：chkconfig 服务名 on&#x2F;off</p>
+<h3 id="CentOS7"><a href="#CentOS7" class="headerlink" title="CentOS7"></a>CentOS7</h3><p>启动服务：systemctl start 服务名(xxxx.service)</p>
+<p>重启服务：systemctl restart 服务名(xxxx.service)</p>
+<p>停止服务：systemctl stop 服务名(xxxx.service)</p>
+<p>重新加载服务：systemctl reload 服务名(xxxx.service)</p>
+<p>查看服务状态：systemctl status 服务名(xxxx.service)</p>
+<p>查看服务状态：systemctl list-unit-files</p>
+<p>设置或取消服务开机自动启动：</p>
+<blockquote>
+<p>设置开机自动启动：systemctl enable 服务名</p>
+<p>取消开机自动启动：systemctl disable 服务名</p>
+</blockquote>
+<h4 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h4><p>永久关闭防火墙</p>
+<p>systemctl disable firewalld.service</p>
+<p>暂时关闭防火墙</p>
+<p>systemctl stop firewalld.service</p>
+<p>查看防火墙开放的端口号</p>
+<p>firewall-cmd –list-all</p>
+<p>设置开放的服务或端口号</p>
+<p>firewall-cmd –add-service&#x3D;http –permanent</p>
+<p>firewall-cmd –add-port&#x3D;80&#x2F;tcp –permanent</p>
+<p>重启防火墙</p>
+<p>firewall-cmd –reload</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/use-linux-001.png"></p>
+<p>一般模式：通过按键控制VIM工作</p>
+<p>编辑模式：可以自由输入</p>
+<p>指令模式：通过执行指令完成一些特殊操作</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vim hello.txt</td>
+<td>打开文件</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>i</td>
+<td>在当前位置，开始输入</td>
+</tr>
+<tr>
+<td>I</td>
+<td>移动到<span style="color:blue;font-weight:bold;">行的开头</span>，开始输入</td>
+</tr>
+<tr>
+<td>a</td>
+<td>光标<span style="color:blue;font-weight:bold;">向后移动一格</span>，然后开始输入</td>
+</tr>
+<tr>
+<td>A</td>
+<td>光标移动到<span style="color:blue;font-weight:bold;">行的末尾</span>，然后开始输入</td>
+</tr>
+<tr>
+<td>o</td>
+<td>在下面新增空行并输入</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Esc键</td>
+<td>回到一般模式</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>set nu</td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td>w</td>
+<td>write，写入文件，保存修改</td>
+</tr>
+<tr>
+<td>q</td>
+<td>quit，退出</td>
+</tr>
+<tr>
+<td>q!</td>
+<td>不保存直接退出</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>gg</td>
+<td>光标定位到第一行开头</td>
+</tr>
+<tr>
+<td>G</td>
+<td>光标定位到最后一行开头</td>
+</tr>
+<tr>
+<td>数字+G</td>
+<td>12G，去12行</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dd</td>
+<td>删除光标所在的行</td>
+</tr>
+<tr>
+<td>d5d</td>
+<td>从光标所在行开始，向下连续删除5行（包括光标所在行）</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销刚才的操作</td>
+</tr>
+<tr>
+<td>Ctrl+r</td>
+<td>重做刚才撤销的操作</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>复制光标所在的行</td>
+</tr>
+<tr>
+<td>p</td>
+<td>将当前复制的行粘贴到光标所在位置的下一行</td>
+</tr>
+<tr>
+<td>y3y</td>
+<td>从光标所在行开始，向下连续复制5行（包括光标所在行）</td>
+</tr>
+<tr>
+<td>r</td>
+<td>替换光标所在位置的一个字符<br />第一步：按一下r键<br />第二步：输入新的字符</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&#x2F;+关键词</td>
+<td>搜索关键词</td>
+</tr>
+<tr>
+<td>n</td>
+<td>向下找</td>
+</tr>
+<tr>
+<td>N</td>
+<td>向上找</td>
+</tr>
+<tr>
+<td>:noh</td>
+<td>取消高亮</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>:%s&#x2F;被替换&#x2F;新内容</td>
+<td>替换每行的的第一个匹配的内容 :%s&#x2F;TO&#x2F;to</td>
+</tr>
+<tr>
+<td>:%s&#x2F;被替换&#x2F;新内容&#x2F;g</td>
+<td>替换所有内容 :%s&#x2F;TO&#x2F;to</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ctrl+l</td>
+<td>清屏</td>
+</tr>
+<tr>
+<td>Ctrl+c</td>
+<td>强制终止程序</td>
+</tr>
+<tr>
+<td>Ctrl+Insert</td>
+<td>复制</td>
+</tr>
+<tr>
+<td>Shift+Insert</td>
+<td>粘贴</td>
+</tr>
+<tr>
+<td>Ctrl+s</td>
+<td>锁屏</td>
+</tr>
+<tr>
+<td>Ctrl+q</td>
+<td>解除锁屏</td>
+</tr>
+<tr>
+<td>tab</td>
+<td>自动补全</td>
+</tr>
+</tbody></table>
+<h2 id="Terminal"><a href="#Terminal" class="headerlink" title="Terminal"></a>Terminal</h2><h3 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h3><p>对应单词：make directory</p>
+<p>作用：创建目录</p>
+<p>格式：mkdir [OPTION]… DIRECTORY…</p>
+<p>创建单层目录：mkdir 新目录的路径</p>
+<blockquote>
+<p>单层目录说明：</p>
+<p>mkdir aaa&#x2F;bbb&#x2F;ccc</p>
+<p>其中aaa&#x2F;bbb是存在的目录，要创建的仅仅是ccc</p>
+</blockquote>
+<p>创建多层目录：mkdir -p 新目录的路径</p>
+<blockquote>
+<p>多层目录说明：</p>
+<p>mkdir -p aaa&#x2F;bbb&#x2F;ccc&#x2F;ddd</p>
+<p>其中bbb&#x2F;ccc&#x2F;ddd都不存在，现在想一次性把这些目录都建出来</p>
+</blockquote>
+<h3 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h3><p>对应单词：change directory</p>
+<p>作用：切换当前目录</p>
+<p>格式： cd 目标目录路径</p>
+<p>用法1：使用绝对路径</p>
+<p>用法2：使用相对路径</p>
+<p>用法3：使用~回到家目录</p>
+<h3 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h3><p>对应单词：list</p>
+<p>作用：列出目录中的内容，这里所说的目录可以是当前目录也可以是其他目录（需要指定路径）。</p>
+<p>格式：ls [OPTION]… [FILE]…</p>
+<p>常用参数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-A</td>
+<td>显示目录内容时把隐藏资源也显示出来</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>以详细信息形式显示资源</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>递归查看目录内容</td>
+</tr>
+</tbody></table>
+<p>命令的参数既可以单独使用也可以组合使用。同时ls -l可以简写为ll。</p>
+<h3 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h3><p>对应单词：print work directory</p>
+<p>作用：打印当前所在的目录</p>
+<h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><p>作用：创建空文件</p>
+<p>格式：touch 新建文件的路径</p>
+<h3 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h3><p>对应单词：copy</p>
+<p>作用：复制文件或目录</p>
+<p>复制文件：cp 被复制的文件的路径  目标目录的路径</p>
+<p>复制目录：cp -r 被复制的目录的路径  目标目录的路径</p>
+<h3 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h3><p>对应单词：move</p>
+<p>作用：移动文件或目录</p>
+<p>格式：mv 被移动的文件或目录的路径 目标目录</p>
+<p>特殊效果：将目录或文件在当前位置移动可以起到重命名的作用</p>
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><p>对应单词：remove</p>
+<p>作用：删除目录或文件</p>
+<p>删除文件：rm 被删除的文件的路径</p>
+<p>强制删除文件：rm -f 被删除的文件的路径</p>
+<p>递归删除目录：rm -r 被删除的目录的路径</p>
+<p>强制删除目录：rm -rf 被删除的目录的路径</p>
+<h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><p>作用：显示文件全部内容</p>
+<p>适用场景：较短小的文件</p>
+<h3 id="less"><a href="#less" class="headerlink" title="less"></a>less</h3><p>作用：分屏查看文件内容</p>
+<h4 id="控制方式"><a href="#控制方式" class="headerlink" title="控制方式"></a>控制方式</h4><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>空格</td>
+<td>向下滚动一屏</td>
+</tr>
+<tr>
+<td>b</td>
+<td>向上滚动一屏</td>
+</tr>
+<tr>
+<td>回车</td>
+<td>向下滚动一行</td>
+</tr>
+<tr>
+<td>q</td>
+<td>退出</td>
+</tr>
+<tr>
+<td>&#x2F;关键词</td>
+<td>搜索<br />n向下找<br />N向上找</td>
+</tr>
+<tr>
+<td>&#x3D;</td>
+<td>显示详细的文件信息</td>
+</tr>
+</tbody></table>
+<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>效果：显示文件末尾的部分内容</p>
+<p>实时查看文件末尾新增的内容，可以用来实时监控日志，使用Ctrl+c退出实时监控。</p>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>作用：查找文件或目录</p>
+<p>用法：find 查找范围 参数 表达式</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/use-linux-002.png"></p>
+<h3 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h3><p>基于索引查询，速度快很多。不是实时更新的，差不多一天一更新。</p>
+<p>更新索引库：updatedb。</p>
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>作用：将文件内容中匹配的行返回</p>
+<p>用法：grep 参数 查找内容 源文件</p>
+<p>例子：ps -ef | grep mysql   查找是否有mysql进程</p>
+<h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><p>解压</p>
+<blockquote>
+<p>最常用到的：</p>
+<p>tar -zxvf tar包路径</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-z</td>
+<td>用 gzip 对存档压缩或解压</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>解压</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>详细显示处理的文件</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>指定存档或设备 (缺省为 &#x2F;dev&#x2F;rmt0)</td>
+</tr>
+</tbody></table>
+<h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><p>对应单词：process status</p>
+<p>作用：查看当前正在运行的进程</p>
+<p>常用参数组合：</p>
+<h4 id="ps-ef"><a href="#ps-ef" class="headerlink" title="ps -ef"></a>ps -ef</h4><p>显示全部进程</p>
+<p>-e参数：对应单词entire，表示全部。具体指显示系统中全部的进程信息。</p>
+<p>-f参数：对应单词full-formate，表示完整格式。</p>
+<h4 id="pstree"><a href="#pstree" class="headerlink" title="pstree"></a>pstree</h4><p>查看整个进程树</p>
+<h4 id="ps-ef-less"><a href="#ps-ef-less" class="headerlink" title="ps -ef | less"></a>ps -ef | less</h4><p>分屏查看进程信息</p>
+<h3 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h3><p>作用：杀死进程</p>
+<p>说明：kill命令本质上是给进程发送信号。</p>
+<p>使用：</p>
+<ol>
+<li>查看进程id</li>
+<li>根据进程id杀死进程</li>
+</ol>
+<blockquote>
+<p>kill -s kill 3325</p>
+</blockquote>
+<p>另一种写法是</p>
+<blockquote>
+<p>kill -9 3325</p>
+</blockquote>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>作用：实时查看系统运行情况和健康状态。</p>
+<h4 id="①命令与参数"><a href="#①命令与参数" class="headerlink" title="①命令与参数"></a>①命令与参数</h4><table>
+<thead>
+<tr>
+<th>命令名</th>
+<th>更新时间间隔（秒）</th>
+<th>不显示任何闲置或者僵死进程</th>
+<th>通过进程id监控单一进程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>top</td>
+<td>-d 间隔秒数</td>
+<td>-i</td>
+<td>-p 进程id</td>
+</tr>
+</tbody></table>
+<h4 id="②操作控制"><a href="#②操作控制" class="headerlink" title="②操作控制"></a>②操作控制</h4><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P</td>
+<td>默认值，根据CPU使用率排序</td>
+</tr>
+<tr>
+<td>M</td>
+<td>以内存的使用率排序</td>
+</tr>
+<tr>
+<td>N</td>
+<td>以PID排序</td>
+</tr>
+<tr>
+<td>d</td>
+<td>设置数据刷新的时间间隔，单位是秒</td>
+</tr>
+<tr>
+<td>q</td>
+<td>退出</td>
+</tr>
+</tbody></table>
+<p>在top命令模式下按h键会显示如下的帮助信息：</p>
+<h4 id="③查询结果字段解释"><a href="#③查询结果字段解释" class="headerlink" title="③查询结果字段解释"></a>③查询结果字段解释</h4><h5 id="1-第一行信息为任务队列信息"><a href="#1-第一行信息为任务队列信息" class="headerlink" title="[1]第一行信息为任务队列信息"></a>[1]第一行信息为任务队列信息</h5><table>
+<thead>
+<tr>
+<th>内容举例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12:26:49</td>
+<td>系统当前时间</td>
+</tr>
+<tr>
+<td>up 1 day, 13:32</td>
+<td>系统的运行时间，前面例子表示本机已经运行1天13小时32分钟</td>
+</tr>
+<tr>
+<td>2 users</td>
+<td>当前登录了2个用户</td>
+</tr>
+<tr>
+<td>load average:0.00, 0.00, 0.00</td>
+<td>系统在之前1分钟，5分钟，15分钟的平均负载。<br />一般认为小于1时，负载较小。如果大于1，系统已经超出负荷。</td>
+</tr>
+</tbody></table>
+<h5 id="2-第二行为进程信息"><a href="#2-第二行为进程信息" class="headerlink" title="[2]第二行为进程信息"></a>[2]第二行为进程信息</h5><table>
+<thead>
+<tr>
+<th>内容举例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tasks: 95 total</td>
+<td>系统中的进程总数</td>
+</tr>
+<tr>
+<td>1 running</td>
+<td>正在运行的进程数</td>
+</tr>
+<tr>
+<td>94 sleeping</td>
+<td>睡眠的进程</td>
+</tr>
+<tr>
+<td>0 stopped</td>
+<td>正在停止的进程</td>
+</tr>
+<tr>
+<td>0 zombie</td>
+<td>僵尸进程。如果不是0，需要手工检查僵尸进程</td>
+</tr>
+</tbody></table>
+<h5 id="3-第三行为CPU信息"><a href="#3-第三行为CPU信息" class="headerlink" title="[3]第三行为CPU信息"></a>[3]第三行为CPU信息</h5><table>
+<thead>
+<tr>
+<th>内容举例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cpu(s):0.1%us</td>
+<td>用户空间占用的CPU百分比，us对应user</td>
+</tr>
+<tr>
+<td>0.1%sy</td>
+<td>内核空间占用的CPU百分比，sy对应system</td>
+</tr>
+<tr>
+<td>0.0%ni</td>
+<td>改变过优先级的进程占用的CPU百分比，ni对应niced</td>
+</tr>
+<tr>
+<td>99.7%id</td>
+<td>空闲CPU的CPU百分比</td>
+</tr>
+<tr>
+<td>0.1%wa</td>
+<td>等待输入&#x2F;输出的进程的占用CPU百分比，wa对应IO wait</td>
+</tr>
+<tr>
+<td>0.0%hi</td>
+<td>硬中断请求服务占用的CPU百分比，hi对应hardware IRQ</td>
+</tr>
+<tr>
+<td>0.1%si</td>
+<td>软中断请求服务占用的CPU百分比，si对应software IRQ</td>
+</tr>
+<tr>
+<td>0.0%st</td>
+<td>st（Steal time）虚拟时间百分比，也叫被hypervisor偷走的时间。<br />就是当有虚拟机时，虚拟CPU等待实际CPU的时间百分比。</td>
+</tr>
+</tbody></table>
+<h5 id="4-第四行为物理内存信息"><a href="#4-第四行为物理内存信息" class="headerlink" title="[4]第四行为物理内存信息"></a>[4]第四行为物理内存信息</h5><table>
+<thead>
+<tr>
+<th>内容举例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2031912 total</td>
+<td>物理内存的总量，单位KB</td>
+</tr>
+<tr>
+<td>70496 free</td>
+<td>空闲的物理内存数量</td>
+</tr>
+<tr>
+<td>1780676 used</td>
+<td>已经使用的物理内存数量</td>
+</tr>
+<tr>
+<td>174864 buff&#x2F;cache</td>
+<td>作为缓冲的内存数量</td>
+</tr>
+</tbody></table>
+<p>使用中的内存总量（used）指的是现在系统内核控制的内存数，空闲内存总量（free）是还未纳入内核管控范围的数量。</p>
+<p>纳入内核管理的内存不见得都在使用中，还包括过去使用过的现在可以被重复利用的内存，内核并不把这些可被重新使用的内存还给free，因此Linux系统运行过程中free内存会越来越少，但不影响系统运行。因为这表示更多的空闲内存被内核管理了。</p>
+<h5 id="5-第五行为交换分区（swap）信息"><a href="#5-第五行为交换分区（swap）信息" class="headerlink" title="[5]第五行为交换分区（swap）信息"></a>[5]第五行为交换分区（swap）信息</h5><table>
+<thead>
+<tr>
+<th>内容举例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2097148 total</td>
+<td>交换分区（虚拟内存）的总大小</td>
+</tr>
+<tr>
+<td>1137824 free</td>
+<td>空闲交换分区的大小</td>
+</tr>
+<tr>
+<td>959324 used</td>
+<td>已经使用的交互分区的大小</td>
+</tr>
+<tr>
+<td>58640 avail Mem</td>
+<td>在不交换的情况下，对启动新应用程序可用内存的估计</td>
+</tr>
+</tbody></table>
+<p>交换分区是一个非常值得关注的地方，如果swap区的used数值持续发生变化那么说明在内核和交换分区之间正在持续发生数据交换，这表示内存不够用了——必须不断把内存中的数据保存到硬盘上。</p>
+<h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><p>对应单词：net status</p>
+<p>作用：查看网络状态</p>
+<p>常用参数：netstat -anp</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-a</td>
+<td>显示所有正在或不在侦听的套接字。</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>显示数字形式地址而不是去解析主机、端口或用户名。</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>显示套接字所属进程的PID和名称。</td>
+</tr>
+</tbody></table>
+<h4 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧"></a>使用技巧</h4><h5 id="①分屏查看"><a href="#①分屏查看" class="headerlink" title="①分屏查看"></a>①分屏查看</h5><blockquote>
+<p>netstat -anp | less</p>
+</blockquote>
+<h5 id="②根据进程名称查看网络状态"><a href="#②根据进程名称查看网络状态" class="headerlink" title="②根据进程名称查看网络状态"></a>②根据进程名称查看网络状态</h5><blockquote>
+<p>netstat -anp | grep sshd</p>
+</blockquote>
+<h5 id="③根据端口号查看网络状态"><a href="#③根据端口号查看网络状态" class="headerlink" title="③根据端口号查看网络状态"></a>③根据端口号查看网络状态</h5><blockquote>
+<p>netstat -anp | grep :22</p>
+</blockquote>
+<p>这里需要注意一下，端口号本身就是一串数字，进程id也是一串数字。那么根据端口号匹配时，很多无关的进程id也会被匹配到，造成大量不必要的干扰。此时给端口号数字前加上冒号就好多了。</p>
+<h3 id="history"><a href="#history" class="headerlink" title="history"></a>history</h3><p>作用：查看命令历史</p>
+<p>将命令的运行结果写入文件：</p>
+<ul>
+<li>覆盖写：命令 &gt; 文件路径</li>
+<li>追加写：命令 &gt;&gt; 文件路径</li>
+</ul>
+<h3 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h3><p>作用：将数据输出到standard output（标准输出），主要用来打印环境变量的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$PATH</span></span><br><span class="line"><span class="comment"># /opt/jdk1.8.0_121/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/root/bin</span></span><br><span class="line"><span class="comment"># : 为分隔符</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="man"><a href="#man" class="headerlink" title="man"></a>man</h3><p>对应单词：manual</p>
+<p>格式：man [要查询的命令]</p>
+<table>
+<thead>
+<tr>
+<th>按键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>空格</td>
+<td>向下滚动一屏</td>
+</tr>
+<tr>
+<td>回车</td>
+<td>向下滚动一行</td>
+</tr>
+<tr>
+<td>b</td>
+<td>向上滚动一屏</td>
+</tr>
+<tr>
+<td>q</td>
+<td>退出</td>
+</tr>
+<tr>
+<td>&#x2F;关键词</td>
+<td>搜索关键词<br />n向下找<br />N向上找</td>
+</tr>
+</tbody></table>
+<h3 id="info"><a href="#info" class="headerlink" title="info"></a>info</h3><p>对应单词：information</p>
+<p>格式：info [要查询的命令]</p>
+<p>控制方式：</p>
+<table>
+<thead>
+<tr>
+<th>按键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Up</td>
+<td>Move up one line</td>
+</tr>
+<tr>
+<td>Down</td>
+<td>Move down one line</td>
+</tr>
+<tr>
+<td>DEL</td>
+<td>Scroll backward one screenful</td>
+</tr>
+<tr>
+<td>SPC</td>
+<td>Scroll forward one screenful</td>
+</tr>
+<tr>
+<td>PgUp</td>
+<td>Scroll backward in this window</td>
+</tr>
+<tr>
+<td>PgDn</td>
+<td>Scroll forward in this window</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>其实info命令每次进入的都是同一个文档，只是不同被查询命令进入的是这个文档的不同位置而已。</p>
+</blockquote>
+<h3 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h3><p>作用：下载文件 </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/17/23/33/40/" rel="prev" title="Homebrew官方安装 解决Failed to connect 443">
+                  <i class="fa fa-chevron-left"></i> Homebrew官方安装 解决Failed to connect 443
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/19/00/07/58/" rel="next" title="macOS使用技巧">
+                  macOS使用技巧 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray Wei</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"wechiwin/wechiwin.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
