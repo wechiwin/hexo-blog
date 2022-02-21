@@ -1,6 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>spring-boot-admin服务端和客户端不在同一服务器的配置</title>
+    <url>/2022/02/21/22/52/43/</url>
+    <content><![CDATA[<h1 id="一、踩坑记录"><a href="#一、踩坑记录" class="headerlink" title="一、踩坑记录"></a>一、踩坑记录</h1><ul>
+<li>初步配置后，server报错如下：</li>
+</ul>
+<p>io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: &#x2F;127.0.0.1:9999</p>
+<ul>
+<li><p>监控网页打开如下</p>
+<p>jar包运行的地址没问题，但是monitor的地址是 localhost，也就是访问了作为Server的9999端口，而不是Client的，所以肯定就访问不了。</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/spring-boot-admin-monitor-problem.png"></p>
+<h1 id="二、详细配置"><a href="#二、详细配置" class="headerlink" title="二、详细配置"></a>二、详细配置</h1><p>Client</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">admin-client</span></span><br><span class="line">  <span class="attr">boot:</span></span><br><span class="line">    <span class="attr">admin:</span></span><br><span class="line">      <span class="attr">client:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">http://192.168.3.8:8769</span>   <span class="comment"># Spring Boot Admin Server address</span></span><br><span class="line">        <span class="attr">instance:</span></span><br><span class="line">          <span class="attr">service-url:</span> <span class="string">http://172.16.139.100:10001</span> <span class="comment"># program address</span></span><br><span class="line">          <span class="attr">prefer-ip:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">management:</span></span><br><span class="line">  <span class="attr">endpoints:</span></span><br><span class="line">    <span class="attr">web:</span></span><br><span class="line">      <span class="attr">exposure:</span></span><br><span class="line">        <span class="attr">include:</span> <span class="string">&#x27;*&#x27;</span>  <span class="comment"># 对外暴露的访问入口 , 默认是/health和/info</span></span><br><span class="line">      <span class="attr">base-path:</span> <span class="string">/monitor</span> <span class="comment"># 默认是actuator</span></span><br><span class="line">  <span class="attr">endpoint:</span></span><br><span class="line">    <span class="attr">health:</span></span><br><span class="line">      <span class="attr">show-details:</span> <span class="string">ALWAYS</span>	<span class="comment"># 显示所有健康状态</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">9999</span> <span class="comment"># client port</span></span><br><span class="line">    <span class="attr">address:</span> <span class="number">172.16</span><span class="number">.139</span><span class="number">.100</span> <span class="comment"># client ip</span></span><br></pre></td></tr></table></figure>
+
+<p>Server</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">admin-server</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8769</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>参考教程：</p>
+<p> <a href="https://docs.spring.io/spring-boot/docs/2.2.1.RELEASE/reference/html/production-ready-features.html#production-ready-customizing-management-server-address">3.4. Customizing the Management Server Address</a></p>
+<p><a href="https://blog.csdn.net/feidie436/article/details/81324232">解决spring-boot-Admin的服务端和客户端不在同一个服务器的通信问题</a></p>
+<p><a href="https://codecentric.github.io/spring-boot-admin/2.0.1/#spring-boot-admin-client">Spring Boot Admin Reference Guide</a></p>
+<p><a href="https://blog.csdn.net/AroudSoft/article/details/98480954">Spring Boot Admin排坑指南</a></p>
+]]></content>
+      <categories>
+        <category>Spring Boot</category>
+      </categories>
+      <tags>
+        <tag>Spring Boot Admin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Homebrew官方安装 解决Failed to connect 443</title>
+    <url>/2022/01/17/23/33/40/</url>
+    <content><![CDATA[<blockquote>
+<p>macOS 10.14.5 </p>
+</blockquote>
+<h2 id="1-检查网络"><a href="#1-检查网络" class="headerlink" title="1. 检查网络"></a>1. 检查网络</h2><p>尝试在浏览器中打开下面的网页。</p>
+<p>https&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install</p>
+<p>如果能打开，说明网络没有问题。如果不能打开，说明网络有问题，需要使用VPN或者修改hosts文件。</p>
+<blockquote>
+<p>修改hosts文件可以参考：<a href="https://zhuanlan.zhihu.com/p/137025155">MAC OS-X homebrew安装报错：Failed to connect 443</a></p>
+</blockquote>
+<h2 id="2-检查环境"><a href="#2-检查环境" class="headerlink" title="2. 检查环境"></a>2. 检查环境</h2><p>卸载 command line tools</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo rm -rf /Library/Developer/CommandLineTools</span><br></pre></td></tr></table></figure>
+
+<p>安装 command line tools</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
+
+<p>在跳出来的选项框中直接选择<code>install</code>即可。</p>
+<p>重试安装homebrew</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/bash -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>网上有很多安装成功的案例，但是我这里依旧报错443。</p>
+<p>于是在网上搜索，解决办法如下：</p>
+<p>打开<a href="https://brew.sh/">homebrew主页</a>安装命令里的网址：<a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh</a></p>
+<p>右键另存为<code>install.sh</code>脚本文件，然后在终端输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/bash path-to/install.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 例如</span></span><br><span class="line">/bin/bash ~/Desktop/install.sh</span><br></pre></td></tr></table></figure>
+
+<p>然后输入开机密码，就开始安装了。</p>
+<p>参考教程：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/137025155">MAC OS-X homebrew安装报错：Failed to connect 443</a></p>
+<p><a href="https://apple.stackexchange.com/questions/419621/latest-command-line-tools-available-for-macos-mojave">latest command line tools available for macos mojave?</a></p>
+<p><a href="https://www.codenong.com/cs106599190/">Mac平台 Brew 安装的坎坷之路 – 解决 port 443 错误</a></p>
+<p><a href="https://stackoverflow.com/a/61284722/17952492">Homebrew installation on Mac OS X Failed to connect to raw.githubusercontent.com port 443</a></p>
+<p><a href="https://segmentfault.com/a/1190000019492961">https://segmentfault.com/a/1190000019492961</a></p>
+]]></content>
+      <categories>
+        <category>macOS</category>
+      </categories>
+      <tags>
+        <tag>Homebrew</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>macOS使用技巧</title>
+    <url>/2022/02/19/00/07/58/</url>
+    <content><![CDATA[<h1 id="查看隐藏文件"><a href="#查看隐藏文件" class="headerlink" title="查看隐藏文件"></a>查看隐藏文件</h1><p>方法一：</p>
+<p>打开finder，键入<code>Cmd + Shift + .</code></p>
+<p>再按一次可以恢复隐藏。</p>
+<p>方法二：</p>
+<p>Terminal：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles TRUE</span><br><span class="line">killall Finder</span><br></pre></td></tr></table></figure>
+
+<h1 id="删除Microsoft-AutoUpdate"><a href="#删除Microsoft-AutoUpdate" class="headerlink" title="删除Microsoft AutoUpdate"></a>删除Microsoft AutoUpdate</h1><p>从MacOS的Finder中，下拉“Go”菜单并选择“Go To Folder”（或按Command + Shift + G）并输入以下路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/Library/Application Support/Microsoft/</span><br></pre></td></tr></table></figure>
+
+<p>打开名为“MAU”或“MAU2.0”的文件夹，将“Microsoft AutoUpdate.app”删除。</p>
+]]></content>
+      <categories>
+        <category>macOS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>macOS使用VMware虚拟机安装Linux系统CentOS7-64</title>
+    <url>/2022/01/11/22/44/31/</url>
+    <content><![CDATA[<blockquote>
+<p>macOS 10.14      VMware Pro 11.5.6     CentOS-7-x86_64-DVD-1804.iso</p>
+</blockquote>
+<h1 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h1><p>下载完 CentOS，装好 VMware 后就可以开始安装了。</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-001.png"></p>
+<p>点击蓝色框</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-002.png"></p>
+<p>将下载好的 iso 文件拖进框内</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-003.png"></p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-004.png"></p>
+<p>取消 Use Easy Install</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-005.png"></p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-006.png"></p>
+<p>这些配置后续都可以修改，这里直接完成即可。</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-007.png"></p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-008.png"></p>
+<p>按键盘上下键控制，选择 Install CentOS 7，回车</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-009.png"></p>
+<p>安装中</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-010.png"></p>
+<h1 id="二、初始化"><a href="#二、初始化" class="headerlink" title="二、初始化"></a>二、初始化</h1><h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-011.png"></p>
+<h2 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-012.png"></p>
+<p>初学者，所以选择了 GNOME Desktop。</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-013.png"></p>
+<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-014.png"></p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-015.png"></p>
+<p>将 LVM 改成 Standard Partition，然后点击加号</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-016.png"></p>
+<p>注意这里是 mib</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-017.png"></p>
+<p>将File System 修改为 ext4</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-018.png"></p>
+<p>继续点加号，不需要修改</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-019.png"></p>
+<p>继续点加号</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-020.png"></p>
+<p>将File System 修改为 ext4</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-021.png"></p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-022.png"></p>
+<h2 id="kdump"><a href="#kdump" class="headerlink" title="kdump"></a>kdump</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-023.png"></p>
+<p>取消 Enable kdump，暂时用不到</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-024.png"></p>
+<h2 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h2><p>选择 NAT 连接方式</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-026.png"></p>
+<p>接着点击 NETWORK &amp; HOST NAME</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-025.png"></p>
+<p>打开 Mac 的 Terminal，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+
+<p>终端会出现很多网络信息。其中vmnet1是host-only，vmnet8是nat模式。</p>
+<h3 id="一个虚拟机"><a href="#一个虚拟机" class="headerlink" title="一个虚拟机"></a>一个虚拟机</h3><p><img src="https://gitee.com/rayywei/blog-image/raw/master/ifconfig.png"></p>
+<p>Address: x.x.x.100</p>
+<p>Netmask: 255.255.255.0</p>
+<p>Gateway&amp; DNS: x.x.x.2</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-026-2.png"></p>
+<p>注意这里右上角要切成 ON</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-028.png"></p>
+<h3 id="多个虚拟机"><a href="#多个虚拟机" class="headerlink" title="多个虚拟机"></a>多个虚拟机</h3><p>需要自己配置网卡。打开vmware preference，选择network，解锁。</p>
+<p>点击左下角的加号，会生成一个<code>vmnet+数字</code>的网卡，取消dhcp。</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-039.png"></p>
+<p>打开Mac terminal</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /Library/Preferences/VMware\ Fusion/networking</span><br></pre></td></tr></table></figure>
+
+<p>系统已经自动生成网卡的配置信息</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-040.png"></p>
+<p>此时回来看vmware preference，ip地址和mask掩码已经更新。</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-041.png"></p>
+<p>同样，按照一个虚拟机的方式，配置网络</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-042.png"></p>
+<p>进入网络设置</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-043.png"></p>
+<p>选择刚刚创建的网卡</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-044.png"></p>
+<p>其他步骤和<code>一个虚拟机</code>一样。</p>
+<blockquote>
+<p>参考教程：</p>
+<p><a href="https://blog.csdn.net/weixin_42945209/article/details/106732350">MacOS下VMware Fusion Ubuntu虚拟机配置Nat静态IP</a></p>
+<p><a href="https://blog.csdn.net/u011323949/article/details/104038825">MAC VMware fusion设置多个虚拟机上网</a></p>
+<p><a href="https://blog.csdn.net/Jacquelin_1/article/details/89600215">mac 虚拟机VMware fusion设置nat模式</a></p>
+</blockquote>
+<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><p>点击 begin installation</p>
+<h2 id="设置root账户"><a href="#设置root账户" class="headerlink" title="设置root账户"></a>设置root账户</h2><p>在安装时会出现如下界面，点击root password，设置 root 账号和密码</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-029.png"></p>
+<h2 id="完成安装"><a href="#完成安装" class="headerlink" title="完成安装"></a>完成安装</h2><p>点击重启</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-030.png"></p>
+<p>点进去接受协议，然后点右下角 </p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-031.png"></p>
+<h2 id="偏好设置"><a href="#偏好设置" class="headerlink" title="偏好设置"></a>偏好设置</h2><p>需要创建一个普通用户，地区选择上海即可。完成后进入桌面，关闭演示。</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-032.png"></p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-033.png"></p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-034.png"></p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-035.png"></p>
+<h2 id="切换-root-用户"><a href="#切换-root-用户" class="headerlink" title="切换 root 用户"></a>切换 root 用户</h2><p>点击右上角的关机键，退出普通用户。</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-036.png"></p>
+<p>点击 Not listed，然后输入用户名 root 和之前设置的 root 密码。</p>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-038.png"></p>
+<h1 id="三、测试网络"><a href="#三、测试网络" class="headerlink" title="三、测试网络"></a>三、测试网络</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl www.baidu.com</span><br><span class="line"><span class="comment">#出现百度首页的html代码就是网络连接正常</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="四、其他"><a href="#四、其他" class="headerlink" title="四、其他"></a>四、其他</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#重启Linux网络</span></span><br><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+
+
+
+<p>参考教程：</p>
+<p><a href="https://juejin.cn/post/6844903985652957198">Mac OS Fusion Linux虚拟机网络设置</a></p>
+<p><a href="https://blog.csdn.net/AthlenaA/article/details/99699502">Mac安装VMware fusion 11安装Linux CentOS 7</a></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>VMware</tag>
+        <tag>macOS</tag>
+        <tag>CentOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>macOS在虚拟机Linux-CentOS7-64上安装Mysql8[rpm]</title>
+    <url>/2022/01/14/23/50/35/</url>
+    <content><![CDATA[<h2 id="1-下载rpm安装包"><a href="#1-下载rpm安装包" class="headerlink" title="1. 下载rpm安装包"></a>1. 下载rpm安装包</h2><p>去<a href="https://downloads.mysql.com/archives/community/">官网</a>下载rpm安装包，共四个。</p>
+<p>mysql-community-libs-8.0.18-1.el7.x86_64.rpm</p>
+<h2 id="2-将安装包上传到Linux的-x2F-opt"><a href="#2-将安装包上传到Linux的-x2F-opt" class="headerlink" title="2. 将安装包上传到Linux的&#x2F;opt"></a>2. 将安装包上传到Linux的&#x2F;opt</h2><p>详情请参考[Mac与Linux文件传输]</p>
+<h2 id="3-卸载系统预装-mariadb"><a href="#3-卸载系统预装-mariadb" class="headerlink" title="3. 卸载系统预装 mariadb"></a>3. 卸载系统预装 mariadb</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rpm -e --nodeps mariadb-libs-1:5.5.56-2.el7.x86_64</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-按照以下顺序安装"><a href="#3-按照以下顺序安装" class="headerlink" title="3.按照以下顺序安装"></a>3.按照以下顺序安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rpm -ivh /opt/mysql-community-common-8.0.18-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh /opt/mysql-community-libs-8.0.18-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh /opt/mysql-community-client-8.0.18-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh /opt/mysql-community-server-8.0.18-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果已经打开了opt文件夹，安装时可以省略文件夹，例如</p>
+<p>rpm -ivh mysql-community-common-8.0.18-1.el7.x86_64.rpm</p>
+</blockquote>
+<h2 id="4-查看mysql是否安装成功"><a href="#4-查看mysql是否安装成功" class="headerlink" title="4. 查看mysql是否安装成功"></a>4. 查看mysql是否安装成功</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">id mysql</span><br><span class="line"><span class="meta">#</span><span class="bash"> uid=27(mysql) gid=27(mysql) groups=27(mysql)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-初始化-mysql"><a href="#5-初始化-mysql" class="headerlink" title="5. 初始化 mysql"></a>5. 初始化 mysql</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建数据文件目录和mysql系统数据库 产生随机root密码</span></span><br><span class="line">mysqld --initialize </span><br></pre></td></tr></table></figure>
+
+<h2 id="6-目录权限授权"><a href="#6-目录权限授权" class="headerlink" title="6. 目录权限授权"></a>6. 目录权限授权</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chown mysql:mysql /var/lib/mysql -R;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-启动-mysql-服务"><a href="#7-启动-mysql-服务" class="headerlink" title="7. 启动 mysql 服务"></a>7. 启动 mysql 服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动</span></span><br><span class="line">systemctl start mysqld.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看mysql服务是否启动</span></span><br><span class="line">systemctl status mysqld.service</span><br><span class="line"></span><br><span class="line">ps -ef | grep mysql | grep -v grep</span><br><span class="line"><span class="comment"># mysql      4921      1  4 23:27 ?        00:00:01 /usr/sbin/mysqld</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-查看初始化随机生成的-root-密码"><a href="#8-查看初始化随机生成的-root-密码" class="headerlink" title="8. 查看初始化随机生成的 root 密码"></a>8. 查看初始化随机生成的 root 密码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat /var/<span class="built_in">log</span>/mysqld.log | grep password</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2022-01-14T15:19:09.444302Z 5 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: RI6&lt;px3asiqw</span></span><br><span class="line"><span class="comment"># RI6&lt;px3asiqw 就是初始密码</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9-登录并修改密码"><a href="#9-登录并修改密码" class="headerlink" title="9. 登录并修改密码"></a>9. 登录并修改密码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -uroot -p</span><br><span class="line"><span class="comment"># 粘贴初始密码</span></span><br><span class="line"></span><br><span class="line">ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED WITH mysql_native_password BY <span class="string">&#x27;自己想要设置的密码&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 例如</span></span><br><span class="line"><span class="comment"># ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;123456&#x27;;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="10-远程访问授权"><a href="#10-远程访问授权" class="headerlink" title="10. 远程访问授权"></a>10. 远程访问授权</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">create user <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified with mysql_native_password by <span class="string">&#x27;mysql登录密码&#x27;</span>;</span><br><span class="line"><span class="comment"># 例如</span></span><br><span class="line"><span class="comment"># create user &#x27;root&#x27;@&#x27;%&#x27; identified with mysql_native_password by &#x27;123456&#x27;;</span></span><br><span class="line"></span><br><span class="line">grant all privileges on *.* to <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> with grant option;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-在Mac上的软件上登录mysql"><a href="#11-在Mac上的软件上登录mysql" class="headerlink" title="11. 在Mac上的软件上登录mysql"></a>11. 在Mac上的软件上登录mysql</h2><h2 id="12-设置-x2F-停止开机自启"><a href="#12-设置-x2F-停止开机自启" class="headerlink" title="12. 设置&#x2F;停止开机自启"></a>12. 设置&#x2F;停止开机自启</h2><p>需退出mysql设置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开启</span></span><br><span class="line">systemctl <span class="built_in">enable</span> mysqld.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">systemctl <span class="built_in">disable</span> mysqld.service</span><br></pre></td></tr></table></figure>
+
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>macOS使用Hexo和Github搭建博客2021</title>
     <url>/2021/12/29/16/16/49/</url>
     <content><![CDATA[<blockquote>
@@ -216,107 +472,74 @@
         <category>Blog</category>
       </categories>
       <tags>
+        <tag>macOS</tag>
         <tag>Hexo</tag>
         <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>macOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]</title>
+    <url>/2022/01/15/10/04/40/</url>
+    <content><![CDATA[<h2 id="1-下载redis安装包并解压"><a href="#1-下载redis安装包并解压" class="headerlink" title="1. 下载redis安装包并解压"></a>1. 下载redis安装包并解压</h2><p>打开Terminal，连接Linux，</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt</span><br><span class="line"></span><br><span class="line">wget https://download.redis.io/releases/redis-6.2.6.tar.gz</span><br><span class="line"><span class="comment"># 若没有 wget ，可以输入 yum install wget 安装</span></span><br><span class="line"></span><br><span class="line">tar -zxvf redis-6.2.6.tar.gz </span><br></pre></td></tr></table></figure>
+
+<h2 id="2-安装C语言编译环境"><a href="#2-安装C语言编译环境" class="headerlink" title="2. 安装C语言编译环境"></a>2. 安装C语言编译环境</h2><p>建议先拍快照</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">yum install -y gcc-c++</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看安装是否成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="comment"># 出现版本号就是成功了</span></span><br><span class="line"><span class="comment"># gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-修改安装位置"><a href="#3-修改安装位置" class="headerlink" title="3. 修改安装位置"></a>3. 修改安装位置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> redis-6.2.6</span><br><span class="line">cat Makefile</span><br><span class="line"><span class="comment"># Top level makefile, the real shit is at src/Makefile</span></span><br><span class="line"><span class="comment"># 可以得出真正的安装配置文件在 src/Makefile</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> src/</span><br><span class="line"><span class="comment"># 备份文件</span></span><br><span class="line">cp Makefile Makefile.backup</span><br><span class="line"></span><br><span class="line">vim Makefile</span><br><span class="line"><span class="comment"># 键入 /PREFIX 搜索</span></span><br><span class="line"><span class="comment"># 将 PREFIX?=/usr/local 修改为 PREFIX?=/usr/local/redis</span></span><br><span class="line"><span class="comment"># 键入 :wq 保存退出</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-编译安装"><a href="#4-编译安装" class="headerlink" title="4. 编译安装"></a>4. 编译安装</h2><p>建议先拍快照</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编译</span></span><br><span class="line">make</span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-修改redis配置文件"><a href="#5-修改redis配置文件" class="headerlink" title="5. 修改redis配置文件"></a>5. 修改redis配置文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp /opt/redis-6.2.6/redis.conf /usr/<span class="built_in">local</span>/redis/</span><br><span class="line"></span><br><span class="line">mkdir /var/logs</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/</span><br><span class="line"></span><br><span class="line">vim redis.conf</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>配置项名称</th>
+<th>作用</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>daemonize</td>
+<td>控制是否以守护进程形式运行Redis服务器</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>logfile</td>
+<td>指定日志文件位置</td>
+<td>“&#x2F;var&#x2F;logs&#x2F;redis.log”</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>Redis工作目录</td>
+<td>&#x2F;usr&#x2F;local&#x2F;redis</td>
+</tr>
+</tbody></table>
+<h2 id="6-启动redis"><a href="#6-启动redis" class="headerlink" title="6. 启动redis"></a>6. 启动redis</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># redis-server文件路径 redis.conf文件路径</span></span><br><span class="line">/usr/<span class="built_in">local</span>/redis/bin/redis-server /usr/<span class="built_in">local</span>/redis/redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>查看redis是否启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看进程</span></span><br><span class="line">ps -ef | grep redis | grep -v grep</span><br><span class="line"><span class="comment"># root      12889      1  0 10:48 ?        00:00:00 /usr/local/redis/bin/redis-server 127.0.0.1:6379</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看日志</span></span><br><span class="line">less /var/logs/redis.log</span><br><span class="line"><span class="comment"># Configuration loaded</span></span><br><span class="line"><span class="comment"># Ready to accept connections</span></span><br><span class="line"><span class="comment"># 键入 q 退出</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-客户端登录"><a href="#7-客户端登录" class="headerlink" title="7. 客户端登录"></a>7. 客户端登录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/redis/bin/redis-cli</span><br><span class="line"><span class="comment"># 此时应出现 127.0.0.1:6379&gt; </span></span><br><span class="line">ping</span><br><span class="line"><span class="comment"># 如果出现 PONG，说明已经成功</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-退出客户端"><a href="#8-退出客户端" class="headerlink" title="8. 退出客户端"></a>8. 退出客户端</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9-关闭redis"><a href="#9-关闭redis" class="headerlink" title="9. 关闭redis"></a>9. 关闭redis</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/redis/bin/redis-cli shutdown</span><br></pre></td></tr></table></figure>
+
+<h2 id="10-无法连接到redis-cli"><a href="#10-无法连接到redis-cli" class="headerlink" title="10. 无法连接到redis-cli"></a>10. 无法连接到redis-cli</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Could not connect to Redis at 127.0.0.1:6379: Connection refused</span><br></pre></td></tr></table></figure>
+
+<p>登录时需要带上-h和主机地址</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">/usr/local/redis/bin/redis-cli -h 172.16.139.100</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
         <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Homebrew官方安装 解决Failed to connect 443</title>
-    <url>/2022/01/17/23/33/40/</url>
-    <content><![CDATA[<blockquote>
-<p>macOS 10.14.5 </p>
-</blockquote>
-<h2 id="1-检查网络"><a href="#1-检查网络" class="headerlink" title="1. 检查网络"></a>1. 检查网络</h2><p>尝试在浏览器中打开下面的网页。</p>
-<p>https&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install</p>
-<p>如果能打开，说明网络没有问题。如果不能打开，说明网络有问题，需要使用VPN或者修改hosts文件。</p>
-<blockquote>
-<p>修改hosts文件可以参考：<a href="https://zhuanlan.zhihu.com/p/137025155">MAC OS-X homebrew安装报错：Failed to connect 443</a></p>
-</blockquote>
-<h2 id="2-检查环境"><a href="#2-检查环境" class="headerlink" title="2. 检查环境"></a>2. 检查环境</h2><p>卸载 command line tools</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo rm -rf /Library/Developer/CommandLineTools</span><br></pre></td></tr></table></figure>
-
-<p>安装 command line tools</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
-
-<p>在跳出来的选项框中直接选择<code>install</code>即可。</p>
-<p>重试安装homebrew</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/bash -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>网上有很多安装成功的案例，但是我这里依旧报错443。</p>
-<p>于是在网上搜索，解决办法如下：</p>
-<p>打开<a href="https://brew.sh/">homebrew主页</a>安装命令里的网址：<a href="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh">https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh</a></p>
-<p>右键另存为<code>install.sh</code>脚本文件，然后在终端输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/bash path-to/install.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 例如</span></span><br><span class="line">/bin/bash ~/Desktop/install.sh</span><br></pre></td></tr></table></figure>
-
-<p>然后输入开机密码，就开始安装了。</p>
-<p>参考教程：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/137025155">MAC OS-X homebrew安装报错：Failed to connect 443</a></p>
-<p><a href="https://apple.stackexchange.com/questions/419621/latest-command-line-tools-available-for-macos-mojave">latest command line tools available for macos mojave?</a></p>
-<p><a href="https://www.codenong.com/cs106599190/">Mac平台 Brew 安装的坎坷之路 – 解决 port 443 错误</a></p>
-<p><a href="https://stackoverflow.com/a/61284722/17952492">Homebrew installation on Mac OS X Failed to connect to raw.githubusercontent.com port 443</a></p>
-<p><a href="https://segmentfault.com/a/1190000019492961">https://segmentfault.com/a/1190000019492961</a></p>
-]]></content>
-      <categories>
-        <category>macOS</category>
-      </categories>
-      <tags>
-        <tag>Homebrew</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>macOS使用技巧</title>
-    <url>/2022/02/19/00/07/58/</url>
-    <content><![CDATA[<h1 id="查看隐藏文件"><a href="#查看隐藏文件" class="headerlink" title="查看隐藏文件"></a>查看隐藏文件</h1><p>方法一：</p>
-<p>打开finder，键入<code>Cmd + Shift + .</code></p>
-<p>再按一次可以恢复隐藏。</p>
-<p>方法二：</p>
-<p>Terminal：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles TRUE</span><br><span class="line">killall Finder</span><br></pre></td></tr></table></figure>
-
-<h1 id="删除Microsoft-AutoUpdate"><a href="#删除Microsoft-AutoUpdate" class="headerlink" title="删除Microsoft AutoUpdate"></a>删除Microsoft AutoUpdate</h1><p>从MacOS的Finder中，下拉“Go”菜单并选择“Go To Folder”（或按Command + Shift + G）并输入以下路径：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/Library/Application Support/Microsoft/</span><br></pre></td></tr></table></figure>
-
-<p>打开名为“MAU”或“MAU2.0”的文件夹，将“Microsoft AutoUpdate.app”删除。</p>
-]]></content>
-      <categories>
-        <category>macOS</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>spring-boot-admin服务端和客户端不在同一服务器的配置</title>
-    <url>/2022/02/21/22/52/43/</url>
-    <content><![CDATA[<h1 id="一、踩坑记录"><a href="#一、踩坑记录" class="headerlink" title="一、踩坑记录"></a>一、踩坑记录</h1><ul>
-<li>初步配置后，server报错如下：</li>
-</ul>
-<p>io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: &#x2F;127.0.0.1:9999</p>
-<ul>
-<li><p>监控网页打开如下</p>
-<p>jar包运行的地址没问题，但是monitor的地址是 localhost，也就是访问了作为Server的9999端口，而不是Client的，所以肯定就访问不了。</p>
-</li>
-</ul>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/spring-boot-admin-monitor-problem.png"></p>
-<h1 id="二、详细配置"><a href="#二、详细配置" class="headerlink" title="二、详细配置"></a>二、详细配置</h1><p>Client</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">admin-client</span></span><br><span class="line">  <span class="attr">boot:</span></span><br><span class="line">    <span class="attr">admin:</span></span><br><span class="line">      <span class="attr">client:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">http://192.168.3.8:8769</span>   <span class="comment"># Spring Boot Admin Server address</span></span><br><span class="line">        <span class="attr">instance:</span></span><br><span class="line">          <span class="attr">service-url:</span> <span class="string">http://172.16.139.100:10001</span> <span class="comment"># program address</span></span><br><span class="line">          <span class="attr">prefer-ip:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">management:</span></span><br><span class="line">  <span class="attr">endpoints:</span></span><br><span class="line">    <span class="attr">web:</span></span><br><span class="line">      <span class="attr">exposure:</span></span><br><span class="line">        <span class="attr">include:</span> <span class="string">&#x27;*&#x27;</span>  <span class="comment"># 对外暴露的访问入口 , 默认是/health和/info</span></span><br><span class="line">      <span class="attr">base-path:</span> <span class="string">/monitor</span> <span class="comment"># 默认是actuator</span></span><br><span class="line">  <span class="attr">endpoint:</span></span><br><span class="line">    <span class="attr">health:</span></span><br><span class="line">      <span class="attr">show-details:</span> <span class="string">ALWAYS</span>	<span class="comment"># 显示所有健康状态</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">9999</span> <span class="comment"># client port</span></span><br><span class="line">    <span class="attr">address:</span> <span class="number">172.16</span><span class="number">.139</span><span class="number">.100</span> <span class="comment"># client ip</span></span><br></pre></td></tr></table></figure>
-
-<p>Server</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">admin-server</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8769</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>参考教程：</p>
-<p> <a href="https://docs.spring.io/spring-boot/docs/2.2.1.RELEASE/reference/html/production-ready-features.html#production-ready-customizing-management-server-address">3.4. Customizing the Management Server Address</a></p>
-<p><a href="https://blog.csdn.net/feidie436/article/details/81324232">解决spring-boot-Admin的服务端和客户端不在同一个服务器的通信问题</a></p>
-<p><a href="https://codecentric.github.io/spring-boot-admin/2.0.1/#spring-boot-admin-client">Spring Boot Admin Reference Guide</a></p>
-<p><a href="https://blog.csdn.net/AroudSoft/article/details/98480954">Spring Boot Admin排坑指南</a></p>
-]]></content>
-      <categories>
-        <category>Spring Boot</category>
-      </categories>
-      <tags>
-        <tag>Spring Boot Admin</tag>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
@@ -476,229 +699,6 @@
       </categories>
       <tags>
         <tag>冯骥才</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>macOS使用VMware虚拟机安装Linux系统CentOS7-64</title>
-    <url>/2022/01/11/22/44/31/</url>
-    <content><![CDATA[<blockquote>
-<p>macOS 10.14      VMware Pro 11.5.6     CentOS-7-x86_64-DVD-1804.iso</p>
-</blockquote>
-<h1 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h1><p>下载完 CentOS，装好 VMware 后就可以开始安装了。</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-001.png"></p>
-<p>点击蓝色框</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-002.png"></p>
-<p>将下载好的 iso 文件拖进框内</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-003.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-004.png"></p>
-<p>取消 Use Easy Install</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-005.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-006.png"></p>
-<p>这些配置后续都可以修改，这里直接完成即可。</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-007.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-008.png"></p>
-<p>按键盘上下键控制，选择 Install CentOS 7，回车</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-009.png"></p>
-<p>安装中</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-010.png"></p>
-<h1 id="二、初始化"><a href="#二、初始化" class="headerlink" title="二、初始化"></a>二、初始化</h1><h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-011.png"></p>
-<h2 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-012.png"></p>
-<p>初学者，所以选择了 GNOME Desktop。</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-013.png"></p>
-<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-014.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-015.png"></p>
-<p>将 LVM 改成 Standard Partition，然后点击加号</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-016.png"></p>
-<p>注意这里是 mib</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-017.png"></p>
-<p>将File System 修改为 ext4</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-018.png"></p>
-<p>继续点加号，不需要修改</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-019.png"></p>
-<p>继续点加号</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-020.png"></p>
-<p>将File System 修改为 ext4</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-021.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-022.png"></p>
-<h2 id="kdump"><a href="#kdump" class="headerlink" title="kdump"></a>kdump</h2><p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-023.png"></p>
-<p>取消 Enable kdump，暂时用不到</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-024.png"></p>
-<h2 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h2><p>选择 NAT 连接方式</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-026.png"></p>
-<p>接着点击 NETWORK &amp; HOST NAME</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-025.png"></p>
-<p>打开 Mac 的 Terminal，输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
-
-<p>终端会出现很多网络信息。其中vmnet1是host-only，vmnet8是nat模式。</p>
-<h3 id="一个虚拟机"><a href="#一个虚拟机" class="headerlink" title="一个虚拟机"></a>一个虚拟机</h3><p><img src="https://gitee.com/rayywei/blog-image/raw/master/ifconfig.png"></p>
-<p>Address: x.x.x.100</p>
-<p>Netmask: 255.255.255.0</p>
-<p>Gateway&amp; DNS: x.x.x.2</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-026-2.png"></p>
-<p>注意这里右上角要切成 ON</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-028.png"></p>
-<h3 id="多个虚拟机"><a href="#多个虚拟机" class="headerlink" title="多个虚拟机"></a>多个虚拟机</h3><p>需要自己配置网卡。打开vmware preference，选择network，解锁。</p>
-<p>点击左下角的加号，会生成一个<code>vmnet+数字</code>的网卡，取消dhcp。</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-039.png"></p>
-<p>打开Mac terminal</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /Library/Preferences/VMware\ Fusion/networking</span><br></pre></td></tr></table></figure>
-
-<p>系统已经自动生成网卡的配置信息</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-040.png"></p>
-<p>此时回来看vmware preference，ip地址和mask掩码已经更新。</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-041.png"></p>
-<p>同样，按照一个虚拟机的方式，配置网络</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-042.png"></p>
-<p>进入网络设置</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-043.png"></p>
-<p>选择刚刚创建的网卡</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-044.png"></p>
-<p>其他步骤和<code>一个虚拟机</code>一样。</p>
-<blockquote>
-<p>参考教程：</p>
-<p><a href="https://blog.csdn.net/weixin_42945209/article/details/106732350">MacOS下VMware Fusion Ubuntu虚拟机配置Nat静态IP</a></p>
-<p><a href="https://blog.csdn.net/u011323949/article/details/104038825">MAC VMware fusion设置多个虚拟机上网</a></p>
-<p><a href="https://blog.csdn.net/Jacquelin_1/article/details/89600215">mac 虚拟机VMware fusion设置nat模式</a></p>
-</blockquote>
-<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><p>点击 begin installation</p>
-<h2 id="设置root账户"><a href="#设置root账户" class="headerlink" title="设置root账户"></a>设置root账户</h2><p>在安装时会出现如下界面，点击root password，设置 root 账号和密码</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-029.png"></p>
-<h2 id="完成安装"><a href="#完成安装" class="headerlink" title="完成安装"></a>完成安装</h2><p>点击重启</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-030.png"></p>
-<p>点进去接受协议，然后点右下角 </p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-031.png"></p>
-<h2 id="偏好设置"><a href="#偏好设置" class="headerlink" title="偏好设置"></a>偏好设置</h2><p>需要创建一个普通用户，地区选择上海即可。完成后进入桌面，关闭演示。</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-032.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-033.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-034.png"></p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-035.png"></p>
-<h2 id="切换-root-用户"><a href="#切换-root-用户" class="headerlink" title="切换 root 用户"></a>切换 root 用户</h2><p>点击右上角的关机键，退出普通用户。</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-036.png"></p>
-<p>点击 Not listed，然后输入用户名 root 和之前设置的 root 密码。</p>
-<p><img src="https://gitee.com/rayywei/blog-image/raw/master/Linux-installation-038.png"></p>
-<h1 id="三、测试网络"><a href="#三、测试网络" class="headerlink" title="三、测试网络"></a>三、测试网络</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl www.baidu.com</span><br><span class="line"><span class="comment">#出现百度首页的html代码就是网络连接正常</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="四、其他"><a href="#四、其他" class="headerlink" title="四、其他"></a>四、其他</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#重启Linux网络</span></span><br><span class="line">service network restart</span><br></pre></td></tr></table></figure>
-
-
-
-<p>参考教程：</p>
-<p><a href="https://juejin.cn/post/6844903985652957198">Mac OS Fusion Linux虚拟机网络设置</a></p>
-<p><a href="https://blog.csdn.net/AthlenaA/article/details/99699502">Mac安装VMware fusion 11安装Linux CentOS 7</a></p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>VMware</tag>
-        <tag>CentOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>macOS在虚拟机Linux-CentOS7-64上安装Mysql8[rpm]</title>
-    <url>/2022/01/14/23/50/35/</url>
-    <content><![CDATA[<h2 id="1-下载rpm安装包"><a href="#1-下载rpm安装包" class="headerlink" title="1. 下载rpm安装包"></a>1. 下载rpm安装包</h2><p>去<a href="https://downloads.mysql.com/archives/community/">官网</a>下载rpm安装包，共四个。</p>
-<p>mysql-community-libs-8.0.18-1.el7.x86_64.rpm</p>
-<h2 id="2-将安装包上传到Linux的-x2F-opt"><a href="#2-将安装包上传到Linux的-x2F-opt" class="headerlink" title="2. 将安装包上传到Linux的&#x2F;opt"></a>2. 将安装包上传到Linux的&#x2F;opt</h2><p>详情请参考[Mac与Linux文件传输]</p>
-<h2 id="3-卸载系统预装-mariadb"><a href="#3-卸载系统预装-mariadb" class="headerlink" title="3. 卸载系统预装 mariadb"></a>3. 卸载系统预装 mariadb</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rpm -e --nodeps mariadb-libs-1:5.5.56-2.el7.x86_64</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-按照以下顺序安装"><a href="#3-按照以下顺序安装" class="headerlink" title="3.按照以下顺序安装"></a>3.按照以下顺序安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rpm -ivh /opt/mysql-community-common-8.0.18-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh /opt/mysql-community-libs-8.0.18-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh /opt/mysql-community-client-8.0.18-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh /opt/mysql-community-server-8.0.18-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果已经打开了opt文件夹，安装时可以省略文件夹，例如</p>
-<p>rpm -ivh mysql-community-common-8.0.18-1.el7.x86_64.rpm</p>
-</blockquote>
-<h2 id="4-查看mysql是否安装成功"><a href="#4-查看mysql是否安装成功" class="headerlink" title="4. 查看mysql是否安装成功"></a>4. 查看mysql是否安装成功</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">id mysql</span><br><span class="line"><span class="meta">#</span><span class="bash"> uid=27(mysql) gid=27(mysql) groups=27(mysql)</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="5-初始化-mysql"><a href="#5-初始化-mysql" class="headerlink" title="5. 初始化 mysql"></a>5. 初始化 mysql</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建数据文件目录和mysql系统数据库 产生随机root密码</span></span><br><span class="line">mysqld --initialize </span><br></pre></td></tr></table></figure>
-
-<h2 id="6-目录权限授权"><a href="#6-目录权限授权" class="headerlink" title="6. 目录权限授权"></a>6. 目录权限授权</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chown mysql:mysql /var/lib/mysql -R;</span><br></pre></td></tr></table></figure>
-
-<h2 id="7-启动-mysql-服务"><a href="#7-启动-mysql-服务" class="headerlink" title="7. 启动 mysql 服务"></a>7. 启动 mysql 服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动</span></span><br><span class="line">systemctl start mysqld.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看mysql服务是否启动</span></span><br><span class="line">systemctl status mysqld.service</span><br><span class="line"></span><br><span class="line">ps -ef | grep mysql | grep -v grep</span><br><span class="line"><span class="comment"># mysql      4921      1  4 23:27 ?        00:00:01 /usr/sbin/mysqld</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="8-查看初始化随机生成的-root-密码"><a href="#8-查看初始化随机生成的-root-密码" class="headerlink" title="8. 查看初始化随机生成的 root 密码"></a>8. 查看初始化随机生成的 root 密码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat /var/<span class="built_in">log</span>/mysqld.log | grep password</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2022-01-14T15:19:09.444302Z 5 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: RI6&lt;px3asiqw</span></span><br><span class="line"><span class="comment"># RI6&lt;px3asiqw 就是初始密码</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="9-登录并修改密码"><a href="#9-登录并修改密码" class="headerlink" title="9. 登录并修改密码"></a>9. 登录并修改密码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -uroot -p</span><br><span class="line"><span class="comment"># 粘贴初始密码</span></span><br><span class="line"></span><br><span class="line">ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED WITH mysql_native_password BY <span class="string">&#x27;自己想要设置的密码&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 例如</span></span><br><span class="line"><span class="comment"># ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;123456&#x27;;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="10-远程访问授权"><a href="#10-远程访问授权" class="headerlink" title="10. 远程访问授权"></a>10. 远程访问授权</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">create user <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified with mysql_native_password by <span class="string">&#x27;mysql登录密码&#x27;</span>;</span><br><span class="line"><span class="comment"># 例如</span></span><br><span class="line"><span class="comment"># create user &#x27;root&#x27;@&#x27;%&#x27; identified with mysql_native_password by &#x27;123456&#x27;;</span></span><br><span class="line"></span><br><span class="line">grant all privileges on *.* to <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> with grant option;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-<h2 id="11-在Mac上的软件上登录mysql"><a href="#11-在Mac上的软件上登录mysql" class="headerlink" title="11. 在Mac上的软件上登录mysql"></a>11. 在Mac上的软件上登录mysql</h2><h2 id="12-设置-x2F-停止开机自启"><a href="#12-设置-x2F-停止开机自启" class="headerlink" title="12. 设置&#x2F;停止开机自启"></a>12. 设置&#x2F;停止开机自启</h2><p>需退出mysql设置</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开启</span></span><br><span class="line">systemctl <span class="built_in">enable</span> mysqld.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">systemctl <span class="built_in">disable</span> mysqld.service</span><br></pre></td></tr></table></figure>
-
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>macOS在虚拟机Linux-CentOS7-64上安装redis8[yum install]</title>
-    <url>/2022/01/15/10/04/40/</url>
-    <content><![CDATA[<h2 id="1-下载redis安装包并解压"><a href="#1-下载redis安装包并解压" class="headerlink" title="1. 下载redis安装包并解压"></a>1. 下载redis安装包并解压</h2><p>打开Terminal，连接Linux，</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt</span><br><span class="line"></span><br><span class="line">wget https://download.redis.io/releases/redis-6.2.6.tar.gz</span><br><span class="line"><span class="comment"># 若没有 wget ，可以输入 yum install wget 安装</span></span><br><span class="line"></span><br><span class="line">tar -zxvf redis-6.2.6.tar.gz </span><br></pre></td></tr></table></figure>
-
-<h2 id="2-安装C语言编译环境"><a href="#2-安装C语言编译环境" class="headerlink" title="2. 安装C语言编译环境"></a>2. 安装C语言编译环境</h2><p>建议先拍快照</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">yum install -y gcc-c++</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看安装是否成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="comment"># 出现版本号就是成功了</span></span><br><span class="line"><span class="comment"># gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) </span></span><br></pre></td></tr></table></figure>
-
-<h2 id="3-修改安装位置"><a href="#3-修改安装位置" class="headerlink" title="3. 修改安装位置"></a>3. 修改安装位置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> redis-6.2.6</span><br><span class="line">cat Makefile</span><br><span class="line"><span class="comment"># Top level makefile, the real shit is at src/Makefile</span></span><br><span class="line"><span class="comment"># 可以得出真正的安装配置文件在 src/Makefile</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> src/</span><br><span class="line"><span class="comment"># 备份文件</span></span><br><span class="line">cp Makefile Makefile.backup</span><br><span class="line"></span><br><span class="line">vim Makefile</span><br><span class="line"><span class="comment"># 键入 /PREFIX 搜索</span></span><br><span class="line"><span class="comment"># 将 PREFIX?=/usr/local 修改为 PREFIX?=/usr/local/redis</span></span><br><span class="line"><span class="comment"># 键入 :wq 保存退出</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="4-编译安装"><a href="#4-编译安装" class="headerlink" title="4. 编译安装"></a>4. 编译安装</h2><p>建议先拍快照</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编译</span></span><br><span class="line">make</span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-修改redis配置文件"><a href="#5-修改redis配置文件" class="headerlink" title="5. 修改redis配置文件"></a>5. 修改redis配置文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp /opt/redis-6.2.6/redis.conf /usr/<span class="built_in">local</span>/redis/</span><br><span class="line"></span><br><span class="line">mkdir /var/logs</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/</span><br><span class="line"></span><br><span class="line">vim redis.conf</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>配置项名称</th>
-<th>作用</th>
-<th>取值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>daemonize</td>
-<td>控制是否以守护进程形式运行Redis服务器</td>
-<td>yes</td>
-</tr>
-<tr>
-<td>logfile</td>
-<td>指定日志文件位置</td>
-<td>“&#x2F;var&#x2F;logs&#x2F;redis.log”</td>
-</tr>
-<tr>
-<td>dir</td>
-<td>Redis工作目录</td>
-<td>&#x2F;usr&#x2F;local&#x2F;redis</td>
-</tr>
-</tbody></table>
-<h2 id="6-启动redis"><a href="#6-启动redis" class="headerlink" title="6. 启动redis"></a>6. 启动redis</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># redis-server文件路径 redis.conf文件路径</span></span><br><span class="line">/usr/<span class="built_in">local</span>/redis/bin/redis-server /usr/<span class="built_in">local</span>/redis/redis.conf</span><br></pre></td></tr></table></figure>
-
-<p>查看redis是否启动</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看进程</span></span><br><span class="line">ps -ef | grep redis | grep -v grep</span><br><span class="line"><span class="comment"># root      12889      1  0 10:48 ?        00:00:00 /usr/local/redis/bin/redis-server 127.0.0.1:6379</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看日志</span></span><br><span class="line">less /var/logs/redis.log</span><br><span class="line"><span class="comment"># Configuration loaded</span></span><br><span class="line"><span class="comment"># Ready to accept connections</span></span><br><span class="line"><span class="comment"># 键入 q 退出</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="7-客户端登录"><a href="#7-客户端登录" class="headerlink" title="7. 客户端登录"></a>7. 客户端登录</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/redis/bin/redis-cli</span><br><span class="line"><span class="comment"># 此时应出现 127.0.0.1:6379&gt; </span></span><br><span class="line">ping</span><br><span class="line"><span class="comment"># 如果出现 PONG，说明已经成功</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="8-退出客户端"><a href="#8-退出客户端" class="headerlink" title="8. 退出客户端"></a>8. 退出客户端</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="9-关闭redis"><a href="#9-关闭redis" class="headerlink" title="9. 关闭redis"></a>9. 关闭redis</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/redis/bin/redis-cli shutdown</span><br></pre></td></tr></table></figure>
-
-<h2 id="10-无法连接到redis-cli"><a href="#10-无法连接到redis-cli" class="headerlink" title="10. 无法连接到redis-cli"></a>10. 无法连接到redis-cli</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Could not connect to Redis at 127.0.0.1:6379: Connection refused</span><br></pre></td></tr></table></figure>
-
-<p>登录时需要带上-h和主机地址</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">/usr/local/redis/bin/redis-cli -h 172.16.139.100</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
