@@ -28,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/spring-boot-admin-monitor-problem.png">
 <meta property="article:published_time" content="2022-02-21T14:52:43.000Z">
-<meta property="article:modified_time" content="2022-02-21T15:31:35.930Z">
+<meta property="article:modified_time" content="2022-02-21T17:24:23.042Z">
 <meta property="article:author" content="Ray Wei">
 <meta property="article:tag" content="Spring Boot Admin">
 <meta name="twitter:card" content="summary">
@@ -241,9 +241,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-02-21 22:52:43 / Modified: 23:31:35" itemprop="dateCreated datePublished" datetime="2022-02-21T22:52:43+08:00">2022-02-21</time>
+      <time title="Created: 2022-02-21 22:52:43" itemprop="dateCreated datePublished" datetime="2022-02-21T22:52:43+08:00">2022-02-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-02-22 01:24:23" itemprop="dateModified" datetime="2022-02-22T01:24:23+08:00">2022-02-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -256,13 +262,6 @@
     </span>
 
   
-    <span class="post-meta-item" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="firestore-visitors-count"></span>
-    </span>
 </div>
 
             <div class="post-description"> </div>
@@ -278,10 +277,9 @@
 </ul>
 <p>io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: &#x2F;127.0.0.1:9999</p>
 <ul>
-<li><p>监控网页打开如下</p>
-<p>jar包运行的地址没问题，但是monitor的地址是 localhost，也就是访问了作为Server的9999端口，而不是Client的，所以肯定就访问不了。</p>
-</li>
+<li>监控网页打开如下</li>
 </ul>
+<p>jar包运行的地址没问题，但是monitor的地址是 localhost，也就是访问了作为Server的9999端口，而不是Client的，所以肯定就访问不了。</p>
 <p><img src="https://gitee.com/rayywei/blog-image/raw/master/spring-boot-admin-monitor-problem.png"></p>
 <h1 id="二、详细配置"><a href="#二、详细配置" class="headerlink" title="二、详细配置"></a>二、详细配置</h1><p>Client</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">admin-client</span></span><br><span class="line">  <span class="attr">boot:</span></span><br><span class="line">    <span class="attr">admin:</span></span><br><span class="line">      <span class="attr">client:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">http://192.168.3.8:8769</span>   <span class="comment"># Spring Boot Admin Server address</span></span><br><span class="line">        <span class="attr">instance:</span></span><br><span class="line">          <span class="attr">service-url:</span> <span class="string">http://172.16.139.100:10001</span> <span class="comment"># program address</span></span><br><span class="line">          <span class="attr">prefer-ip:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">management:</span></span><br><span class="line">  <span class="attr">endpoints:</span></span><br><span class="line">    <span class="attr">web:</span></span><br><span class="line">      <span class="attr">exposure:</span></span><br><span class="line">        <span class="attr">include:</span> <span class="string">&#x27;*&#x27;</span>  <span class="comment"># 对外暴露的访问入口 , 默认是/health和/info</span></span><br><span class="line">      <span class="attr">base-path:</span> <span class="string">/monitor</span> <span class="comment"># 默认是actuator</span></span><br><span class="line">  <span class="attr">endpoint:</span></span><br><span class="line">    <span class="attr">health:</span></span><br><span class="line">      <span class="attr">show-details:</span> <span class="string">ALWAYS</span>	<span class="comment"># 显示所有健康状态</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">9999</span> <span class="comment"># client port</span></span><br><span class="line">    <span class="attr">address:</span> <span class="number">172.16</span><span class="number">.139</span><span class="number">.100</span> <span class="comment"># client ip</span></span><br></pre></td></tr></table></figure>
@@ -366,10 +364,6 @@
 
   
 
-  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-app-compat.js" integrity="sha256-VxLSp4V1EKWFM0EhYqHPo8jxJShGX+Z0hn3dqKfrFCI=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/firebase@9.5.0/firebase-firestore-compat.js" integrity="sha256-337WZl0H1k/C7KDQG7ZTXIWIhOZcxih0wWvgz+7TXLE=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"articles","apiKey":"blog-counter-f6bd8","projectId":"AIzaSyB2V8u62TWhPmTSOL0Xy3qc2zO_te3XZeI"}</script>
-  <script src="/js/third-party/statistics/firestore.js"></script>
 
 
 
