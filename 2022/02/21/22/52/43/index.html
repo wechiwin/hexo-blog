@@ -22,24 +22,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wechiwin.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="macOS使用技巧">
-<meta property="og:url" content="https://wechiwin.github.io/2022/02/19/00/07/58/index.html">
+<meta property="og:title" content="spring-boot-admin服务端和客户端不在同一服务器的配置">
+<meta property="og:url" content="https://wechiwin.github.io/2022/02/21/22/52/43/index.html">
 <meta property="og:site_name" content="Ray Wei&#39;s Blog">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-02-18T16:07:58.000Z">
-<meta property="article:modified_time" content="2022-02-21T05:50:08.628Z">
+<meta property="og:image" content="https://gitee.com/rayywei/blog-image/raw/master/spring-boot-admin-monitor-problem.png">
+<meta property="article:published_time" content="2022-02-21T14:52:43.000Z">
+<meta property="article:modified_time" content="2022-02-21T15:31:35.930Z">
 <meta property="article:author" content="Ray Wei">
+<meta property="article:tag" content="Spring Boot Admin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/rayywei/blog-image/raw/master/spring-boot-admin-monitor-problem.png">
 
 
-<link rel="canonical" href="https://wechiwin.github.io/2022/02/19/00/07/58/">
+<link rel="canonical" href="https://wechiwin.github.io/2022/02/21/22/52/43/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wechiwin.github.io/2022/02/19/00/07/58/","path":"2022/02/19/00/07/58/","title":"macOS使用技巧"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://wechiwin.github.io/2022/02/21/22/52/43/","path":"2022/02/21/22/52/43/","title":"spring-boot-admin服务端和客户端不在同一服务器的配置"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>macOS使用技巧 | Ray Wei's Blog</title>
+<title>spring-boot-admin服务端和客户端不在同一服务器的配置 | Ray Wei's Blog</title>
   
 
 
@@ -144,7 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6"><span class="nav-text">查看隐藏文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4Microsoft-AutoUpdate"><span class="nav-text">删除Microsoft AutoUpdate</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95"><span class="nav-text">一、踩坑记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AF%A6%E7%BB%86%E9%85%8D%E7%BD%AE"><span class="nav-text">二、详细配置</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -215,7 +218,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wechiwin.github.io/2022/02/19/00/07/58/">
+    <link itemprop="mainEntityOfPage" href="https://wechiwin.github.io/2022/02/21/22/52/43/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -228,7 +231,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          macOS使用技巧
+          spring-boot-admin服务端和客户端不在同一服务器的配置
         </h1>
 
         <div class="post-meta-container">
@@ -238,15 +241,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-02-19 00:07:58" itemprop="dateCreated datePublished" datetime="2022-02-19T00:07:58+08:00">2022-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2022-02-21 13:50:08" itemprop="dateModified" datetime="2022-02-21T13:50:08+08:00">2022-02-21</time>
+      <time title="Created: 2022-02-21 22:52:43 / Modified: 23:31:35" itemprop="dateCreated datePublished" datetime="2022-02-21T22:52:43+08:00">2022-02-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,12 +251,12 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/macOS/" itemprop="url" rel="index"><span itemprop="name">macOS</span></a>
+          <a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a>
         </span>
     </span>
 
   
-    <span id="/2022/02/19/00/07/58/" class="post-meta-item leancloud_visitors" data-flag-title="macOS使用技巧" title="Views">
+    <span id="/2022/02/21/22/52/43/" class="post-meta-item leancloud_visitors" data-flag-title="spring-boot-admin服务端和客户端不在同一服务器的配置" title="Views">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -276,17 +273,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="查看隐藏文件"><a href="#查看隐藏文件" class="headerlink" title="查看隐藏文件"></a>查看隐藏文件</h1><p>方法一：</p>
-<p>打开finder，键入<code>Cmd + Shift + .</code></p>
-<p>再按一次可以恢复隐藏。</p>
-<p>方法二：</p>
-<p>Terminal：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles TRUE</span><br><span class="line">killall Finder</span><br></pre></td></tr></table></figure>
+        <h1 id="一、踩坑记录"><a href="#一、踩坑记录" class="headerlink" title="一、踩坑记录"></a>一、踩坑记录</h1><ul>
+<li>初步配置后，server报错如下：</li>
+</ul>
+<p>io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: &#x2F;127.0.0.1:9999</p>
+<ul>
+<li><p>监控网页打开如下</p>
+<p>jar包运行的地址没问题，但是monitor的地址是 localhost，也就是访问了作为Server的9999端口，而不是Client的，所以肯定就访问不了。</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/rayywei/blog-image/raw/master/spring-boot-admin-monitor-problem.png"></p>
+<h1 id="二、详细配置"><a href="#二、详细配置" class="headerlink" title="二、详细配置"></a>二、详细配置</h1><p>Client</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">admin-client</span></span><br><span class="line">  <span class="attr">boot:</span></span><br><span class="line">    <span class="attr">admin:</span></span><br><span class="line">      <span class="attr">client:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">http://192.168.3.8:8769</span>   <span class="comment"># Spring Boot Admin Server address</span></span><br><span class="line">        <span class="attr">instance:</span></span><br><span class="line">          <span class="attr">service-url:</span> <span class="string">http://172.16.139.100:10001</span> <span class="comment"># program address</span></span><br><span class="line">          <span class="attr">prefer-ip:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">management:</span></span><br><span class="line">  <span class="attr">endpoints:</span></span><br><span class="line">    <span class="attr">web:</span></span><br><span class="line">      <span class="attr">exposure:</span></span><br><span class="line">        <span class="attr">include:</span> <span class="string">&#x27;*&#x27;</span>  <span class="comment"># 对外暴露的访问入口 , 默认是/health和/info</span></span><br><span class="line">      <span class="attr">base-path:</span> <span class="string">/monitor</span> <span class="comment"># 默认是actuator</span></span><br><span class="line">  <span class="attr">endpoint:</span></span><br><span class="line">    <span class="attr">health:</span></span><br><span class="line">      <span class="attr">show-details:</span> <span class="string">ALWAYS</span>	<span class="comment"># 显示所有健康状态</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">9999</span> <span class="comment"># client port</span></span><br><span class="line">    <span class="attr">address:</span> <span class="number">172.16</span><span class="number">.139</span><span class="number">.100</span> <span class="comment"># client ip</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="删除Microsoft-AutoUpdate"><a href="#删除Microsoft-AutoUpdate" class="headerlink" title="删除Microsoft AutoUpdate"></a>删除Microsoft AutoUpdate</h1><p>从MacOS的Finder中，下拉“Go”菜单并选择“Go To Folder”（或按Command + Shift + G）并输入以下路径：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Library/Application Support/Microsoft/</span><br></pre></td></tr></table></figure>
+<p>Server</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">admin-server</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8769</span></span><br></pre></td></tr></table></figure>
 
-<p>打开名为“MAU”或“MAU2.0”的文件夹，将“Microsoft AutoUpdate.app”删除。</p>
+
+
+
+
+<p>参考教程：</p>
+<p> <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/2.2.1.RELEASE/reference/html/production-ready-features.html#production-ready-customizing-management-server-address">3.4. Customizing the Management Server Address</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/feidie436/article/details/81324232">解决spring-boot-Admin的服务端和客户端不在同一个服务器的通信问题</a></p>
+<p><a target="_blank" rel="noopener" href="https://codecentric.github.io/spring-boot-admin/2.0.1/#spring-boot-admin-client">Spring Boot Admin Reference Guide</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/AroudSoft/article/details/98480954">Spring Boot Admin排坑指南</a></p>
 
     </div>
 
@@ -295,19 +306,19 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Spring-Boot-Admin/" rel="tag"># Spring Boot Admin</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/02/18/17/22/10/" rel="prev" title="Linux的须知与使用">
-                  <i class="fa fa-chevron-left"></i> Linux的须知与使用
+                <a href="/2022/02/19/00/07/58/" rel="prev" title="macOS使用技巧">
+                  <i class="fa fa-chevron-left"></i> macOS使用技巧
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/02/21/22/52/43/" rel="next" title="spring-boot-admin服务端和客户端不在同一服务器的配置">
-                  spring-boot-admin服务端和客户端不在同一服务器的配置 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
