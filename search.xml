@@ -535,14 +535,19 @@
 <p><a href="https://segmentfault.com/a/1190000038373795">Mac下使用GitHub+Hexo搭建个人博客</a></p>
 <p><a href="https://www.fengyuan.blog/2021-01-03-%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%98%AF%E6%80%8E%E4%B9%88%E6%9D%A5%E7%9A%84-%E4%B8%8B.html">MacOS下使用Hexo在Github搭建个人博客</a></p>
 <h1 id="五、第一篇博客"><a href="#五、第一篇博客" class="headerlink" title="五、第一篇博客"></a>五、第一篇博客</h1><p>在搭建博客的过程中一定会遇到各种报错和各种尝试，记下来之后不妨直接把它作为第一篇博客。</p>
-<p>我使用的是Typora+Idea，使用Idea将MyBlog作为Project打开，进行管理。Typora就用来专心码字。在还没学图床及CDN加速的基础上，所以这篇教程只有文字，如果有不懂的地方可以多用Google搜索一下其他的教程。</p>
-<p>找到~&#x2F;MyBlog&#x2F;source&#x2F;_posts&#x2F;hello-world.md，里面放的就是你在自己的博客网站上看的内容。删除hello-world.md，将自己的笔记放进去。</p>
-<h3 id="关于Front-matter："><a href="#关于Front-matter：" class="headerlink" title="关于Front-matter："></a>关于Front-matter：</h3><p>在Typora中写博客的时候，需要手动将YAML信息放在文章顶部，键入<code>---</code>，Typora会自动显示，请输入YAML信息。</p>
-<p>其中最基础的应该就是title和date，注意冒号后面必须要有空格。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2013</span><span class="string">/7/13</span> <span class="number">20</span><span class="string">:46:25</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<p>我使用的是Typora+Idea，使用Idea将MyBlog作为Project打开，进行管理。Typora就用来专心码字。</p>
+<p>找到~&#x2F;MyBlog&#x2F;source&#x2F;_posts&#x2F;hello-world.md，里面放的就是你在自己的博客网站上看的内容。</p>
+<h2 id="使用-hexo-new"><a href="#使用-hexo-new" class="headerlink" title="使用 hexo new"></a>使用 hexo new</h2><p>如果是在 Terminal 使用 hexo new 命令，hexo会自动帮你加上 front matter。</p>
+<blockquote>
+<p>Front Matter 是用来记录你文章信息，使用的是 YAML 语言。</p>
+</blockquote>
+<p>在一开始，你的 Front Matter 可能只有 title 和 date。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">Hello</span> <span class="string">World</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2013</span><span class="string">/7/13</span> <span class="number">20</span><span class="string">:46:25</span></span><br></pre></td></tr></table></figure>
 
+<p>随着之后的探索，目前我的 Front Matter 如下：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">macOS使用Hexo和Github搭建博客2021</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27; &#x27;</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2021</span><span class="string">/12/29</span> <span class="number">16</span><span class="string">:16:49</span></span><br><span class="line"><span class="attr">tags:</span> [<span class="string">Hexo</span>,<span class="string">Github</span>,<span class="string">macOS</span>]</span><br><span class="line"><span class="attr">categories:</span> [<span class="string">Blog</span>]</span><br></pre></td></tr></table></figure>
 
-
+<h2 id="自己新建md文件"><a href="#自己新建md文件" class="headerlink" title="自己新建md文件"></a>自己新建md文件</h2><p>需要手动将YAML信息放在文章顶部，在第一行键入<code>---</code>，Typora会自动显示，请输入YAML信息，同时字体和正文会不一样。</p>
 <h1 id="六、更换主题"><a href="#六、更换主题" class="headerlink" title="六、更换主题"></a>六、更换主题</h1><p>我们可以先在本地预览一下效果，在Terminal中输入<code>hexo s</code>，然后打开localhost4000。很明显，这个主题的效果不太让人满意。</p>
 <p>Hexo官网主题：<a href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
 <p><a href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a><br><a href="https://github.com/litten/hexo-theme-yilia">https://github.com/litten/hexo-theme-yilia</a><br><a href="https://github.com/viosey/hexo-theme-material">https://github.com/viosey/hexo-theme-material</a><br><a href="https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak">https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak</a><br><a href="https://github.com/pinggod/hexo-theme-apollo">https://github.com/pinggod/hexo-theme-apollo</a><br><a href="https://github.com/ppoffice/hexo-theme-icarus">https://github.com/ppoffice/hexo-theme-icarus</a></p>
@@ -558,24 +563,28 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
 
 <p>在Terminal中输入<code>hexo c</code>清除缓存，然后输入<code>hexo s</code>启动服务器，刷新localhost:4000，就能预览新的主题了。</p>
-<h1 id="七、增加评论插件"><a href="#七、增加评论插件" class="headerlink" title="七、增加评论插件"></a>七、增加评论插件</h1><p>折腾了几个，最后找到了如下教程，简单好用。</p>
-<p>参考教程：<a href="https://roife.github.io/2021/02/12/use-utterances-for-comment/">使用 Utterances 作为静态博客的评论插件</a></p>
-<p>注：将HTML代码直接粘贴到文章末尾即可，想要评论的人需要先用github的账号登陆。</p>
+<h1 id="七、增加评论插件"><a href="#七、增加评论插件" class="headerlink" title="七、增加评论插件"></a>七、增加评论插件</h1><p><del>折腾了几个，最后找到了如下教程，简单好用。</del></p>
+<p><del>参考教程：<a href="https://roife.github.io/2021/02/12/use-utterances-for-comment/">使用 Utterances 作为静态博客的评论插件</a></del></p>
+<p><del>注：将HTML代码直接粘贴到文章末尾即可，想要评论的人需要先用github的账号登陆。</del></p>
 <p>更新：</p>
-<p>一开始使用的是原next主题，更新之后发现8.8.2版本的next是已经集成了 Utterances 评论插件，在config中打开即可。</p>
+<p>一开始使用的是原next主题，更新8.8.2版本的next之后，发现已经集成了 Utterances 评论插件，在 theme&#x2F;_config.yml 中打开即可。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Utterances</span></span><br><span class="line"><span class="comment"># For more information: https://utteranc.es</span></span><br><span class="line"><span class="attr">utterances:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">wechiwin/wechiwin.github.io</span></span><br><span class="line">  <span class="comment"># Available values: pathname | url | title | og:title</span></span><br><span class="line">  <span class="attr">issue_term:</span> <span class="string">pathname</span></span><br><span class="line">  <span class="comment"># Available values: github-light | github-dark | preferred-color-scheme | github-dark-orange | icy-dark | dark-blue | photon-dark | boxy-light</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">github-light</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h1 id="八、标签和分类"><a href="#八、标签和分类" class="headerlink" title="八、标签和分类"></a>八、标签和分类</h1><p>只有文章支持分类和标签，在 Front-matter 中设置。</p>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="新建-categories-页面"><a href="#新建-categories-页面" class="headerlink" title="新建 categories 页面"></a>新建 categories 页面</h3><p>如果没有categories页面，我们可以新建：</p>
+<h2 id="1-分类"><a href="#1-分类" class="headerlink" title="1. 分类"></a>1. 分类</h2><h3 id="新建-categories-页面"><a href="#新建-categories-页面" class="headerlink" title="新建 categories 页面"></a>新建 categories 页面</h3><p>如果没有categories页面，我们可以新建：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
 
-<h3 id="分类具有顺序性和层次性"><a href="#分类具有顺序性和层次性" class="headerlink" title="分类具有顺序性和层次性"></a>分类具有顺序性和层次性</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这样的写法，会使分类 Life 成为 Diary 的子分类，而不是并列分类。</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">Life</span></span><br></pre></td></tr></table></figure>
+<h3 id="分类具有顺序性和层次性"><a href="#分类具有顺序性和层次性" class="headerlink" title="分类具有顺序性和层次性"></a>分类具有顺序性和层次性</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这样的写法，会使分类 Life 成为 Diary 的子分类，而不是并列分类。</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">Diary</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">Life</span></span><br></pre></td></tr></table></figure>
 
 <p>并列分类写法</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Linux</span>]</span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Tools</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">Linux</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">Tools</span>]</span><br></pre></td></tr></table></figure>
 
 <p>并列+子分类</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Linux</span>, <span class="string">Hexo</span>]</span><br><span class="line">  <span class="bullet">-</span> [<span class="string">Tools</span>, <span class="string">PHP</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">Linux</span>, <span class="string">Hexo</span>]</span><br><span class="line"><span class="bullet">-</span> [<span class="string">Tools</span>, <span class="string">PHP</span>]</span><br></pre></td></tr></table></figure>
 
-<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><h3 id="新建-tags-页面"><a href="#新建-tags-页面" class="headerlink" title="新建 tags 页面"></a>新建 tags 页面</h3><p>如果没有tags页面，我们可以新建：</p>
+<h2 id="2-标签"><a href="#2-标签" class="headerlink" title="2. 标签"></a>2. 标签</h2><h3 id="新建-tags-页面"><a href="#新建-tags-页面" class="headerlink" title="新建 tags 页面"></a>新建 tags 页面</h3><p>如果没有tags页面，我们可以新建：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
 
 <h3 id="没有顺序和层次"><a href="#没有顺序和层次" class="headerlink" title="没有顺序和层次"></a>没有顺序和层次</h3><p>写法一：</p>
@@ -587,7 +596,7 @@
 <blockquote>
 <p>参考链接：<a href="https://hexo.io/zh-cn/docs/front-matter">官方文档</a></p>
 </blockquote>
-<h2 id="在文章中使用"><a href="#在文章中使用" class="headerlink" title="在文章中使用"></a>在文章中使用</h2><p>打开 scaffolds&#x2F;post.md 模板文件，在加入<code>categories:</code>或者<code>tages:</code>,保存后，之后执行<code>hexo new 文章标题</code>命令生成的文件，页面里就有该项了。</p>
+<h2 id="3-生成模板"><a href="#3-生成模板" class="headerlink" title="3. 生成模板"></a>3. 生成模板</h2><p>打开 scaffolds&#x2F;post.md 模板文件，在加入<code>categories:</code>或者<code>tages:</code>,保存后，之后执行<code>hexo new 文章标题</code>命令生成的文件，页面里就有该项了。</p>
 <blockquote>
 <p>scaffolds目录下，是新建页面的模板，执行新建命令时，是根据这里的模板页来完成的，所以可以在这里根据你自己的需求添加一些默认值。</p>
 </blockquote>
@@ -627,11 +636,34 @@
 <p>注：如果出现使用hexo new 没有反应，请检查Terminal是否在MyBlog文件夹下</p>
 </blockquote>
 <h1 id="十五、永久链接"><a href="#十五、永久链接" class="headerlink" title="十五、永久链接"></a>十五、永久链接</h1><p>有时候写文章需要引用网站内的其他文章，原本的默认链接很长，需要修改永久链接的配置。</p>
-<p>hexo的 _config.yml 文件中，修改为如下</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://wechiwin.github.io</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:hour/:minute/:second/</span></span><br></pre></td></tr></table></figure>
+<p>打开_config.yml 文件，修改如下信息</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://wechiwin.github.io</span></span><br><span class="line"><span class="comment"># 确保永久链接的唯一性</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:hour/:minute/:second/</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>注意</strong>：如果 permalink 最后面没有加<code>/</code>，那么打开文章时，文章会变成文件，浏览器会自动下载。</p>
 <p>参考教程：<a href="https://blog.csdn.net/weixin_37632720/article/details/104376279">hexo排坑——页面跳转变成了下载</a></p>
+<h1 id="十六、SEO"><a href="#十六、SEO" class="headerlink" title="十六、SEO"></a>十六、SEO</h1><h2 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h2><p>使用谷歌搜索 site:your website address，例如 site:wechiwin.github.io，若没有返回结果，说明谷歌没有收录你的网站。</p>
+<p>打开谷歌的网站 <a href="https://search.google.com/search-console/%EF%BC%8C%E7%99%BB%E5%BD%95%EF%BC%8C%E4%BC%9A%E8%AE%A9%E4%BD%A0%E9%80%89%E6%8B%A9%E9%AA%8C%E8%AF%81%E7%BD%91%E7%AB%99%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E8%AF%81%E6%98%8E%E7%BD%91%E7%AB%99%E6%98%AF%E4%BD%A0%E7%9A%84%EF%BC%89%E3%80%82">https://search.google.com/search-console/，登录，会让你选择验证网站的方式（证明网站是你的）。</a></p>
+<p>左边Domain是使用DNS验证的方式，这个是<code>自己有域名/GitHub Enterprise</code>才能用的。</p>
+<p>所以这里选择右边的 URL 验证方式，把网站主页的链接粘贴到输入框，点击继续。</p>
+<img src="https://gitee.com/rayywei/blog-image/raw/master/blog001.png" style="zoom:80%;" />
+
+<p>验证方式选择 HTML tag，会出来如下的代码，复制content的值。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;google-site-verification&quot;</span> <span class="attr">content</span>=<span class="string">&quot;hkH1lXIqT_al860tyTKTgIpzJ-cZryvL_i3tw1uOoq8&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>打开 theme&#x2F;_config.yml ，将值粘贴到 google_site_verification 后面。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">google_site_verification:</span> <span class="string">hkH1lXIqT_al860tyTKTgIpzJ-cZryvL_i3tw1uOoq8</span></span><br></pre></td></tr></table></figure>
+
+<p>更新部署，然后回到 search console，点击verify，成功。</p>
+<blockquote>
+<p>官方教程：<a href="https://theme-next.js.org/docs/theme-settings/seo.html?highlight=google">https://theme-next.js.org/docs/theme-settings/seo.html?highlight=google</a></p>
+</blockquote>
+<h2 id="Baidu"><a href="#Baidu" class="headerlink" title="Baidu"></a>Baidu</h2><p>百度需要账号和实名认证，其他的操作和Google类似，具体可以看官方教程。</p>
+<h2 id="Bing"><a href="#Bing" class="headerlink" title="Bing"></a>Bing</h2><p>需要 Microsoft &#x2F; Google &#x2F; Facebook 账号，其他操作类似，具体可以看官方教程。</p>
+<h1 id="十七、Read-More"><a href="#十七、Read-More" class="headerlink" title="十七、Read More"></a>十七、Read More</h1><p>网上有很多种方法，在这里介绍一下我正在使用的。就是直接在模板中加入</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">description:</span> <span class="string">&#x27; &#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果如下</p>
+<img src="https://gitee.com/rayywei/blog-image/raw/master/blog002.png" style="zoom:80%;" />
 ]]></content>
       <categories>
         <category>Blog</category>
