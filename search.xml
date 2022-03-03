@@ -667,14 +667,21 @@
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">google_site_verification:</span> <span class="string">hkH1lXIqT_al860tyTKTgIpzJ-cZryvL_i3tw1uOoq8</span></span><br></pre></td></tr></table></figure>
 
 <p>更新部署，然后回到 search console，点击verify，成功。</p>
+<p>提交 sitemap</p>
+<img src="https://gitee.com/rayywei/blog-image/raw/master/blog003.png" style="zoom:80%;" />
+
+<p>显示成功即可。</p>
 <blockquote>
 <p>官方教程：<a href="https://theme-next.js.org/docs/theme-settings/seo.html?highlight=google">https://theme-next.js.org/docs/theme-settings/seo.html?highlight=google</a></p>
 </blockquote>
-<h3 id="Baidu"><a href="#Baidu" class="headerlink" title="Baidu"></a>Baidu</h3><p>百度需要账号和实名认证，其他的操作和Google类似。</p>
+<h3 id="Bing"><a href="#Bing" class="headerlink" title="Bing"></a>Bing</h3><p>需要 Microsoft &#x2F; Google &#x2F; Facebook 账号，其他操作类似。</p>
+<h3 id="Baidu"><a href="#Baidu" class="headerlink" title="Baidu"></a>Baidu</h3><p>百度需要账号和实名认证。</p>
+<img src="https://gitee.com/rayywei/blog-image/raw/master/blog004.png" style="zoom:80%;" />
+
+<p>其他的操作类似。</p>
 <blockquote>
 <p>注意，官方教程里说有个选项可以修改。</p>
 </blockquote>
-<h3 id="Bing"><a href="#Bing" class="headerlink" title="Bing"></a>Bing</h3><p>需要 Microsoft &#x2F; Google &#x2F; Facebook 账号，其他操作类似。</p>
 <h1 id="十七、Read-More"><a href="#十七、Read-More" class="headerlink" title="十七、Read More"></a>十七、Read More</h1><p>网上有很多种方法，在这里介绍一下我正在使用的。就是直接在模板中加入</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">description:</span> <span class="string">&#x27; &#x27;</span></span><br></pre></td></tr></table></figure>
 
