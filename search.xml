@@ -641,7 +641,12 @@
 
 <p><strong>注意</strong>：如果 permalink 最后面没有加<code>/</code>，那么打开文章时，文章会变成文件，浏览器会自动下载。</p>
 <p>参考教程：<a href="https://blog.csdn.net/weixin_37632720/article/details/104376279">hexo排坑——页面跳转变成了下载</a></p>
-<h1 id="十六、SEO"><a href="#十六、SEO" class="headerlink" title="十六、SEO"></a>十六、SEO</h1><h2 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h2><p>使用谷歌搜索 site:your website address，例如 site:wechiwin.github.io，若没有返回结果，说明谷歌没有收录你的网站。</p>
+<h1 id="十六、SEO"><a href="#十六、SEO" class="headerlink" title="十六、SEO"></a>十六、SEO</h1><h2 id="Sitemap"><a href="#Sitemap" class="headerlink" title="Sitemap"></a>Sitemap</h2><p>hexo有插件可以自动生成sitemap，确认terminal处于blog文件夹，然后输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h2><p>使用谷歌搜索 site:your website address，例如 site:wechiwin.github.io，若没有返回结果，说明谷歌没有收录你的网站。</p>
 <p>打开谷歌的网站 <a href="https://search.google.com/search-console/%EF%BC%8C%E7%99%BB%E5%BD%95%EF%BC%8C%E4%BC%9A%E8%AE%A9%E4%BD%A0%E9%80%89%E6%8B%A9%E9%AA%8C%E8%AF%81%E7%BD%91%E7%AB%99%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E8%AF%81%E6%98%8E%E7%BD%91%E7%AB%99%E6%98%AF%E4%BD%A0%E7%9A%84%EF%BC%89%E3%80%82">https://search.google.com/search-console/，登录，会让你选择验证网站的方式（证明网站是你的）。</a></p>
 <p>左边Domain是使用DNS验证的方式，这个是<code>自己有域名/GitHub Enterprise</code>才能用的。</p>
 <p>所以这里选择右边的 URL 验证方式，把网站主页的链接粘贴到输入框，点击继续。</p>
@@ -657,7 +662,10 @@
 <blockquote>
 <p>官方教程：<a href="https://theme-next.js.org/docs/theme-settings/seo.html?highlight=google">https://theme-next.js.org/docs/theme-settings/seo.html?highlight=google</a></p>
 </blockquote>
-<h2 id="Baidu"><a href="#Baidu" class="headerlink" title="Baidu"></a>Baidu</h2><p>百度需要账号和实名认证，其他的操作和Google类似，具体可以看官方教程。</p>
+<h2 id="Baidu"><a href="#Baidu" class="headerlink" title="Baidu"></a>Baidu</h2><p>百度需要账号和实名认证，其他的操作和Google类似。</p>
+<blockquote>
+<p>注意，官方教程里指明有个选项可以修改，请自行决定是否更攻。</p>
+</blockquote>
 <h2 id="Bing"><a href="#Bing" class="headerlink" title="Bing"></a>Bing</h2><p>需要 Microsoft &#x2F; Google &#x2F; Facebook 账号，其他操作类似，具体可以看官方教程。</p>
 <h1 id="十七、Read-More"><a href="#十七、Read-More" class="headerlink" title="十七、Read More"></a>十七、Read More</h1><p>网上有很多种方法，在这里介绍一下我正在使用的。就是直接在模板中加入</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">description:</span> <span class="string">&#x27; &#x27;</span></span><br></pre></td></tr></table></figure>
